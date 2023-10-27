@@ -23,9 +23,6 @@
 
 	</script>
 
-	<!--ehtan was here-->
-  <!--???: WHO is dis ehtan??? SOunds like a penguini's name...-->
-	<!--icilegit is observing you-->
 	<title>jBLOB</title>
 	<style>
 		* {
@@ -33,23 +30,13 @@
 			text-align: center;
 			transition: all 0.5s ease;
       cursor: url('Images/Misc./slimeCursor.png'), auto;
-		}
-		.sac {
-			color: red;
-		}
-		button {
+		}button {
 
 			background-color: white;
 			border-radius: 35%;
 			font-size: 15px;
 			padding: 5px;
-		}
-
-		#recipes {
-			color: orange;
-		}
-
-		#GoldCount {
+		}#GoldCount {
 			color: orange;
 			position: absolute;
 			top: 40px;
@@ -82,110 +69,23 @@
       background-color: none;
     }#tap:active{
       transform: scale(0.80);
-    }
-
-		#GearBitsCount {
-			color: rgb(135, 66, 50);
-			position: absolute;
-			top: 100px;
-		}
-
-		#BronzeKeyCount {
-			color: rgb(185, 128, 78);
-			position: absolute;
-			top: 80px;
-		}
-
-		#playername {
+    }#playername {
 			color: rgb(30, 139, 255);
 			position: absolute;
 			top: 0px;
-		}
-
-		button:active {
+		}button:active {
 			border-radius: 30%;
 			border-color: rgb(54, 71, 79);
 
 
-		}
-/*
-		#shopbutton {
-			position: absolute;
-			top: 105px;
-			right: 0px;
-		}
-
-		#GetBlobButton {
-			position: absolute;
-			top: 0px;
-			right: 0px;
-			color: rgb(111, 164, 66);
-		}
-
-		#Inventory {
-			position: absolute;
-			top: 35px;
-			right: 0px;
-		}
-
-		#ToAdventure {
-			position: absolute;
-			top: 70px;
-			right: 0px;
-		}
-    */
-    #upgradefusioner {
-      position: absolute;
-			top: 0px;
-			right: 0px;
-			color: rgb(161,104,70);
-  }#SwitchToBulk{
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      color: rgb(227,37,107)
-  }#LookForFood{
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      color: rgb(127, 255, 212)
-  }#LoginScreen{
-  
-   
-  }#save{
+		}#save{
       position:fixed;
       left:0px;
       bottom:0px;
-  }.dark-mode{
-      background-color: rgb(24, 26, 24);
-      color: white;
-      
   }button:hover {
 			background-color: rgb(137, 170, 192);
 			border-radius: 55%;
-	}.sidenav {
-    height: 100%; 
-    width: 0; 
-    position: fixed; 
-    z-index: 1; 
-    top: 0;
-    right: 0;
-    background-color: rgb(120,190,33); 
-    overflow-x: hidden; 
-    padding-top: 60px; 
-    transition: 0.5s; 
-}.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}#openNavigation {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      
-}.hovertext:before {
+	}.hovertext:before {
   content: attr(title);
   visibility: hidden;
   opacity: 0;
@@ -206,12 +106,7 @@
 }.hovertext {
   position: relative;
   border-bottom: 1px dotted black;
-}#DoShopQuest{
-      position: absolute;
-      right:0px;
-      top:0px;
 }
-    
 	</style>
 
 </head>
@@ -221,103 +116,18 @@
   
 <div id="LoginScreen">
 <h1>jBlob</h1>
-  <p>We are working very hard to get this out to everybody! Check back soon!</p>
-<!--If you havent figured it out by now, ive stopped developing this game. I like it alot, but i guess i lost motivation-->
 
 </div>
 
 <script>
-  
-var logincorrect = 0
-function Login(){
-var tempi = prompt("Welcome to jBlob. jBlob is currently under development. Check back soon! Please enter your password to continue.")
-
-  if(tempi == String.fromCharCode(99, 104, 105, 108, 108, 105, 110, 103, 80, 69, 78, 71, 85, 73, 78, 73, 48, 52, 50)) { // don't think you can cheat. get outta here.
-
-
-   $("#LoginScreen").slideUp();
-    $("#StartScreen").slideDown();
-    var logincorrect = 0
-  
-  }else{
-
-    $("#LoginScreen").slideDown();
-    $("#StartScreen").hide();
-    logincorrect = 1
-    alert("That is incorrect. GET OUTTA HERE!")
-    
-    
-  }
-}
- 
- $("#LoginScreen").slideUp();
-  $("#StartScreen").slideDown();
+$("#StartScreen").slideDown();
 
 </script>
 
 
-
-
-  
-
-<div id="minigame">
-
-
-
-
-
-
-  <button class = "BackHome">Home</button>
-</div>
-  
-
-<!--This ... doesnt work at all hahah-->
-<div id="BattleScreen">
-
-<button id="ChooseBattleBlob">Choose Blob</button>
-
-<button id="NextStage">Next Stage</button>
-
-<p id="EnemyHealth"></p>
-
-
-  <div id="fireblobselect">
-  <img src="Images/Slimes and Blobs/fireBlob.png" />
-    <button id="FireBlobBasicAttack" class = "Basic">Spark</button>
-    <button id="FireBlobSpecial1" class = "Second">Fiery Slap</button>
-    <button id="FireBlobSpecial2" class = "Third">Fire Strike</button>
-  </div>
-
-  
-  <div id="waterblobselect">
-  <img src="Images/Slimes and Blobs/waterBlob.png" />
-    <button id="WaterBlobBasicAttack" class = "Basic">Splash</button>
-    <button id="WaterBlobSpecial1" class = "Second">Water Stab</button>
-    <button id="WaterBlobSpecial2" class = "Third">Water Stream</button>
-  </div>
-
-
-  <div id="grassblobselect">
-  <img src="Images/Slimes and Blobs/grassBlob.png" />
-    <button id="GrassBlobBasicAttack" class = "Basic">Dirt Throw</button>
-    <button id="GrassBlobSpecial1" class = "Second">Grass Blade</button>
-    <button id="GrassBlobSpecial2" class = "Third">Leaf Blast</button>
-  </div>
-
-  <br>
 <button class="BackHome">back</button>
   <br>
 </div>
-
-  
-  
-  <div id="SoundScreen">
-    <p>You can unlock new songs to play...</p>
-    <p>DOS song???</p>
- <audio loop autoplay controls id = "dumaudio" src = "DOS.mp3"></audio>
-    
-    <button class="BackHome">back</button>
-  </div>
 
 
 
@@ -383,57 +193,13 @@ var tempi = prompt("Welcome to jBlob. jBlob is currently under development. Chec
 <button class="BackHome">back</button>
 </div>
   
-	<div id='StartScreen'>
+<div id='StartScreen'>
 
 		<h1>jBLOB</h1>
 		<p id='splash'>You will never see this!</p>
 		<button id='StartButton'>Start</button>
-<button id='ExtraButton'>Extra Stuff</button>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-	  <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div id="Credits">
-      <!--WHo are these mysterious people??? WHO KNOWS??? MAYBE they will be revealed????-->
-  <h1>CREDITS</h1>
-  <p>
-  Head Creator and Coder: nUlfksd?
-    <br>
-  Consultant and Helper: HUFmnasf?
-    <br>  
-  Artist & extras boi: IOCyufjsl?
-    <br>
-  </p>
+    <button id='ExtraButton'>Extra Stuff</button>
 </div>
-        </div>
 
 <div id='ExtraStuff'>
 
@@ -470,29 +236,18 @@ var tempi = prompt("Welcome to jBlob. jBlob is currently under development. Chec
 </div>
 
 <div id='goldinfo'>
-<p id='playername'> Name: </p>
-
+  <p id='playername'> Name: </p>
   <p id='levelcount'> Level: </p>
-<p id='GoldCount'> Gold count: </p>
-  <p id='BronzeKeyCount'> Bronze keys: </p>
+  <p id='GoldCount'> Gold count: </p>
   <p id='BlobletCount'> Bloblet Count: </p>
-<p id='GearBitsCount'> Gear Bits: </p>
 </div>
 <br>
-
 
 
 <div id = "expOut" style = "width:40%;border:1px lightgreen solid;left:30%;position:absolute;height:20px;border-radius:20px;text-algin:center;">
   <div id = "expIn" style = "border-radius:20px;background-color:lightgreen;width:0px;height:20px;"></div>
 </div>
-  
-<br>
-<button  id="openNavigation" onclick="openNav()">More</button>
 
-<div id="MySideNav" class="sidenav">
-
- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  
 <button id='shopbutton'>Shop</button>
   <br>
   <br>
@@ -502,159 +257,19 @@ var tempi = prompt("Welcome to jBlob. jBlob is currently under development. Chec
 <button id='Inventory'>Inventory</button>
   <br>
   <br>
-  <button id='ToQuestBoard'>Quest Board</button>
-  <br>
-  <br>
-<button id='ToAdventure'>Adventure</button>
-  <br>
-  <br>
 <button id='ToSlimepedia'>Slimepedia</button>
   <br>
   <br>
 <button id="ToMyBlobs"> <img src="Images/Slimes and Blobs/blob.png" /> </button>
-  <br>
-  <br>
-<button id='ToWarp'><img src="Images/Button Icons/warp.png" />
-<br>
-  <br>
-  <button id="ToMinigame">Minigame</button>
-  <br>
-  <br>
-  <br>
+
   <button id='Settings'>settings</button>
 </button>
   
-</div>
-  
-
-<br>
-  <button id="ToNightMarket">NightMarket</button>
-  
-
-
 
 </div>
 
 <div id='GetBlobs'>
-<h1>Get Blobs</h1>
-  <p><i>Tip: Crafting recipes are in the slimepedia!</i></p>
-  <!--
- <button id="SwitchToBulk">Bulk Buy/craft</button>
-  -->
-<button id="BuyBlob" onclick = "BuyBlob()"></button>
-<button id ="BuySlimeBlob" onclick = "BuySlimeBlob()"></button>
-<br>
-<h1>Blob Crafting</h1>
-<button id='GetVisciousSlime'>Craft Viscious Slime</button>
-<br>
-  <button id="GetMegaBlob">Craft Mega Blob: 25 Blobs</button>
-  <button id = "GetGigaBlob">Craft Giga Blob: 50 Mega Blob</button>
-<div id='FusionerScreen'>
-<h1>FUSION FACILITY</h1>
-<p>Fuse 2 blobs together using the fusioner!</p>
 
-<button id = "FuseSquishyBlob" onclick = "FuseSquishyBlob()">Fuse a SquishyBlob </button>
-
-  <button id="FuseSmokeBlob"> Fuse a Smoke Blob</button>
-<button id = "upgradefusioner">Upgrade</button>
-
-<div id = "FuseOtherRank2">
- <!--
-Put any other blobs that fuse from element blobs here.
-
-   -->
-  <button id="FuseTreeBlob"> Fuse a Tree Blob</button>
-</div>
-</div>
-  <button id = "GetBlobBack"> Back </button>
-</div>
-<!--
-<div id="QuestBoard">
-<p>Available Quests</p>
-   Similar to Shop Quests. 0 = no quest, 1 =  , 2= ,
-<p id="QuestOption1">No Quests Available</p><button id="DoQuest1">Accept</button>
-  
-<p id="QuestOption2">No Quests Available</p><button id="DoQuest2">Accept</button>
-
-<p id="QuestOption3">No Quests Available</p><button id="DoQuest3">Accept</button>
-
-
-  <p id="ActiveQuest"></p>
-  <button class="BackHome">Back Home</button>
-</div>
--->
-  
-<div id='shop'>
-
-<h1>Shop</h1>
-<p id = "blink">[0.0]  -{Welcome! What can I interest you in?} </p>
-<br>
-  <button id="DoShopQuest">Shop Quests</button>
-<p>Currently in stock items:</p>
-<div id="BuyFusion">
-<button onclick = "BuyFusioner()">Fusioner</button>
-</div>
-<br>
-<div id="BuyWoodenBowl">
-<button> Wooden Bowl</button>
-</div>
-  <br>
-
-  <div id="ShopOxidizer">
-    <button id="BuyOxidizer">Oxidizer</button>
-  </div>
-    <br>
-<!--
-<button id = "LoreBook">JBlob Lore Book</button>
--->
-
-<br>
-  <div id="ShopChickenEgg">
-  
-    
-  <button id="BuyChickenEgg"><img src="Images/Misc./chickenEgg.png" /><br>Egg</button>
-</div>
-  
-  <br>
-  <div id="ShopBronzeKey">
-<button onclick = "BuyBronzeKey()"><img src="Images/Currency Icons/bronzeKey.png" /><br></br>Bronze Key</button>
-  </div>
-    <div id="ShopFireBlob">
-    
-    <button id="BuyFireBlob"><img src="Images/Slimes and Blobs/fireBlob.png" /><br>Fire Blob</button>
-    </div>
-  
-    <br>
-  
-    <div id="ShopGrassBlob">
-    <button id="BuyGrassBlob"><img src="Images/Slimes and Blobs/grassBlob.png" /><br>Grass Blob</button>
-    </div>
-  
-    <br>
-  
-    <div id="ShopWaterBlob">
-    <button id="BuyWaterBlob"><img src="Images/Slimes and Blobs/waterBlob.png" /><br>Water Blob</button>
-    </div>
-    <br>
-  
-<h1>Open a chest</h1>
-<p>Open a chest to get STUFF</p>
-<button onclick = "alert(`Bronze chest rates: Common (gold), Uncommon (Bloblets), Rare (Blob essence),  Super Rare(Bronze Slime)`)">Bronze Chest rates</button>
-<br>
-<button onclick ="alert(`The bronze chest has lots of uncommon goodies! Needs a bronze key to open, though!`)">Bronze Chest</button>
-<button onclick="GetBronzeChest()">Get a Bronze Chest</button>
-
-<br>
-<br>
-<br>
-<br>
-  <h1>Buy Cursors</h1>
-  <p id="SmokeBlobCursorBuyShop">The smoke blob cursor would be here except its not in the jblob world yet! Stay Patient!
-  </p>
-    <br>
-  <button id="ChangeToSmokeCursor">Smoke Blob Cursor</button>
-  <br>
-    <button id='backshop'>Back</button>
 </div>
 
 
@@ -662,26 +277,8 @@ Put any other blobs that fuse from element blobs here.
 
 
 <div id='inventory'>
-<h1><font color="#a16846">Inventory</font></h1>
-<button id="UseEarbuds">Earbuds</button>
+
   
-<p id='BlobEssenceCount'></p>
-<p id='viscioushoneycount'></p>
-<p id='StickySapCount'></p>
-<p id='WoodenBowlCount'></p>
-<p id = "BloodStoneCount"></p>
-<p id = "jblobtomecount"></p>
-<p id="normalEggsCount"></p>
-<p id="ChickenEggCount"></p>
-<p id="fireGemCount"></p>
-<p id="waterGemCount"></p>
-<p id="grassGemCount"></p>
-<p id="donutCount"></p>
-  
-<button id='UseCustomizeButton'>Customize tap button</button>
-<button id='littlevillageitem'>Little Village item</button>
-<p id='RockCount'></p>
-<br>
 <button id='back'>Back</button>
 </div>
 
@@ -695,277 +292,32 @@ Put any other blobs that fuse from element blobs here.
 <button id='BackCode'>Back</button>
 </div>
 
-
-<div id='AdventureScreen'>
-<p>⍋__⍋⍋___('''')_⍋</p>
-<p>Adventure</p>
-<button onclick='WhatIsAdventure()'>What is Adventure?</button>
-<p id = 'LifeAdventure'>life:</p>
-<p id = 'gold'></p>
-<p id = 'Food'></p>
-<button id='NextAdventure'> Adventure!</button>
-<br>
-<br>
-<br>
-<h><b>Idle Adventure</b></h>
-<br>
-<p id="CurrentAdventureStage">Breezy Forests</p>
-<button onclick="StartIdleAdventure()">Start Adventuring</button>
-<br>
-<p id='IdleAdventureTimeLeft'></p>
-<br>
-  <br>
-  <br>
-<button id='BackAdventure'>Back</button>
-</div>
-
-
-
-<div id = 'trans'></div>
-
-
-
 <div id = 'slimepedia'>
   <div id="blobpedia">
-    <img src="Images/Slimes and Blobs/blob.png" />
-    <p>Blob:<i> A basic blob that can evolve into many different forms. Apparently good in stew. <font class = "sac">Cannot be sacrificed. </font>Acquired through <font color="#ffe168">buying (30 gold). </font></i></p>
+
+    <p>Blob:<i> A basic blob that can evolve into many different forms. Apparently good in stew.</i></p>
   </div>
   <br>
   <div id="SlimeBlobpedia">
-    <img src="Images/Slimes and Blobs/slimeBlob.png" />
-    <p>Slime Blob: <i>A blob who is very slimy compared to others. Supposedly you can increase its viscosity using honey to form a new slime. <font class = "sac">Cannot be sacrificed. </font>Acquired through <font color="#bd8b6f">crafting (1 blob + 30 gold)</font></i></p>
+    <p>Slime Blob: <i>A blob who is very slimy compared to others. Supposedly you can increase its viscosity using honey to form a new slime.</i></p>
   </div>
   <br>
   <div id="SquishyBlobPedia">
-	  <img src="Images/Slimes and Blobs/squishyBlob.png" />
-    <p>Squishy Blob: <i>Squishy! Predators don't like to eat this slime because it's too chewy. <font class = "sac">Cannot be sacrificed. </font>Acquired through <font color="#2e1832">fusion (1 blob + 1 Slime blob + 3 Gear Bits)</font></i></p>
+    <p>Squishy Blob: <i>Squishy! Predators don't like to eat this slime because it's too chewy.</i></p>
   </div>
   <br>
-  <div id="BronzeSlimePedia">
-    <img src="Images/Slimes and Blobs/bronzeSlime.png" />
-  <p>Bronze Slime: <i>This slime has a bronze coating making it shiny. A slime fit for people that come in 3rd place. Sort of feels like a consolation prize. <font class = "sac">Cannot be sacrificed. </font>Acquired through <font color="#89aac0">treasure chests</font>.</i></p>
-  </div>
-  <br>
-  <div id="SilverSlimePedia">
-    <img src="Images/Slimes and Blobs/silverSlime.png" />
-  <p>Silver Slime: <i>A slime covered in a silvery, shiny coating. Is actually quite durable. Seems to be attracted to people who tend to be in 2nd place. <font class = "sac">Cannot be sacrificed. </font>Acquired through<font color="#89aac0"> treasure chests</font>. </i>NOT ABLE TO BE AQUIRED YET</p>
-  </div>
-  <br>
-  <div id="GoldSlimePedia">
-    <img src="Images/Slimes and Blobs/goldSlime.png" />
-    <p>Gold Slime: <i>A shiny golden slime. Only the best winners can get this slime. Only partners with the very best. <font class = "sac">Cannot be sacrificed. </font>Acquired through<font color="#89aac0"> treasure chests</font>. </i>NOT ABLE TO BE ACQUIRED YET</p>
-  </div>
-  <br>
-  <div id="VisciousSlimePedia">
-	  <img src="Images/Slimes and Blobs/viscousSlime.png" />
-    <p>Viscious Slime: <i>Formerly a slime blob who fell into some sticky honey. It is forever changed...forever! It is now very sticky and is now very viscious, which is a big word for sticky. <font color="#bd8b6f">Acquired through crafting (Slime blob + Viscious Honey).</font></i></p>
-  </div>
-  <br>
-  <div id="CliffSlimePedia">
-	  <img src="Images/Slimes and Blobs/cliffSlime.png" />
-    <p>Cliff Slime: <i>This slime lives on the edge of cliffs, perched precariously on the edge of a life threatening fall. Many adventurers report grayish goo at the bottom of tall cliffs. Sad, really. <font class = "sac">Cannot be sacrificed. </font>Acquired through Adventure </i></p>
-  </div>
-  <br>
-  <div id="FrankenSlimePedia">
-	  <img src="Images/Slimes and Blobs/frankenSlime.png" />
-  <p>FrankenSlime: <i>FrankenSlimes are the failed bits of slimes stiched together. It does not look very nice, but is suprisingly great at fashion! <font class = "sac">Can be sacrificed for two bloodstones. </font>Acquired through failed <font color='#2e1832'> fusion </font>.</i></p>
-  </div>
-<br>
-  <div id="BloodBlobPedia">
-	  <img src="Images/Slimes and Blobs/bloodSlime.png" />
-    <p>Blood Blob:<i> A slime made from ketchup and is covered in ketchup! Oh... Wait a second... It's made of Blood? and covered in blood? Oh well, nevermind then. Gross. <font class = "sac">Can be sacrificed for one bloodstone. </font>Acquired through special <font color="#873f31"> Demon ticket summon</font> at the mystic grove</i></p>
-    <br>
-  </div>
-  <div id="FireBlobPedia">
-	  <img src="Images/Slimes and Blobs/fireBlob.png" />
-<p>Fire Blob:<i> A blob made of fire. One of the 3 base element blobs. Supposedly mixing this blob with the other base element blobs can form interesting results... Likes spicy food. Acquired through <font color="#ffe168">buying (1000 gold).</font></i></p>
-<br>
-  </div>
-  <div id="WaterBlobPedia">
-	  <img src="Images/Slimes and Blobs/waterBlob.png" />
-<p>Water Blob: A blob made of water. One of the 3 base element blobs. Supposedly mixing this blob with the other base element blobs can form interesting results... Has had some close calls with thirsty creatures. Acquired through <font color="#ffe168">buying (1000 gold).</font></i></p>
-<br>
-  </div>
-  <div id="GrassBlobPedia">
-	  <img src="Images/Slimes and Blobs/grassBlob.png" />
-<p>Grass Blob:<i> A blob made of leaves. One of the 3 base element blobs. Supposedly mixing this blob with the other base element blobs can form interesting results... Feels fuzzy, but I can assure you its the grass, not mold.. Acquired through <font color="#ffe168">buying (1000 gold).</font></i></p>
-<br>
-<div id="MegaBlobPedia">
-	  <img src="Images/Slimes and Blobs/megaBlob.png" />
-<p>Mega Blob:<i>A huge blob made from many others. It huge size makes it inconvienent when going through door ways! <font color="#bd8b6f">Acquired through crafting (25 x blobs).</i></font> </p>
 
-</div>
-<div id="GigaBlobPedia">
-	  <img src="Images/Slimes and Blobs/gigaBlob.png" />
-<p> Giga Blob: <i>A ginormous blob that tramples houses. It is quite friendly but often crushes its fellow slimes and blobs without realizing it. <font color="#bd8b6f">Acquired through crafting (100 x Mega Blobs). </i></font>NOT ABLE TO BE ACQUIRED YET 
-</p>
-</div>
-<div id="RainbowBlobPedia">
-	  <img src="Images/Slimes and Blobs/rainbowblob.gif" />
-<p> Rainbow Blob: <i>Shines with the colors of the rainbow. Vehemently argues orange and purple are not primary or secondary colors.  </i>
-</p>
-</div>
-<div id="ChickenBlobPedia">
-  <img src="Images/Slimes and Blobs/chickenBlob.png" />
-  <p> Chicken Blob: <i> A blob that resembles a chicken.They seem to serve a higher order... </i><font color="#ffe168">Hatches from a Chicken egg, which can be bought from the shop</font> Contributed by Raiden5z5, cheekis master</p>
-  </div>
-
-<div id="SmokeBlobPedia">
-<p> Smoke Blob: <i> While it might seem that the blob is smoke, infact, there is a small blob body (blody??) inside, and it is covered with alot of smoke, making it seem bigger that it really is.</i>Aquired by fusing 2 element blobs<!-- <p id="SmokeBlobRecipe"> ??? + ???</p> --> </p>
-</div>
-    
-    <div id="AirBlobPedia">
-      <p>Air Blob: <i>A blob that is made almost completely out of air. Perhaps it could become more powerful if it could just become winder. For some reason it has a fondness for slopes and triangles</i>
-Not able to be aquired yet</p>
-</div>
-
-    <div id="jBlobPedia">
-      <p>jBlob:</p> <i>⌿⍀⟒કક ⏁⊑⟒ ⌿ล⋏⏁ક ล⋏⎅ ક⟒⍙ ล ⏚⎍⏁⏁⍜⋏ ⍜⋏ ⏁⊑⟒ ⎐⟒ક⏁߲ ⍙ล⎅وล讠⎍⊑⎅ ზوર⋏⟒⟊ล 0و? ⍙ล⍜⎅ზƺ⍀ƺوზ⟊ ล⟊ⵅક⎍讠☊☌⍾ล ⎎⍾</i>
-    </div>
-    <br>
   
 <button id='BackSlimepedia'>Back</button>
 </div>
 
-</div>
-
-
-<div id='warp'>
-<h1>Warp</h1>
-  <img src="Images/Button Icons/warp.png" />
-  <br>
-<button id='ToMysticGrove'> Warp to Mystic Grove</button> <p>A mystic grove shrouded in fog. Its strange magic allows you to summon creatures from different planes of existence.</p>
-<br>
-<button id='ToBloodAltar'>Warp to Blood Altar</button>
-<p>An ancient altar stained with the blood of fallen creatures. Its foul sacrifical craft is still able to be used...</p>
-<br>
-<button id='ToSpaceRift'>Warp to Space Rift</button>
-<p>???Not able to get here yet???</P>
-<br>
-<button id='ToMagicKitchen'>Warp to Magic Kitchen</button>
-<p>A kitchen, but magical! Whip up tasty food using exotic ingredients.</p>
-<br>
-<button id="ToBattle">Battle waves</button>
-<p>Battle through waves of enemies! Use your own slimes abilites to destroy enemies. Gain tons of rewards.</p>
-  <br>
-<button class = "BackHome">Home</button>
-</div>
-
-
-<div id="NightMarket">
-  
-
-<h1>NIGHT MARKET</h1>
-  <p><b><i>A special elusive market that only appears during a certain time frame...</i></b></p>
-  
-<div id="DonutBlob">
-<button id="BuyDonutBlob">Donut Blob</button>
-  </div>
-
-<div id="BottledDarkEssenceBuy">
-  <button id="BuyBottledDarkEssence">Bottled Dark Essence</button>
-  </div>
-  <button class = 'BackHome'>Back</button>
-</div>
-
-<div id='SpaceRift'>
-<h1><font color="#21aae1"> Space Rift</font></h1>
-<p><i>The Rift is a hole in the space-time continium where strange occurences happen. However, you can use this power to infuse your blobs and your world with strange energies</i></p>
-  
-<button id='BackSpaceRift'>Back</button>
-</div>
-
-
-  <div id='MysticGrove'>
-<h1><font color="#21aae1"> Mystic Grove</font></h1>
-    <p>Buy summon orbs to summon blobs from different dimensions!</p>
-  <button id="SUMMON">SUMMON</button>
-    <button id="SelectSummon">Select Summon Type</button>
-    <p id="SummonType"></p>
-
-    <h1>Buy a summon orb</h1>
-    <button id="BuyNormalSummon">Normal orb</button>
-<button class = 'BackHome'>Back</button>
-    <h2>Your orbs</h2>
-    <p id = "NormalOrbCount"></p>
-</div>
-
-
-  <div id="MagicKitchen">
-  <h1>Magic Kitchen</h1>
-    <p>Whip up tasty food that gives you benefits! Food can also be used to trade with NPCs and blobs!</p>
-    <h2>Cook</h2>
-    <button id="LookForFood">Gather Food</button>
-    <!--Look for food is basically just idle adventure-->
-    <h2>Ingredients</h2>
-    <p id="purpberriescount"></p>
-  <button class = 'BackHome'>Back</button>
-  </div>
-
-
-
-
 
 <div id="settings">
 <h1>Settings</h1>
-  <button onclick="darkMode();DarkMode();">Toggle Darkmode</button>
-<br>
-<br>
-<button class="BackHome">Back</button>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!--IGNORE THIS, THIS IS NOTHING -->
-<button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button id="SuperSecretSettings"></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button>
-</div>
-<!-- BRUH-->
-<script>
-  //???:THIS IS NOTHING IGNORE THIS
-</script>
-<div id="supersecretsettings">
-<h2>Super Secret Settings</h2>
-<button id="SSSarrowgrinding"> Enable Arrow key </button>
-<button id="SSSblobmult"> Enable Blob multiplication </button>
-<button class="BackHome">Back</button>
 
 </div>
-
-<div id="BloodAltar">
-<h1><font color = "#f7091d">Blood Altar</font></h1>
-<p>Sacrifice Blobs to gain bloodstones. Use bloodstones for demonic items and buffs.</p>
-  <button id = "SacFrank">Sacrifice FrankenSlime</button>
-<button id="SacSlime" >Sacrifice SlimeBlob</button>
-<h2><font color = "#873f31">Demonic shop</font></h2>
-
-<br>
-  <!--Supposed to be a cthullu but whatever-->
-<p> ^(;,;)^ - Whattt can I do fuur yuuu? I am jusst ITCHING for a newwwww SOUL! </p>
-<button id="BuyRodOfEssence">Rod Of Essence</button>
-  <br>
-  <button id="BuyBloodCrystal">Blood Crystal</button>
-<br>
-<h2>Summon Abyss God</h2>
-<button id="SummonAbyssGod">Summon a Abyss God</button>
-<button class="BackHome">Back</button>
-<br>
-</div>
-
-  <div id="ShopQuests">
-<p><i>Complete Quests for the Shop Guy to level up his shop! A higher level shop means better items!</i></p>
-    <button id="StartShopQuest">Start a Quest!</button>
-    <button class="BackHome">Back</button>
-  </div>
-
 
 <script src = "Starting.js"></script>
-<script src = "Battle.js"></script>
-  <script src = "ClickStuff.js"></script>
-<script src = "Adventure.js"></script>
-<script src = "Buy.js"></script>
-<script src = "IntervalsAndDisplay.js"></script>
-<script src = "minigame.js"></script>
 
 
 
@@ -973,87 +325,6 @@ Not able to be aquired yet</p>
 
 
 <script>
-
-
-// 1000 codes to 300!!!!!!!!!!! WOOOOOOOOOOOOH
-//sus
-  //but actually there is way more than 1000 codes
-  //u literally just put 700 lines of code into another js file
-
- 
-// the j symbol with hands means j blob
-
-function Transcendency(){
-
- if(save['level']==100 && save['firstTranscendAlert']==0){
-  alert('???: So, you have achieved complete mastery of jBlob... Almost. You can never truly complete jBlob... But you can transcend beyond...')
-  alert('???:By transcending you acquire 1 Transcend Token and you taps increase to 25 gold per tap... but you lose everything you have. ')
-  DoYouTranscend = prompt('???: Are you sure you want to transcend? If you are level 100 or above, you can transcend at any time by clicking the transcend button. (type Yes to transcend)')
-
-  if(DoYouTranscend == 'Yes'){
-  alert('As you wish.')
-  save['gold']=0
-  save['BronzeSlimes']=0
-  save['Blobs']=0
-  save['bloblet']=0
-  save['BlobEssence']=0
-  save['level']=1
-  save['exp']=0
-  save['TapPerGold']=25
-  //Fix tap per gold transcendency stuff
-  save['BronzeKey']=0
-  save['boughtfusioner']=0
-  save['SquishyBlobs']=0
-  save['viscioushoney']=0
-  save['GearBits']=0
-  save['CliffSlimes']=0
-  save['SlimeBlobs']=0
-  save['VisciousSlime']=0
-  save['FrankenSlime']=0
-  save['bloodstones']=0
-  save['exp'] = 0
-  save['GearBits'] = 0;
-  save['viscioushoney'] = 0
-  save['rocks'] = 0
-  save['gold'] = 10
-  save['BlobEssence'] = 0
-  save['BronzeKey'] = 0
-  save['level'] = 1
-  save['levelcost'] = 100
-  save['bloblet'] = 0
-  save['bloodstones'] = 0
-  save['stickysap'] = 0
-  save['jblobtomes'] = 0
-	save['transcendTimes']++
-	save['ExtraGoldChance'] = 0
-/*
-lol so far transendcy gives you nothing.
-Got to add transendcy tokens or something
-edit: xcept your taps beocme 10
-*/
-  $("#trans").remove()
-  }else{
-    alert('???: Maybe later huh? You can transcend at any time if you are level 100 or above by clicking the transcend button.')
-    $('#trans').html(`<button onclick = 'Transcendency()'>Transcend</button>`)
-  }
-  clearInterval(toTrans)
-  }
-}
- var toTrans = setInterval(Transcendency,100);
-
-function SmokeBlobAlertToDoItNow(){
-if(save['WaterBlobs']>=1 && save['FireBlobs']>=1 && save['FuseASmokeBlobAlert'] == 0){
-  Swal.fire({text:`Hey! You have both a fire blob and a water blob! That means you can fuse them together to make a Smoke Blob! Buy the fusioner and fuse a smoke blob to unlock other Rank 2 elemental blobs to fuse! `})
-  save['FuseASmokeBlobAlert']++
-  clearInterval(SmokeAlert)
-}
-  
-  }
-var SmokeAlert = setInterval(SmokeBlobAlertToDoItNow,100);
-
-
-
-
 
   
 function DevHackGold(){
@@ -1062,11 +333,6 @@ function DevHackGold(){
 function LevelHack(){
   save['level']++
 }
-/*
-$("#dumaudio").get(0).play();
-document.getElementById('dumaudio').play()
-*/
-
   
 //toasts are for achievements and leveling.
 const Toast = Swal.mixin({
@@ -1080,63 +346,6 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
 })
-  
-  function darkMode(){
-    var element = document.body;
-    element.classList.toggle("dark-mode");
-    if(save['darkmodestatus'] = 1){
-      save['darkmodestatus'] = 0
-    }else{
-    save['darkmodestatus'] = 1
-    }
-    
-  }
-  
-  function DarkMode(){
-if(save['darkmodestatus'] = 1){
-    $(":button").css("background-color","rgb(24, 26, 24)");
-    $(":button").css("color","white");
-    $(":button").css("outline","none");
-    $(":button").css("border","none");
-
-  $(':button').hover(function(){
-    $(this).addClass('active');
-}, function(){
-    $(this).removeClass('active');
-})
-
-$(':button').mouseenter(function() {
-    $(this).css("background-color","rgb(137, 170, 192)") 
-}).mouseleave(function() {      
-    if(!$(this).hasClass('active')){
-        $(this).css("background-color","rgb(24, 26, 24)")
-    }
-});
-  
-}else if(save['darkmodestatus'] = 0){
-  
- $(":button").css("background-color","white");
-    $(":button").css("color","black");
-    $(":button").css("outline","black");
-    $(":button").css("border","black");
-
-  $(':button').hover(function(){
-    $(this).addClass('active');
-}, function(){
-    $(this).removeClass('active');
-})
-
-$(':button').mouseenter(function() {
-    $(this).css("background-color","rgb(137, 170, 192)") 
-}).mouseleave(function() {      
-    if(!$(this).hasClass('active')){
-        $(this).css("background-color","white")
-    }
-}); 
-}
-
-    
-  }
   
 </script>
 </script>
