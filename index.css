@@ -11,6 +11,8 @@ button {
     border-radius: 35%;
     font-size: 15px;
     padding: 5px;
+    box-shadow: 0 9px #999;
+    
 }
 
 #GoldCount {
@@ -60,7 +62,8 @@ button:hover {
 button:active {
     border-radius: 30%;
     border-color: rgb(54, 71, 79);
-
+    box-shadow: 0 5px #999;
+    transform: translateX(4px);
 
 }
 
@@ -101,3 +104,4 @@ button:hover {
     position: relative;
     border-bottom: 1px dotted black;
 }
+
