@@ -1,0 +1,103 @@
+* {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    transition: all 0.5s ease;
+    /*cursor: url('Images/Misc./slimeCursor.png'), auto; */
+}
+
+button {
+
+    background-color: white;
+    border-radius: 35%;
+    font-size: 15px;
+    padding: 5px;
+}
+
+#GoldCount {
+    color: orange;
+    position: absolute;
+    top: 40px;
+}
+
+#BlobletCount {
+    color: green;
+    position: absolute;
+    top: 60px;
+}
+
+#levelcount {
+    color: blue;
+    position: absolute;
+    top: 20px;
+}
+
+button:hover {
+    background-color: rgb(137, 170, 192);
+    border-radius: 55%;
+    border-color: rgb(135, 66, 50);
+}
+
+#tap {
+    outline: none;
+    border: none;
+}
+
+#tap:hover {
+    border-color: none;
+    background-color: none;
+}
+
+#tap:active {
+    transform: scale(0.80);
+}
+
+#playername {
+    color: rgb(30, 139, 255);
+    position: absolute;
+    top: 0px;
+}
+
+button:active {
+    border-radius: 30%;
+    border-color: rgb(54, 71, 79);
+
+
+}
+
+#save {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+}
+
+button:hover {
+    background-color: rgb(137, 170, 192);
+    border-radius: 55%;
+}
+
+.hovertext:before {
+    content: attr(title);
+    visibility: hidden;
+    opacity: 0;
+    width: max-content;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 5px;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 110%;
+}
+
+.hovertext:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hovertext {
+    position: relative;
+    border-bottom: 1px dotted black;
+}
