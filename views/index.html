@@ -8,84 +8,15 @@
     <link rel="stylesheet" href="/css/index.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>jBLOB</title>
   </head>
   <body>
 
-    <div id="MyBlobs">
-      <div id="BlobP">
-        <img src="Images/Slimes and Blobs/blob.png" />
-        <p id="BlobCount"></p>
-      </div>
-      <div id="SlimeBlobP">
-        <img src="Images/Slimes and Blobs/slimeBlob.png" />
-        <p id="SlimeBlobCount"></p>
-      </div>
-      <div id="SquishyBlobP">
-        <img src="Images/Slimes and Blobs/squishyBlob.png" />
-        <p id="SquishyBlobCount"></p>
-      </div>
-      <div id="BronzeSlimeP">
-        <img src="Images/Slimes and Blobs/bronzeSlime.png" />
-        <p id="BronzeSlimeCount"></p>
-      </div>
-      <div id="CliffSlimeP">
-        <img src="Images/Slimes and Blobs/cliffSlime.png" />
-        <p id="CliffSlimeCount"></p>
-      </div>
-      <div id="FrankenSlimeP">
-        <img src="Images/Slimes and Blobs/frankenSlime.png" />
-        <p id="FrankenSlimeCount"></p>
-      </div>
-      <div id="VisciousSlimeP">
-        <img src="Images/Slimes and Blobs/viscousSlime.png" />
-        <p id="VisciousSlimeCount"></p>
-      </div>
-      <div id="FireBlobP">
-        <img src="Images/Slimes and Blobs/fireBlob.png" />
-        <p id="FireBlobCount"></p>
-      </div>
-      <div id="WaterBlobP">
-        <img src="Images/Slimes and Blobs/waterBlob.png" />
-        <p id="WaterBlobCount"></p>
-      </div>
-      <div id="GrassBlobP">
-        <img src="Images/Slimes and Blobs/grassBlob.png" />
-        <p id="GrassBlobCount"></p>
-      </div>
-
-      <div id="MegaBlobsP">
-        <img src="Images/Slimes and Blobs/megaBlob.png" />
-        <p id="MegaBlobCount"></p>
-      </div>
-
-      <div id="RainbowBlobsP">
-        <img src="Images/Slimes and Blobs/rainbowblob.gif" />
-        <p id="RainbowBlobCount"></p>
-      </div>
-
-      <div id="ChickenBlobsP">
-        <img src="Images/Slimes and Blobs/chickenBlob.png" />
-        <p id="ChickenBlobCount"></p>
-      </div>
-
-      <div id="DonutBlobsP">
-        <p id="DonutBlobCount"></p>
-      </div>
-
-      <div id="SmokeBlobP">
-        <p id="SmokeBlobCount"></p>
-      </div>
-
-      <button class="BackHome">back</button>
-    </div>
-
     <div id="StartScreen">
       <h1>jBLOB</h1>
       <p id="splash">You will never see this!</p>
-      <button id="StartButton">Start</button>
+      <button id="StartButton" onclick="play()">Start</button>
       <button id="ExtraButton">Extra Stuff</button>
     </div>
 
@@ -104,56 +35,34 @@
       </div>
     </div>
 
+
+
+    <!--START PLAY SCREEN-->
+
     <div id="PlayScreen">
-      <button id="save">Save</button>
       <h1>jBlob</h1>
-      <img class="ScreenBlob" src="Images/Slimes and Blobs/blob.png" />
-      <button id="tap" onclick="Tap()"><img src="Images/Button Icons/coin.png" /></button>
-
-      <!--<input type="image" src="Images/Button Icons/coin.png" name="tapGold" id="tap" onclick="Tap()"/>
-  -->
-      <!--<button id="TapAnimate" style = "background-color:black;color:lightblue"> >>> </button>
--->
-      <div id="DevHacks">
-        <p>Dev Hacks</p>
-        <button onclick="DevHackGold()">Gold hack</button>
-
-        <button id="levhack" onclick="LevelHack()">Level Hack</button>
-      </div>
-
-      <div id="goldinfo">
-        <p id="playername">Name:</p>
-        <p id="levelcount">Level:</p>
-        <p id="GoldCount">Gold count:</p>
-        <p id="BlobletCount">Bloblet Count:</p>
-      </div>
-      
       <br>
 
-      <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
-        <div id="expIn" style="border-radius: 20px; background-color: lightgreen; width: 0px; height: 20px"></div>
-      </div>
+      
+      
+      <div id="WarpBar"> 
+        <button>Warp Shop</button>
+        <button>Warp Battle</button>
 
-      <button id="shopbutton">Shop</button>
-      <br />
-      <br />
-      <button id="GetBlobButton">Craft Blobs</button>
-      <br />
-      <br />
-      <button id="Inventory">Inventory</button>
-      <br />
-      <br />
-      <button id="ToSlimepedia">Slimepedia</button>
-      <br />
-      <br />
-      <button id="ToMyBlobs"><img src="Images/Slimes and Blobs/blob.png" /></button>
+      </div>
+      <!-- <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
+        <div id="expIn" style="border-radius: 20px; background-color: lightgreen; width: 0px; height: 20px"></div>
+      </div> -->
+      <br>
+
 
       <button id="Settings">settings</button>
     </div>
 
-    <div id="inventory">
-      <button id="back">Back</button>
-    </div>
+
+
+    <!--END PLAY SCREEN-->
+
 
     <div id="slimepedia">
       <div id="blobpedia">
@@ -184,15 +93,11 @@
 
     <!--Storing all excess js files-->
     <script src="/js/main.js"></script>
+    <script src="/js/variables.js"></script>
+    <script src="/js/blobbasics.js"></script>
+
 
     <script>
-      function DevHackGold() {
-        save["gold"] += 1000;
-      }
-      function LevelHack() {
-        save["level"]++;
-      }
-
       //toasts are for achievements and leveling.
       const Toast = Swal.mixin({
         toast: true,
