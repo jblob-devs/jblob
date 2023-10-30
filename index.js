@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const notifier = require('node-notifier');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const sqlite3 = require("sqlite3").verbose();
@@ -78,7 +79,14 @@ app.get("/logout", (req, res) => {
 }
 );
 
-
+app.post("/code", (req, res) => {
+    const code = req.body.code;
+    if (code === "1234") {
+        res.send('<script>alert("Correct code! Great prizes will be delivered soon!")</script>')
+    } else {
+        res.send('<script>alert("Incorrect code!")</script>');
+    }
+});
 
 app.get("/", (req, res) => {
     if (req.cookies.username) {

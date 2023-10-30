@@ -1,43 +1,38 @@
-class basicBlob {
-    constructor(){
-        this.health = 30;
-        this.basicAtkDmg = 3;
-        //atk spd written in ms
-        this.basicAtkSpd = 500;
-        this.specialAtkDmg = 6;
-        this.specialAtkSpd = 4000;
-        
-        this.level = 1;
+//Player stats
+var playerDrawDelay = 4000;
+//Player draws a card every 4 seconds
+
+var playerMaxHandSize = 3;
+//Max of 3 cards in hand
+
+
+var playerBlobTeam = ["basicBlob"]
+var playerTeamMax = 3;
+
+
+var playerDeck = ["ember"];
+//represents the players deck, (they start with only card, ember)
+
+//There is a doc with the card's effect and list
+
+var playerHand = [];
+//represents the cards in the player's hand
+
+function drawCard(){
+
+}
+
+//Creates enemies, of a certain type and number
+function createEnemySet(type, number){
+    if(type == 0 && number == 0){
+        return 0;
+        //no enemies are created
     }
+
+
 }
 
 
-class squishyBlob {
-    constructor(){
-        this.health = 20;
-        this.basicAtkDmg = 4;
-        //atk spd written in ms
-        this.basicAtkSpd = 450;
-        this.specialAtkDmg = 6;
-        this.specialAtkSpd = 4000;
-        
-        this.level = 1;
-    }
-}
+function createEncounter(enemySet, enemySet2, enemySet3){
 
-class slimeBlob {
-    constructor(){
-        this.health = 35;
-        this.basicAtkDmg = 3;
-        //atk spd written in ms
-        this.basicAtkSpd = 400;
-        this.specialAtkDmg = 0;
-        this.specialAtkSpd = 8000;
-        
-        this.specialAtkHeal = function(){
-            
-        };
-
-        this.level = 1;
-    }
 }

@@ -15,8 +15,10 @@ $("#PlayScreen").hide();
 $("#inventory").hide();
 //Hide dev hacks
 $("#DevHacks").hide();
+$("#Credits").hide();
 
 function play(){
+    $("#Credits").hide();
     $("#StartScreen").hide();
     $("#PlayScreen").show();
 };
@@ -87,4 +89,18 @@ function back5(){
 
 function back6(){
     $("#ExtraCode").hide();
+}
+
+function backcredits(){
+    $("#ExtraStuff").show();
+    $("#credits").hide();
+}
+
+function toCredits(){
+    $("#credits").show();
+}
+
+function toBattle(){
+    $("#PlayScreen").hide();
+    $("#BattleScreen").show();
 }

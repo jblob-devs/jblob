@@ -19,17 +19,25 @@
       <br />
       <button id="PlayButton" onclick="play()">Play</button>
       <button id="ExtraButton" onclick="extra()">Extra Stuff</button>
+      <br>
+      <br>
+      <form action="/logout" id="Logout" >
+        <button type="submit" value="Logout">Logout</button>  
+      </form>
     </div>
 
     <div id="ExtraStuff">
       <h1>jBlob Extras</h1>
       <button id="ToExtra" onclick="extra2()">Input Extra code</button>
-      <button id="ToCredits">Credits</button>
+      <button id="ToCredits" onclick="toCredits();">Credits</button>
       <button id="BackExtra" onclick="back2()">Back</button>
       
       <div id="ExtraCode">
-        <input id="getCode" placeholder="Enter Code!" />
-        <button id="SubmitCode">Gimme!</button>
+        <form action="/code" method="POST">
+          <input type="text" name="code" placeholder="Enter Code!" />
+          <br>
+          <button type="submit" value="Submit" >Gimme!</button> 
+        </form>
         <br />
         <button id="BackCode" onclick="back6()">Back</button>
       </div>
@@ -41,7 +49,7 @@
       <p>Art: </p>
       <p>Music: </p>
       <button id="BackCredits" onclick="backcredits()">Back</button>
-
+    </div>
     <!--START PLAY SCREEN-->
 
     <div id="PlayScreen">
@@ -52,7 +60,7 @@
       
       <div id="WarpBar"> 
         <button>Warp Shop</button>
-        <button>Warp Battle</button>
+        <button onclick = "toBattle()">Warp Battle</button>
 
       </div>
       <!-- <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
@@ -100,6 +108,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/variables.js"></script>
     <script src="/js/blobbasics.js"></script>
+    <script src="/js/cardDetails.js"></script>
 
 
     <script>
