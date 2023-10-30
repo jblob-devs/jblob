@@ -20,3 +20,71 @@ function play(){
     $("#StartScreen").hide();
     $("#PlayScreen").show();
 };
+
+function settings(){
+    $("#PlayScreen").hide();
+    $("#settings").show();
+}
+
+function slimepedia(){
+    $("#PlayScreen").hide();
+    $("#slimepedia").show();
+}
+
+function extra(){
+    $("#StartScreen").hide();
+    $("#ExtraStuff").show();
+}
+
+function extra2(){
+    $("#ExtraCode").show();
+}
+
+function devhacks(){
+    $("#StartScreen").hide();
+    $("#DevHacks").show();
+}
+
+function shop(){
+    $("#PlayScreen").hide();
+    $("#Shop").show();
+}
+
+function inventory(){
+    $("#PlayScreen").hide();
+    $("#inventory").show();
+}
+
+function back(){
+    $("#PlayScreen").show();
+    $("#settings").hide();
+    $("#slimepedia").hide();
+    $("#ExtraCode").hide();
+    $("#DevHacks").hide();
+    $("#Shop").hide();
+    $("#inventory").hide();
+}
+
+function back2(){
+    $("#StartScreen").show();
+    $("#ExtraStuff").hide();
+}
+
+function back3(){
+    $("#StartScreen").show();
+    $("#DevHacks").hide();
+}
+
+function back4(){
+    $("#PlayScreen").show();
+    $("#Shop").hide();
+}
+
+function back5(){
+    $("#PlayScreen").show();
+    $("#inventory").hide();
+}
+
+function back6(){
+    $("#ExtraCode").hide();
+}

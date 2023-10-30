@@ -9,34 +9,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>jBLOB</title>
+    <title>jBlob</title>
   </head>
   <body>
 
     <div id="StartScreen">
-      <h1>jBLOB</h1>
+      <h1>jBlob</h1>
       <p id="splash">You will never see this!</p>
       <br />
       <button id="PlayButton" onclick="play()">Play</button>
-      <button id="ExtraButton">Extra Stuff</button>
+      <button id="ExtraButton" onclick="extra()">Extra Stuff</button>
     </div>
 
     <div id="ExtraStuff">
-      <p>V This is Draggable! V</p>
-      <p id="OddEmoji">ʕ•́ᴥ•̀ʔ</p>
-      <button id="BackExtra">Back</button>
-      <button id="ToExtra">Input Extra code</button>
+      <h1>jBlob Extras</h1>
+      <button id="ToExtra" onclick="extra2()">Input Extra code</button>
       <button id="ToCredits">Credits</button>
-
+      <button id="BackExtra" onclick="back2()">Back</button>
+      
       <div id="ExtraCode">
         <input id="getCode" placeholder="Enter Code!" />
         <button id="SubmitCode">Gimme!</button>
         <br />
-        <button id="BackCode">Back</button>
+        <button id="BackCode" onclick="back6()">Back</button>
       </div>
     </div>
 
-
+    <div id="Credits">
+      <h1>Credits</h1>
+      <p>Dev: </p>
+      <p>Art: </p>
+      <p>Music: </p>
+      <button id="BackCredits" onclick="backcredits()">Back</button>
 
     <!--START PLAY SCREEN-->
 
