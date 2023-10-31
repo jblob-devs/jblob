@@ -80,4 +80,10 @@ button:hover {
     
 }#PlayScreen{ 
     background-color: skyblue;
+}#BattleScreen{
+    background-color: purple;
+    font-weight: 10000;
+    font-family: fantasy;
+    font-style: italic;
+    font-size: 200px;
 }

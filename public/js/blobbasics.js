@@ -8,6 +8,7 @@ class basicBlob {
         this.specialAtkSpd = 4000;
         
         this.level = 1;
+        this.img = ""
     }
 }
 

@@ -16,6 +16,7 @@ $("#inventory").hide();
 //Hide dev hacks
 $("#DevHacks").hide();
 $("#Credits").hide();
+$("#battle").hide();
 
 function play(){
     $("#Credits").hide();
@@ -101,6 +102,7 @@ function toCredits(){
 }
 
 function toBattle(){
-    $("#PlayScreen").hide();
-    $("#BattleScreen").show();
+
+    
+    startBattle()
 }
