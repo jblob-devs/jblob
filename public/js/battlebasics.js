@@ -7,9 +7,10 @@ var playerDrawDelay = 4000;
 var playerMaxHandSize = 3;
 
 //Player starts with 1 blob
-var playerBlobTeam = ["basicBlob"]
+var playerBlobTeam = ["basicBlob"];
 var playerTeamMax = 3;
 
+var overAllDifficulty = 1;
 
 var playerDeck = ["ember"];
 //represents the players deck, (they start with only card, ember)
@@ -19,66 +20,211 @@ var playerDeck = ["ember"];
 var playerHand = [];
 //represents the cards in the player's hand
 
-function drawCard(){
+//blobs
+var blob0;
+var blob1;
+var blob2;
 
-}
+//enemies
+var enemy0;
+var enemy1;
+var enemy2;
+
+var enemy3;
+var enemy4;
+var enemy5;
+
+var enemy6;
+var enemy7;
+var enemy8;
+
+function drawCard() {}
 
 //Creates enemies, of a certain type and number
-function createEnemySet(type, number){
-    if(type == 0 && number == 0){
-        return 0;
-        //no enemies are created
+
+//type is the type of enemy to create
+//type is 0-4
+//type 0 is starter enemy
+//type 1 is intermediate enemy
+//type 2 is advanced enemy
+//type 3 is gilded enemy
+//type 4 is boss enemy
+
+function createEnemySet(type, number) {
+  var enemySet = [];
+  for (i = 0; i < number; i++) {
+    enemySet.push(createEnemy(type));
+    if (i == 0) {
+      enemy0 = set[i];
+    } else if (i == 1) {
+      enemy1 = set[i];
+    } else {
+      enemy2 = set[i];
+    }
+  }
+
+  return enemySet;
+}
+
+function createEnemy(type) {
+  var enemy = {};
+  switch (type) {
+    case 0:
+      enemy = createStarterEnemy();
+      break;
+    case 1:
+      enemy = createIntermediateEnemy();
+      break;
+    case 2:
+      enemy = createAdvancedEnemy();
+      break;
+    case 3:
+      enemy = createGildedEnemy();
+      break;
+    case 4:
+      enemy = createBossEnemy();
+      break;
+    default:
+      enemy = createStarterEnemy();
+      break;
+  }
+  return enemy;
+}
+
+function createStarterEnemy() {
+  //Chooses a random enemy type from the starter enemy types (2)
+  var enemyType = Math.floor(Math.random() * 2);
+
+  //Creates the enemy
+  if (enemyType == 0) {
+    var enemy = new enslaved();
+  } else {
+    var enemy = new dim();
+  }
+  return enemy;
+}
+
+function createIntermediateEnemy() {
+  //Chooses a random enemy type from the intermediate enemy types (2)
+  var enemyType = Math.floor(Math.random() * 2);
+
+  //Creates the enemy
+  if (enemyType == 0) {
+    var enemy = new warped();
+  } else {
+    var enemy = new gloom();
+  }
+  return enemy;
+}
+
+function createAdvancedEnemy() {
+  //Chooses a random enemy type from the advanced enemy types (2)
+  var enemyType = Math.floor(Math.random() * 2);
+
+  //Creates the enemy
+  if (enemyType == 0) {
+    var enemy = new corrupted();
+  } else {
+    var enemy = new bright();
+  }
+  return enemy;
+}
+
+function createGildedEnemy() {
+  //Chooses a random enemy type from the gilded enemy types (2)
+  var enemyType = Math.floor(Math.random() * 2);
+
+  //Creates the enemy
+  if (enemyType == 0) {
+    var enemy = new possessed();
+  } else {
+    var enemy = new radiant();
+  }
+  return enemy;
+}
+
+function createBossEnemy() {
+  //Chooses a random enemy type from the boss enemy types (2)
+  var enemyType = Math.floor(Math.random() * 2);
+
+  //Creates the enemy
+  if (enemyType == 0) {
+    var enemy = new tainted();
+  } else {
+    var enemy = new luminescent();
+  }
+  return enemy;
+}
+
+//Creates a blob, of a certain type
+//type is the type of blob to create
+//type is 0-2
+
+function createBlob() {
+  if(playerBlobTeam.contains("basicBlob")){
+    let basic = new basicBlob();
+  }
+}
+
+function drawPlayerTeam() {
+  for (i = 0; i < playerBlobTeam.length; i++) {
+    console.log(i);
+    if (i == 0) {
+      blob0 = playerBlobTeam[i];
+    } else if (i == 1) {
+      blob1 = playerBlobTeam[i];
+    } else {
+      blob2 = playerBlobTeam[i];
     }
 
-
+    let blob = '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="blob' + i + '">';
+    $(`#blob` + i).html(blob);
+    console.log(blob);
+    console.log($(`#blob` + i).html());
+  }
 }
 
+function setupEnemyWave() {
+  let set = createEnemySet(overAllDifficulty, 3);
 
-function drawPlayerTeam(){
-    for(i = 0; i < playerBlobTeam.length; i++){
-        console.log(i)
-        let blob = '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="blob' + i + '">';
-        $(`#blob` + i).html(blob)
-        console.log(blob)
-        console.log($(`#blob` + i).html())
+  for (i = 0; i < set.length; i++) {
+    let enemy = '<img src="images/' + set[i] + '.png" ' + ' id="enemy' + i + '">';
+    $(`#enemy` + i).html(enemy);
+  }
+}
+
+function startBattle() {
+  Swal.fire({
+    title: "???",
+    text: "Opening a battle rift... Continue?",
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText: "Proceed",
+    cancelButtonText: "Abort",
+  }).then((result) => {
+    if (result.value) {
+      $("#PlayScreen").hide();
+      $("#battle").show();
+      //wait function in future maybe cuz studies
+      //show that a loading screen makes people think smthng is happening
+      createEncounter();
+    } else {
+      $("#PlayScreen").show();
+      $("#battle").hide();
     }
+  });
 }
 
-function setupEnemyWave(enemy1, enemy2, enemy3){
-    let enemy1Img = '<img src="images/' + enemy1 + '.png" ' + ' id="enemy1">';
-    let enemy2Img = '<img src="images/' + enemy2 + '.png" ' + ' id="enemy2">';
-    let enemy3Img = '<img src="images/' + enemy3 + '.png" ' + ' id="enemy3">';
-    $("#enemy1").html(enemy1Img);
-    $("#enemy2").html(enemy2Img);
-    $("#enemy3").html(enemy3Img);
-    
+function createEncounter() {
+  drawPlayerTeam();
 }
+//Coding battle mechanics
 
-function startBattle(){
-    Swal.fire({
-        title: '???',
-        text: 'Opening a battle rift... Continue?',
-        showCancelButton: true,
-        focusConfirm: false,
-        confirmButtonText:'Proceed',
-        cancelButtonText:'Abort'
-        }).then((result) => {
-            if(result.value){
-                $("#PlayScreen").hide();
-                $("#battle").show();
-                //wait function in future maybe cuz studies 
-                //show that a loading screen makes people think smthng is happening
-                createEncounter()
-            }
-            else{
-                $("#PlayScreen").show();
-                $("#battle").hide();
-            }
-        }
-        )
-}
+//Does auto attacking stuffs
+setInterval(function () {
+new blob0 = basicBlob()
+    blob0.basicAtkSpd()
+    blob0.basicAtkDmg()
+    simulateAttack()
 
-function createEncounter(){
-    drawPlayerTeam();
-    
-}
+}, 1000);

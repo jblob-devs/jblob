@@ -87,36 +87,36 @@ class tainted {
 
 class dim {
     constructor(){
-        this.health = 50;
-        this.basicAtkDmg = 5;
+        this.health = 10;
+        this.basicAtkDmg = 1;
     }
 }
 
 class gloom {
     constructor(){
-        this.health = 60;
-        this.basicAtkDmg = 6;
+        this.health = 20;
+        this.basicAtkDmg = 2;
     }
 }
 
 class bright {
     constructor(){
-        this.health = 70;
-        this.basicAtkDmg = 7;
+        this.health = 30;
+        this.basicAtkDmg = 3;
     }
 }
 
 class radiant {
     constructor(){
-        this.health = 80;
-        this.basicAtkDmg = 8;
+        this.health = 40;
+        this.basicAtkDmg = 4;
     }
 }
 
 class luminescent {
     constructor(){
-        this.health = 90;
-        this.basicAtkDmg = 9;
+        this.health = 50;
+        this.basicAtkDmg = 5;
     }
 }
 
