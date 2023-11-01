@@ -102,7 +102,5 @@ function toCredits(){
 }
 
 function toBattle(){
-
-    
-    startBattle()
+startBattle()
 }

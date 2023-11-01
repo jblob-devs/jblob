@@ -3,6 +3,8 @@
 //Player draws a card every 4 seconds
 var playerDrawDelay = 4000;
 
+var curwave = 0;
+
 //Max of 3 cards in hand
 var playerMaxHandSize = 3;
 
@@ -55,11 +57,11 @@ function createEnemySet(type, number) {
   for (i = 0; i < number; i++) {
     enemySet.push(createEnemy(type));
     if (i == 0) {
-      enemy0 = set[i];
+      enemy0 = enemySet[i];
     } else if (i == 1) {
-      enemy1 = set[i];
+      enemy1 = enemySet[i];
     } else {
-      enemy2 = set[i];
+      enemy2 = enemySet[i];
     }
   }
 
@@ -161,7 +163,7 @@ function createBossEnemy() {
 //type is 0-2
 
 function createBlob() {
-  if(playerBlobTeam.contains("basicBlob")){
+  if (playerBlobTeam.contains("basicBlob")) {
     let basic = new basicBlob();
   }
 }
@@ -177,7 +179,8 @@ function drawPlayerTeam() {
       blob2 = playerBlobTeam[i];
     }
 
-    let blob = '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="blob' + i + '">';
+    let blob =
+      '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="Imageblob' + i + '" height = "100vh" width = "200vw">';
     $(`#blob` + i).html(blob);
     console.log(blob);
     console.log($(`#blob` + i).html());
@@ -217,14 +220,111 @@ function startBattle() {
 
 function createEncounter() {
   drawPlayerTeam();
-}
+  createEnemySet(overAllDifficulty, 3);
+  setInterval(function () {
+    $("#enemy0").html("Health: " + enemy0.health);
+    $("#enemy1").html("Health: " + enemy1.health);
+    $("#enemy2").html("Health: " + enemy2.health);
+  }, 100);
+  
+  //blob0 attack
+  setInterval(function () {
+    rand = Math.floor(Math.random() * 3);
+    if (curwave == 0) {
+      if (rand == 0) {
+        if (blob0.health > 0 && enemy0.health > 0) {
+          enemy0.health -= blob0.basicAtkDmg;
+        }
+      } else if (rand == 1) {
+        if (blob0.health > 0 && enemy1.health > 0) {
+          enemy1.health -= blob0.basicAtkDmg;
+        }
+      } else {
+        if (blob0.health > 0 && enemy2.health > 0) {
+          enemy2.health -= blob0.basicAtkDmg;
+        }
+      }
+    } else if (curwave == 1) {
+      if (rand == 0) {
+        if (blob0.health > 0 && enemy3.health > 0) {
+          enemy3.health -= blob0.basicAtkDmg;
+        }
+      } else if (rand == 1) {
+        if (blob0.health > 0 && enemy4.health > 0) {
+          enemy4.health -= blob0.basicAtkDmg;
+        }
+      } else {
+        if (blob0.health > 0 && enemy5.health > 0) {
+          enemy5.health -= blob0.basicAtkDmg;
+        }
+      }
+    }
+  }, blob0.basicAtkSpd);
+  //blob1 attack
+  setInterval(function () {
+    rand = Math.floor(Math.random() * 3);
+    if (curwave == 0) {
+      if (rand == 0) {
+        if (blob1.health > 0 && enemy0.health > 0) {
+          enemy0.health -= blob1.basicAtkDmg;
+        }
+      } else if (rand == 1) {
+        if (blob1.health > 0 && enemy1.health > 0) {
+          enemy1.health -= blob1.basicAtkDmg;
+        }
+      } else {
+        if (blob1.health > 0 && enemy2.health > 0) {
+          enemy2.health -= blob1.basicAtkDmg;
+        }
+      }
+    } else if (curwave == 1) {
+      if (rand == 0) {
+        if (blob1.health > 0 && enemy3.health > 0) {
+          enemy3.health -= blob1.basicAtkDmg;
+        }
+      } else if (rand == 1) {
+        if (blob1.health > 0 && enemy4.health > 0) {
+          enemy4.health -= blob1.basicAtkDmg;
+        }
+      } else {
+        if (blob1.health > 0 && enemy5.health > 0) {
+          enemy5.health -= blob1.basicAtkDmg;
+        }
+      }
+    }
+  }, blob1.basicAtkSpd);
+  //blob2 attack
+  setInterval(function () {
+    rand = Math.floor(Math.random() * 3);
+    if (curwave == 0) {
+      if (rand == 0) {
+        if (blob2.health > 0 && enemy0.health > 0) {
+          enemy0.health -= blob2.basicAtkDmg;
+        }
+      } else if (rand == 1) {
+        if (blob2.health > 0 && enemy1.health > 0) {
+          enemy1.health -= blob2.basicAtkDmg;
+        }
+      } else {
+        if (blob2.health > 0 && enemy2.health > 0) {
+          enemy2.health -= blob2.basicAtkDmg;
+        }
+      }
+    } else if (curwave == 1) {
+      if (rand == 0) {
+        if (blob2.health > 0 && enemy3.health > 0) {
+          enemy3.health -= blob2.basicAtkDmg;
+        }
+      } else if (rand == 1) {
+        if (blob2.health > 0 && enemy4.health > 0) {
+          enemy4.health -= blob2.basicAtkDmg;
+        }
+      } else {
+        if (blob2.health > 0 && enemy5.health > 0) {
+          enemy5.health -= blob2.basicAtkDmg;
+        }
+      }
+    }
+  }, blob2.basicAtkSpd);
 //Coding battle mechanics
-
-//Does auto attacking stuffs
-setInterval(function () {
-new blob0 = basicBlob()
-    blob0.basicAtkSpd()
-    blob0.basicAtkDmg()
-    simulateAttack()
-
-}, 1000);
+}

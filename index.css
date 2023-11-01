@@ -103,5 +103,13 @@ button:hover {
 .hovertext {
     position: relative;
     border-bottom: 1px dotted black;
+}#Imageblob0{
+    position: absolute;
+    top:500vh;
+    left:100vw;
+}#Imageblob1{
+
+}#Imageblob2{
+
 }
 
