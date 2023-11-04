@@ -1,26 +1,16 @@
 //Player stats
 
-//Player draws a card every 4 seconds
-var playerDrawDelay = 4000;
+
 
 var curwave = 0;
 
-//Max of 3 cards in hand
-var playerMaxHandSize = 3;
+
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob"];
 var playerTeamMax = 3;
 
 var overAllDifficulty = 1;
-
-var playerDeck = ["ember"];
-//represents the players deck, (they start with only card, ember)
-
-//There is a doc with the card's effect and list
-
-var playerHand = [];
-//represents the cards in the player's hand
 
 //blobs
 var blob0;
@@ -66,6 +56,21 @@ function createEnemySet(type, number) {
   }
 
   return enemySet;
+}
+
+function selectEnemy(){
+  if($('#enemy0name').data('clicked')) {
+    $('#enemy0name').removeData();
+    return "enemy0"
+  }else if($('#enemy1name').data('clicked')) {
+    $('#enemy1name').removeData();
+    return "enemy1"
+  }else if($('#enemy2name').data('clicked')) {
+    $('#enemy2name').removeData();
+    return "enemy2"
+  }
+
+
 }
 
 function createEnemy(type) {

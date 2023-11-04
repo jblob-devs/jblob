@@ -1,3 +1,16 @@
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+
 //slides the title screen down
 $("StartScreen").show();
 //Make all the screens/divs slide up at the start of the game
@@ -104,3 +117,24 @@ function toCredits(){
 function toBattle(){
 startBattle()
 }
+setInterval(function(){
+    if(selectState){
+        $("#enemy0name").click(function(){
+            $(this).data('clicked', true);
+            selectState = false;
+        });
+        
+        
+        $("#enemy1name").click(function(){
+            $(this).data('clicked', true);
+            selectState = false;
+        });
+        
+        
+        $("#enemy1name").click(function(){
+            $(this).data('clicked', true);
+            selectState = false;
+        });
+    }
+}, 100);
+
