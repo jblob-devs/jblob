@@ -1,12 +1,12 @@
 
 //Player draws a card every 4 seconds
-var playerDrawDelay = 4000;
+playerDrawDelay = 4000;
 
 //Max of 3 cards in hand
-var playerMaxHandSize = 3;
+playerMaxHandSize = 3;
 
 
-var playerDeck = ["ember"];
+playerDeck = ["ember"];
 //represents the players deck, (they start with only card, ember)
 
 //There is a doc with the card's effect and list

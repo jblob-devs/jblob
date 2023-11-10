@@ -1,4 +1,5 @@
 var gold = 0;
+selectState = false;
 let save = {
     username: "",
     save: "",

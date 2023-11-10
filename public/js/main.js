@@ -117,6 +117,7 @@ function toCredits(){
 function toBattle(){
 startBattle()
 }
+
 setInterval(function(){
     if(selectState){
         $("#enemy0name").click(function(){
