@@ -1,16 +1,14 @@
 //Player stats
-
-
-
+  
 var curwave = 0;
 
-
+let leEmbCard = new card("ember",3,2,"fire",1);
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob"];
 var playerTeamMax = 3;
 
-var overAllDifficulty = 1;
+var overAllDifficulty = 1
 
 //blobs
 var blob0;
@@ -58,7 +56,7 @@ function createEnemySet(type, number) {
   return enemySet;
 }
 
-function selectEnemy(){
+async function selectEnemy(){
   if($('#enemy0name').data('clicked')) {
     $('#enemy0name').removeData();
     return "enemy0"
@@ -341,3 +339,4 @@ function createEncounter() {
   
 //Coding battle mechanics
 }
+

@@ -1,25 +1,28 @@
-class emberCard {
-    constructor(){
-        this.dmg = 3;
-        this.manaCost = 2;
-        this.attribute1 = "fire";
-        this.cardLevel = 1;
+class card {
+    constructor(name, dmg, manaCost, attribute1, cardLevel){
+        this.name = name;
+        this.dmg = dmg;
+        this.manaCost = manaCost;
+        this.attribute1 = attribute1;
+        this.cardLevel = cardLevel;
         
     this.useCard = async function(){
-        let index = playerHand.indexOf("ember")
+        let index = playerHand.indexOf(name)
         playerHand.splice(index,1)
         Toast.fire({
             title: 'Choose a target'
         })
         selectState = true;
-        userInput = await selectEnemy();
+        let userInput = await selectEnemy();
 
+        console.log(userInput);
+        
         if(userInput == "enemy0"){
-            enemy0.health -= emberCard.dmg;
+            enemy0.health -= this.dmg;
         }else if (userInput == "enemy1"){
-            enemy1.health -= emberCard.dmg;
+            enemy1.health -= this.dmg;
         }else if(userInput == "enemy2"){
-            enemy2.health -= emberCard.dmg;
+            enemy2.health -= this.dmg;
         }
     }
 
