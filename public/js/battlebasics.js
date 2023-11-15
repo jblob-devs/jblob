@@ -57,19 +57,33 @@ function createEnemySet(type, number) {
 }
 
 async function selectEnemy(){
-  if($('#enemy0name').data('clicked')) {
-    $('#enemy0name').removeData();
-    return "enemy0"
-  }else if($('#enemy1name').data('clicked')) {
-    $('#enemy1name').removeData();
-    return "enemy1"
-  }else if($('#enemy2name').data('clicked')) {
-    $('#enemy2name').removeData();
-    return "enemy2"
-  }
-
-
+    let userInput = await Toast.fire({
+        title: 'Choose a target',
+        input: 'select',
+        inputOptions: {
+            'enemy0': 'Enemy 1',
+            'enemy1': 'Enemy 2',
+            'enemy2': 'Enemy 3'
+        },
+        inputPlaceholder: 'Select an enemy',
+        showCancelButton: false,
+        showConfirmButton: true,
+        showTimerProgressBar: false,
+        inputValidator: (value) => {
+            return new Promise((resolve) => {
+                if (value === 'enemy0' || value === 'enemy1' || value === 'enemy2') {
+                    resolve()
+                } else {
+                    resolve('You need to select an enemy')
+                }
+            })
+        }
+    })
+    return userInput.value;
 }
+
+
+
 
 function createEnemy(type) {
   var enemy = {};

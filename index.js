@@ -76,7 +76,7 @@ app.get("/logout", (req, res) => {
 app.post("/code", (req, res) => {
   const code = req.body.code;
   if (code === "1234") {
-    res.send('<script>alert("Correct code! Great prizes will be delivered soon!")</script>');
+    res.render('codeAccepted.html');
   } else {
     res.send('<script>alert("Incorrect code!")</script>');
   }
