@@ -1,4 +1,4 @@
-// Creator: Ekaterina
+// Creator: Ekærina
 // Starter Enemy: Enslaved, Dim
 // Intermediate Enemy: Warped, Gloom
 // Advanced Enemy: Corrupted, Bright
@@ -8,14 +8,20 @@
 //Player stats
 
 var curwave = 0;
+var playerLevel = 1;
 
 let leEmbCard = new card("ember", 3, 2, "fire", 1);
+let leFrostCard = new card("frost", 3, 2, "ice", 1);
+let leShockCard = new card("shock", 3, 2, "lightning", 1);
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
 var playerTeamMax = 3;
 
 var overAllDifficulty = 1;
+
+//Player starts with 5 cards
+var playerHand = [leEmbCard, leEmbCard, leEmbCard, leEmbCard, leEmbCard];
 
 //blobs
 var blob0;
@@ -27,11 +33,24 @@ var enemy0;
 var enemy1;
 var enemy2;
 var enemySet = [];
-function drawCard() {}
+
+function drawHand() {
+  for (let i = 0; i < 5; i++) {
+    let card = playerHand[i];
+    let cardHTML =
+      '<img src="images/' +
+      card.name +
+      '.png" ' +
+      ' id="Image' +
+      i +
+      '" height = "150vh">';
+    $(`#card` + i).html(cardHTML);
+  }
+}
 
 //Creates enemies, of a certain type and number
 
-function updateEnemySet(type, number) {
+function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
     if (type == "enslaved") {
       let enslaved = new enemy("enslaved", 15, 2, 1000, 0, 0);
@@ -73,15 +92,16 @@ function updateEnemySet(type, number) {
       let luminescent = new enemy("luminescent", 35, 6, 1000, 0, 0);
       enemySet.push(luminescent);
     }
-
   }
   return enemySet;
 }
 
+//Clears the enemy set
 function clearEnemySet() {
   enemySet = [];
 }
 
+//Selects an enemy when using cards
 async function selectEnemy() {
   let userInput = await Swal.fire({
     title: "Choose a target",
@@ -129,7 +149,6 @@ function drawPlayerTeam() {
     } else {
       blob2 = playerBlobTeam[i];
     }
-
     let blob =
       '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="Imageblob' + i + '" height = "100vh" width = "200vw">';
     $(`#blob` + i).html(blob);
@@ -137,6 +156,8 @@ function drawPlayerTeam() {
     console.log($(`#blob` + i).html());
   }
 }
+
+//Creates a battle
 
 function startBattle() {
   Swal.fire({
@@ -160,9 +181,79 @@ function startBattle() {
   });
 }
 
+//Use player level to determine enemy level
+
+function determineEnemyLevel(playerLevel) {
+  let enemyLevel = playerLevel + Math.floor(Math.random() * 2);
+  return enemyLevel;
+}
+
+// Use enemy level to determine enemy
+
+function determineEnemy(enemyLevel) {
+  let enemyType = Math.floor(Math.random() * 2);
+  if (enemyLevel == 1) {
+    if (enemyType == 0) {
+      return "dim";
+    } else {
+      return "enslaved";
+    }
+  } else if (enemyLevel == 2) {
+    if (enemyType == 0) {
+      return "gloom";
+    } else {
+      return "warped";
+    }
+  } else if (enemyLevel == 3) {
+    if (enemyType == 0) {
+      return "bright";
+    } else {
+      return "corrupted";
+    }
+  } else if (enemyLevel == 4) {
+    if (enemyType == 0) {
+      return "radiant";
+    } else {
+      return "possessed";
+    }
+  } else if (enemyLevel == 5) {
+    if (enemyType == 0) {
+      return "luminescent";
+    } else {
+      return "tainted";
+    }
+  }
+}
+
+//Creates a wave
+function createWave() {
+  //clears enemy set
+  clearEnemySet();
+  //determines enemy level
+  let enemyLevel = determineEnemyLevel(playerLevel);
+  //3 enemies per wave
+  let num = 3;
+  //determines enemy type
+  let enemyType = determineEnemy(enemyLevel);
+  //updates enemy set
+  updateEnemySet(enemyType, num);
+  //increases overall difficulty
+  overAllDifficulty += 1;
+  //increases current wave
+  curwave += 1;
+  //updates the enemy health
+  enemy0 = enemySet[0];
+  enemy1 = enemySet[1];
+  enemy2 = enemySet[2];
+  //updates the wave number
+  $("#waveNum").html("Wave: " + curwave);
+}
+
+//Creates an encounter
 function createEncounter() {
   drawPlayerTeam();
-  updateEnemySet("culled", 3);
+  drawHand();
+  createWave();
 
   setInterval(function () {
     $("#enemy0health").html("Health: " + enemy0.health);

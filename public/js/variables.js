@@ -1,4 +1,5 @@
 var gold = 0;
+var playerLevel = 1;
 selectState = false;
 let save = {
     username: "",
