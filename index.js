@@ -20,8 +20,9 @@ db.serialize(() => {
   db.run("CREATE TABLE IF NOT EXISTS users (username TEXT, password TEXT, save TEXT)");
 });
 
+
 app.get("/login", (req, res) => {
-  res.render("login.html");
+  res.render("login.ejs");
 });
 
 app.post("/login", (req, res) => {
@@ -47,7 +48,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register.html");
+  res.render("register.ejs");
 });
 
 app.post("/register", (req, res) => {
@@ -76,7 +77,7 @@ app.get("/logout", (req, res) => {
 app.post("/code", (req, res) => {
   const code = req.body.code;
   if (code === "1234") {
-    res.render('codeAccepted.html');
+    res.render('codeAccepted.ejs');
   } else {
     res.send('<script>alert("Incorrect code!")</script>');
   }
@@ -108,9 +109,9 @@ app.post("/load", (req, res) => {
 app.get("/", (req, res) => {
   if (req.cookies.username) {
     res.cookie("save", req.cookies.save);
-    res.render("index.html", { username: req.cookies.username });
+    res.render("index.ejs", { username: req.cookies.username });
   } else {
-    res.render("landing.html");
+    res.render("landing.ejs");
   }
 });
 

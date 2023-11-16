@@ -18,7 +18,8 @@ let save = {
         speed: 1,
         special: 1,
         type: "basicBlob"
-    }    
+    }
+        
 };
 let saveString = JSON.stringify(save);
     

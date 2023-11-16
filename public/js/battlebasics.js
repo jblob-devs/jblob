@@ -1,14 +1,21 @@
+// Creator: Ekaterina
+// Starter Enemy: Enslaved, Dim
+// Intermediate Enemy: Warped, Gloom
+// Advanced Enemy: Corrupted, Bright
+// Gilded Enemy: Posessed, Radiant
+// Boss Enemy: Tainted, Luminescent
+
 //Player stats
-  
+
 var curwave = 0;
 
-let leEmbCard = new card("ember",3,2,"fire",1);
+let leEmbCard = new card("ember", 3, 2, "fire", 1);
 
 //Player starts with 1 blob
-var playerBlobTeam = ["basicBlob"];
+var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
 var playerTeamMax = 3;
 
-var overAllDifficulty = 1
+var overAllDifficulty = 1;
 
 //blobs
 var blob0;
@@ -19,160 +26,50 @@ var blob2;
 var enemy0;
 var enemy1;
 var enemy2;
-
-var enemy3;
-var enemy4;
-var enemy5;
-
-var enemy6;
-var enemy7;
-var enemy8;
-
+var enemySet = [];
 function drawCard() {}
 
 //Creates enemies, of a certain type and number
 
-//type is the type of enemy to create
-//type is 0-4
-//type 0 is starter enemy
-//type 1 is intermediate enemy
-//type 2 is advanced enemy
-//type 3 is gilded enemy
-//type 4 is boss enemy
-
-function createEnemySet(type, number) {
-  var enemySet = [];
-  for (i = 0; i < number; i++) {
-    enemySet.push(createEnemy(type));
-    if (i == 0) {
-      enemy0 = enemySet[i];
-    } else if (i == 1) {
-      enemy1 = enemySet[i];
-    } else {
-      enemy2 = enemySet[i];
+function updateEnemySet(type, number) {
+  for (let i = 0; i < num; i++) {
+    if (type == "culled") {
+      let culled = new enemy("culled", 15, 2, 1000, 0, 0);
+      enemySet.push(culled);
     }
   }
-
   return enemySet;
 }
 
-async function selectEnemy(){
-    let userInput = await Toast.fire({
-        title: 'Choose a target',
-        input: 'select',
-        inputOptions: {
-            'enemy0': 'Enemy 1',
-            'enemy1': 'Enemy 2',
-            'enemy2': 'Enemy 3'
-        },
-        inputPlaceholder: 'Select an enemy',
-        showCancelButton: false,
-        showConfirmButton: true,
-        showTimerProgressBar: false,
-        inputValidator: (value) => {
-            return new Promise((resolve) => {
-                if (value === 'enemy0' || value === 'enemy1' || value === 'enemy2') {
-                    resolve()
-                } else {
-                    resolve('You need to select an enemy')
-                }
-            })
+function clearEnemySet() {
+  enemySet = [];
+}
+
+async function selectEnemy() {
+  let userInput = await Swal.fire({
+    title: "Choose a target",
+    input: "select",
+    inputOptions: {
+      enemy0: "Enemy 1",
+      enemy1: "Enemy 2",
+      enemy2: "Enemy 3",
+    },
+    inputPlaceholder: "Select an enemy",
+    showCancelButton: false,
+    showConfirmButton: true,
+    progressBar: false,
+    timed: false,
+    inputValidator: (value) => {
+      return new Promise((resolve) => {
+        if (value === "enemy0" || value === "enemy1" || value === "enemy2") {
+          resolve();
+        } else {
+          resolve("You need to select an enemy");
         }
-    })
-    return userInput.value;
-}
-
-
-
-
-function createEnemy(type) {
-  var enemy = {};
-  switch (type) {
-    case 0:
-      enemy = createStarterEnemy();
-      break;
-    case 1:
-      enemy = createIntermediateEnemy();
-      break;
-    case 2:
-      enemy = createAdvancedEnemy();
-      break;
-    case 3:
-      enemy = createGildedEnemy();
-      break;
-    case 4:
-      enemy = createBossEnemy();
-      break;
-    default:
-      enemy = createStarterEnemy();
-      break;
-  }
-  return enemy;
-}
-
-function createStarterEnemy() {
-  //Chooses a random enemy type from the starter enemy types (2)
-  var enemyType = Math.floor(Math.random() * 2);
-
-  //Creates the enemy
-  if (enemyType == 0) {
-    var enemy = new enslaved();
-  } else {
-    var enemy = new dim();
-  }
-  return enemy;
-}
-
-function createIntermediateEnemy() {
-  //Chooses a random enemy type from the intermediate enemy types (2)
-  var enemyType = Math.floor(Math.random() * 2);
-
-  //Creates the enemy
-  if (enemyType == 0) {
-    var enemy = new warped();
-  } else {
-    var enemy = new gloom();
-  }
-  return enemy;
-}
-
-function createAdvancedEnemy() {
-  //Chooses a random enemy type from the advanced enemy types (2)
-  var enemyType = Math.floor(Math.random() * 2);
-
-  //Creates the enemy
-  if (enemyType == 0) {
-    var enemy = new corrupted();
-  } else {
-    var enemy = new bright();
-  }
-  return enemy;
-}
-
-function createGildedEnemy() {
-  //Chooses a random enemy type from the gilded enemy types (2)
-  var enemyType = Math.floor(Math.random() * 2);
-
-  //Creates the enemy
-  if (enemyType == 0) {
-    var enemy = new possessed();
-  } else {
-    var enemy = new radiant();
-  }
-  return enemy;
-}
-
-function createBossEnemy() {
-  //Chooses a random enemy type from the boss enemy types (2)
-  var enemyType = Math.floor(Math.random() * 2);
-
-  //Creates the enemy
-  if (enemyType == 0) {
-    var enemy = new tainted();
-  } else {
-    var enemy = new luminescent();
-  }
-  return enemy;
+      });
+    },
+  });
+  return userInput.value;
 }
 
 //Creates a blob, of a certain type
@@ -204,15 +101,6 @@ function drawPlayerTeam() {
   }
 }
 
-function setupEnemyWave() {
-  let set = createEnemySet(overAllDifficulty, 3);
-
-  for (i = 0; i < set.length; i++) {
-    let enemy = '<img src="images/' + set[i] + '.png" ' + ' id="enemy' + i + '">';
-    $(`#enemy` + i).html(enemy);
-  }
-}
-
 function startBattle() {
   Swal.fire({
     title: "???",
@@ -237,120 +125,11 @@ function startBattle() {
 
 function createEncounter() {
   drawPlayerTeam();
-  createEnemySet(overAllDifficulty, 3);
-
+  updateEnemySet("culled", 3);
 
   setInterval(function () {
     $("#enemy0health").html("Health: " + enemy0.health);
     $("#enemy1health").html("Health: " + enemy1.health);
     $("#enemy2health").html("Health: " + enemy2.health);
   }, 100);
-  
-  //blob0 attack
-  setInterval(function () {
-    rand = Math.floor(Math.random() * 3);
-    if (curwave == 0) {
-      if (rand == 0) {
-        if (blob0.health > 0 && enemy0.health > 0) {
-          enemy0.health -= blob0.basicAtkDmg;
-        }
-      } else if (rand == 1) {
-        if (blob0.health > 0 && enemy1.health > 0) {
-          enemy1.health -= blob0.basicAtkDmg;
-        }
-      } else {
-        if (blob0.health > 0 && enemy2.health > 0) {
-          enemy2.health -= blob0.basicAtkDmg;
-        }
-      }
-    } else if (curwave == 1) {
-      if (rand == 0) {
-        if (blob0.health > 0 && enemy3.health > 0) {
-          enemy3.health -= blob0.basicAtkDmg;
-        }
-      } else if (rand == 1) {
-        if (blob0.health > 0 && enemy4.health > 0) {
-          enemy4.health -= blob0.basicAtkDmg;
-        }
-      } else {
-        if (blob0.health > 0 && enemy5.health > 0) {
-          enemy5.health -= blob0.basicAtkDmg;
-        }
-      }
-    }
-  }, blob0.basicAtkSpd);
-  //blob1 attack
-  if(playerDeck.length == 2){
-    setInterval(function () {
-      rand = Math.floor(Math.random() * 3);
-      if (curwave == 0) {
-        if (rand == 0) {
-          if (blob1.health > 0 && enemy0.health > 0) {
-            enemy0.health -= blob1.basicAtkDmg;
-          }
-        } else if (rand == 1) {
-          if (blob1.health > 0 && enemy1.health > 0) {
-            enemy1.health -= blob1.basicAtkDmg;
-          }
-        } else {
-          if (blob1.health > 0 && enemy2.health > 0) {
-            enemy2.health -= blob1.basicAtkDmg;
-          }
-        }
-      } else if (curwave == 1) {
-        if (rand == 0) {
-          if (blob1.health > 0 && enemy3.health > 0) {
-            enemy3.health -= blob1.basicAtkDmg;
-          }
-        } else if (rand == 1) {
-          if (blob1.health > 0 && enemy4.health > 0) {
-            enemy4.health -= blob1.basicAtkDmg;
-          }
-        } else {
-          if (blob1.health > 0 && enemy5.health > 0) {
-            enemy5.health -= blob1.basicAtkDmg;
-          }
-        }
-      }
-    }, blob1.basicAtkSpd);
-  }
-  
-  //blob2 attack
-  if(playerDeck.length == 3){
-    setInterval(function () {
-      rand = Math.floor(Math.random() * 3);
-      if (curwave == 0) {
-        if (rand == 0) {
-          if (blob2.health > 0 && enemy0.health > 0) {
-            enemy0.health -= blob2.basicAtkDmg;
-          }
-        } else if (rand == 1) {
-          if (blob2.health > 0 && enemy1.health > 0) {
-            enemy1.health -= blob2.basicAtkDmg;
-          }
-        } else {
-          if (blob2.health > 0 && enemy2.health > 0) {
-            enemy2.health -= blob2.basicAtkDmg;
-          }
-        }
-      } else if (curwave == 1) {
-        if (rand == 0) {
-          if (blob2.health > 0 && enemy3.health > 0) {
-            enemy3.health -= blob2.basicAtkDmg;
-          }
-        } else if (rand == 1) {
-          if (blob2.health > 0 && enemy4.health > 0) {
-            enemy4.health -= blob2.basicAtkDmg;
-          }
-        } else {
-          if (blob2.health > 0 && enemy5.health > 0) {
-            enemy5.health -= blob2.basicAtkDmg;
-          }
-        }
-      }
-    }, blob2.basicAtkSpd);
-  }
-  
-//Coding battle mechanics
 }
-

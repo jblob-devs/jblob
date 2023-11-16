@@ -1,35 +1,48 @@
 <!DOCTYPE html>
+<style>
+  #blobTeamDisplay {
+    margin-left: 0%;
+    position: absolute;
+  }
+  #blob1 {
+    margin-left: 25%;
+  }
+  #enemyTeamDisplay {
+    margin-left: 70%;
+    position: absolute;
+  }
+  #enemy1 {
+    margin-right: 25%;
+  }
+</style>
+
 <script src="js/cardDetails.js"></script>
 
 <script src="js/battlebasics.js"></script>
 
-
 <div id="BattleScreen">
   <p id="battleName"></p>
   <button onclick="leEmbCard.useCard()">test</button>
+  <br /><br /><br /><br />
   <div id="blobTeamDisplay">
-    <div id="blob0"></div>
-    <div id="blob1"></div>
-    <div id="blob2"></div>
+    <div id="blob0">
+      <img id="blob0img" />
+      <p id="blob0health"></p>
+    </div>
+    <div id="blob1">
+      <img id="blob1img" />
+      <p id="blob1health"></p>
+    </div>
+    <div id="blob2">
+      <img id="blob2img" />
+      <p id="blob2health">1</p>
+    </div>
   </div>
   <div id="enemyTeamDisplay">
-    <wave1 id="wave1">
-      <div id="enemy0"><p id="enemy0health"></p><button id="enemy0name">0</button></div>
-      <div id="enemy1"><p id="enemy1health"></p><button id="enemy1name">1</button></div>
-      <div id="enemy2"><p id="enemy2health"></p><button id="enemy2name">2</button></div>
-    </wave1>
-    <wave2 id="wave2">
-      <div id="enemy3"></div>
-      <div id="enemy4"></div>
-      <div id="enemy5"></div>
-    </wave2>
-    <wave3 id="wave3">
-      <div id="enemy6"></div>
-      <div id="enemy7"></div>
-      <div id="enemy8"></div>
-    </wave3>
-    <wave4 id="wave4">
-        <div id="bossEnemy"></div>
-    </wave4>
+    <wave id="wave">
+      <div id="enemy0"><p id="enemy0health">1</p></div>
+      <div id="enemy1"><p id="enemy1health">1</p></div>
+      <div id="enemy2"><p id="enemy2health">1</p></div>
+    </wave>
   </div>
 </div>
