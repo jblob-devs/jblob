@@ -33,10 +33,47 @@ function drawCard() {}
 
 function updateEnemySet(type, number) {
   for (let i = 0; i < num; i++) {
-    if (type == "culled") {
-      let culled = new enemy("culled", 15, 2, 1000, 0, 0);
-      enemySet.push(culled);
+    if (type == "enslaved") {
+      let enslaved = new enemy("enslaved", 15, 2, 1000, 0, 0);
+      enemySet.push(enslaved);
     }
+    if (type == "warped") {
+      let warped = new enemy("warped", 20, 3, 1000, 0, 0);
+      enemySet.push(warped);
+    }
+    if (type == "corrupted") {
+      let corrupted = new enemy("corrupted", 25, 4, 1000, 0, 0);
+      enemySet.push(corrupted);
+    }
+    if (type == "possessed") {
+      let possessed = new enemy("possessed", 30, 5, 1000, 0, 0);
+      enemySet.push(possessed);
+    }
+    if (type == "tainted") {
+      let tainted = new enemy("tainted", 35, 6, 1000, 0, 0);
+      enemySet.push(tainted);
+    }
+    if (type == "dim") {
+      let dim = new enemy("dim", 15, 2, 1000, 0, 0);
+      enemySet.push(dim);
+    }
+    if (type == "gloom") {
+      let gloom = new enemy("gloom", 20, 3, 1000, 0, 0);
+      enemySet.push(gloom);
+    }
+    if (type == "bright") {
+      let bright = new enemy("bright", 25, 4, 1000, 0, 0);
+      enemySet.push(bright);
+    }
+    if (type == "radiant") {
+      let radiant = new enemy("radiant", 30, 5, 1000, 0, 0);
+      enemySet.push(radiant);
+    }
+    if (type == "luminescent") {
+      let luminescent = new enemy("luminescent", 35, 6, 1000, 0, 0);
+      enemySet.push(luminescent);
+    }
+
   }
   return enemySet;
 }
