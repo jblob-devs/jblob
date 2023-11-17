@@ -12,25 +12,6 @@ button {
     font-size: 15px;
     padding: 5px;
     box-shadow: 0 9px #999;
-    
-}
-
-#GoldCount {
-    color: orange;
-    position: absolute;
-    top: 40px;
-}
-
-#BlobletCount {
-    color: green;
-    position: absolute;
-    top: 60px;
-}
-
-#levelcount {
-    color: blue;
-    position: absolute;
-    top: 20px;
 }
 
 button:hover {
@@ -38,21 +19,6 @@ button:hover {
     border-radius: 55%;
     border-color: rgb(135, 66, 50);
 }
-
-#tap {
-    outline: none;
-    border: none;
-}
-
-#tap:hover {
-    border-color: none;
-    background-color: none;
-}
-
-#tap:active {
-    transform: scale(0.80);
-}
-
 #playername {
     color: rgb(30, 139, 255);
     position: absolute;
@@ -111,5 +77,8 @@ button:hover {
 
 }#Imageblob2{
 
+}#Image0{
+    position:absolute;
+    top: 700vh;
 }
 

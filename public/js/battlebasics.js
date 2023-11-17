@@ -10,18 +10,20 @@
 var curwave = 0;
 var playerLevel = 1;
 
-let leEmbCard = new card("ember", 3, 2, "fire", 1);
-let leFrostCard = new card("frost", 3, 2, "ice", 1);
-let leShockCard = new card("shock", 3, 2, "lightning", 1);
+let EmberCard = new card("ember", 3, 2, "fire", 1);
+let FrostCard = new card("frost", 3, 2, "ice", 1);
+let ShockCard = new card("shock", 3, 2, "lightning", 1);
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
 var playerTeamMax = 3;
+let maxHandSize = 3;
+//can be increased
 
 var overAllDifficulty = 1;
 
-//Player starts with 5 cards
-var playerHand = [leEmbCard, leEmbCard, leEmbCard, leEmbCard, leEmbCard];
+//Player starts with 3 cards
+var playerHand = [EmberCard, EmberCard, EmberCard];
 
 //blobs
 var blob0;
@@ -35,15 +37,10 @@ var enemy2;
 var enemySet = [];
 
 function drawHand() {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < maxHandSize; i++) {
     let card = playerHand[i];
     let cardHTML =
-      '<img src="images/' +
-      card.name +
-      '.png" ' +
-      ' id="Image' +
-      i +
-      '" height = "150vh">';
+      '<img src="images/' + card.name + '.png" ' + ' id="Image' + i + '" height = "150vh">';
     $(`#card` + i).html(cardHTML);
   }
 }
@@ -101,21 +98,24 @@ function clearEnemySet() {
   enemySet = [];
 }
 
+
 //Selects an enemy when using cards
 async function selectEnemy() {
-  let userInput = await Swal.fire({
+  let userInput = await Toast.fire({
     title: "Choose a target",
-    input: "select",
+    input: "radio",
     inputOptions: {
       enemy0: "Enemy 1",
       enemy1: "Enemy 2",
       enemy2: "Enemy 3",
     },
     inputPlaceholder: "Select an enemy",
-    showCancelButton: false,
+    showCancelButton: true,
     showConfirmButton: true,
-    progressBar: false,
-    timed: false,
+    timer: 10000,
+    position: "bottom-right",
+    //10 seconds is ample time to do whatever
+    timerProgressBar: true,
     inputValidator: (value) => {
       return new Promise((resolve) => {
         if (value === "enemy0" || value === "enemy1" || value === "enemy2") {
@@ -256,8 +256,8 @@ function createEncounter() {
   createWave();
 
   setInterval(function () {
-    $("#enemy0health").html("Health: " + enemy0.health);
-    $("#enemy1health").html("Health: " + enemy1.health);
-    $("#enemy2health").html("Health: " + enemy2.health);
+    $("#enemy0health").html("Health: " + enemySet[0].health);
+    $("#enemy1health").html("Health: " + enemySet[1].health);
+    $("#enemy2health").html("Health: " + enemySet[2].health);
   }, 100);
 }
