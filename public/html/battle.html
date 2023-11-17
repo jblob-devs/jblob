@@ -14,26 +14,34 @@
   #enemy1 {
     margin-right: 25%;
   }
-  #wave {
-    text-align: center;
-  }
-  #waveNum {
-    font-size: 30px;
-  }
-  #card {
-    margin-top: 85%;
+  #cardDiv {
+    width: 40vw;
+    position: absolute;
+    transform: translateY(50vh) translateX(-50vw);
+    margin-bottom: 0%;
 
   }
-  /* #card0 {
-    margin-left: 25%;
+  #card0 {
+    margin-left: 10%;
+    position: absolute;
+
   }
   #card1 {
-    margin-left: 50%;
+    margin-left: 30%;
+    position: absolute;
+
   }
   #card2 {
-    margin-left: 75%;
+    margin-left: 50%;
+    position: absolute;
+    
+  } 
+  .card{
+    transition: transform 0.5s;
   }
-   */
+  .card:hover{
+    transform: translateY(-3vh);
+  }
 </style>
 
 <script src="js/cardDetails.js"></script>
@@ -61,15 +69,15 @@
   <div id="enemyTeamDisplay">
     <wave id="wave">
       <div id="waveNum">Wave: 0</div>
-      <p>Enemy Quadron</p>
+      <p>Enemy Squadron</p>
       <div id="enemy0"><p id="enemy0health">1</p></div>
       <div id="enemy1"><p id="enemy1health">1</p></div>
       <div id="enemy2"><p id="enemy2health">1</p></div>
     </wave>
   </div>
   <card id="cardDiv">
-    <div id="card0">9</div>
-    <div id="card1">8</div>
-    <div id="card2">7</div>
+    <span id="card0" class="card">9</span>
+    <span id="card1" class="card">8</span>
+    <span id="card2" class="card">7</span>
   </card>
 </div>

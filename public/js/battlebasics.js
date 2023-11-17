@@ -10,6 +10,7 @@
 var curwave = 0;
 var playerLevel = 1;
 
+
 let EmberCard = new card("ember", 3, 2, "fire", 1);
 let FrostCard = new card("frost", 3, 2, "ice", 1);
 let ShockCard = new card("shock", 3, 2, "lightning", 1);
