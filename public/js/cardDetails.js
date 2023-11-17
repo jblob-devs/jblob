@@ -1,10 +1,11 @@
 class card {
-  constructor(name, dmg, manaCost, attribute1, cardLevel) {
+  constructor(name, dmg, manaCost, attribute1, cardLevel, ability) {
     this.name = name;
     this.dmg = dmg;
     this.manaCost = manaCost;
     this.attribute1 = attribute1;
     this.cardLevel = cardLevel;
+    this.ability = ability;
 
     this.useCard = async function () {
       let index = playerHand.indexOf(name);

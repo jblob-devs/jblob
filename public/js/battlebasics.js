@@ -11,9 +11,9 @@ var curwave = 0;
 var playerLevel = 1;
 
 
-let EmberCard = new card("ember", 3, 2, "fire", 1);
-let FrostCard = new card("frost", 3, 2, "ice", 1);
-let ShockCard = new card("shock", 3, 2, "lightning", 1);
+let EmberCard = new card("ember", 3, 2, "fire", 1, "EmberCard");
+let FrostCard = new card("frost", 3, 2, "ice", 1, "FrostCard");
+let ShockCard = new card("shock", 3, 2, "lightning", 1, "ShockCard");
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
@@ -41,7 +41,7 @@ function drawHand() {
   for (let i = 0; i < maxHandSize; i++) {
     let card = playerHand[i];
     let cardHTML =
-      '<img src="images/' + card.name + '.png" ' + ' id="Image' + i + '" height = "150vh">';
+      '<img src="images/' + card.name + '.png" ' + ' id="card' + i + "img" + '" height = "150vh" onclick=' + card.ability + '.useCard()>';
     $(`#card` + i).html(cardHTML);
   }
 }
