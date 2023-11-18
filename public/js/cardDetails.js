@@ -56,7 +56,7 @@ class linkCard{
 
 class emptyLink{
   constructor(){
-    his.linkDescrip = "No Link effect";
+    this.linkDescrip = "No Link effect";
     this.linkCost = 0;
   }
 }
