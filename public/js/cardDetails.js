@@ -16,8 +16,6 @@ class card {
       selectState = true;
       let userInput = await selectEnemy();
 
-      console.log(userInput);
-
       if (userInput == "enemy0") {
         enemy0.health -= this.dmg;
       } else if (userInput == "enemy1") {

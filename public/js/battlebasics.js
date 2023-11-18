@@ -10,7 +10,6 @@
 var curwave = 0;
 var playerLevel = 1;
 
-
 let EmberCard = new card("ember", 3, 2, "fire", 1, "EmberCard");
 let FrostCard = new card("frost", 3, 2, "ice", 1, "FrostCard");
 let ShockCard = new card("shock", 3, 2, "lightning", 1, "ShockCard");
@@ -41,7 +40,15 @@ function drawHand() {
   for (let i = 0; i < maxHandSize; i++) {
     let card = playerHand[i];
     let cardHTML =
-      '<img src="images/' + card.name + '.png" ' + ' id="card' + i + "img" + '" height = "150vh" onclick=' + card.ability + '.useCard()>';
+      '<img src="images/' +
+      card.name +
+      '.png" ' +
+      ' id="card' +
+      i +
+      "img" +
+      '" height = "150vh" onclick=' +
+      card.ability +
+      ".useCard()>";
     $(`#card` + i).html(cardHTML);
   }
 }
@@ -99,7 +106,6 @@ function clearEnemySet() {
   enemySet = [];
 }
 
-
 //Selects an enemy when using cards
 async function selectEnemy() {
   let userInput = await Toast.fire({
@@ -113,7 +119,7 @@ async function selectEnemy() {
     inputPlaceholder: "Select an enemy",
     showCancelButton: true,
     showConfirmButton: true,
-    timer: 10000,
+    timer: 25000,
     position: "bottom-right",
     //10 seconds is ample time to do whatever
     timerProgressBar: true,
@@ -142,7 +148,6 @@ function createBlob() {
 
 function drawPlayerTeam() {
   for (i = 0; i < playerBlobTeam.length; i++) {
-    console.log(i);
     if (i == 0) {
       blob0 = playerBlobTeam[i];
     } else if (i == 1) {
@@ -153,8 +158,6 @@ function drawPlayerTeam() {
     let blob =
       '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="Imageblob' + i + '" height = "100vh" width = "200vw">';
     $(`#blob` + i).html(blob);
-    console.log(blob);
-    console.log($(`#blob` + i).html());
   }
 }
 
@@ -189,35 +192,46 @@ function determineEnemyLevel(playerLevel) {
   return enemyLevel;
 }
 
-// Use enemy level to determine enemy
+function setEnemyImages() {
+  for (let i = 0; i < enemySet.length; i++) {
+    let enemy = enemySet[i];
+    let enemyHTML = '<img src="images/' + enemy.name + '.png" ' + ' id="enemy' + i + "img" + '" height = "150vh">';
+    $(`#enemy` + i + 'img').html(enemyHTML);
+  }
+}
 
+// Use enemy level to determine enemy
 function determineEnemy(enemyLevel) {
-  let enemyType = Math.floor(Math.random() * 2);
   if (enemyLevel == 1) {
+    let enemyType = Math.floor(Math.random() * 2);
     if (enemyType == 0) {
       return "dim";
     } else {
       return "enslaved";
     }
   } else if (enemyLevel == 2) {
+    let enemyType = Math.floor(Math.random() * 2);
     if (enemyType == 0) {
       return "gloom";
     } else {
       return "warped";
     }
   } else if (enemyLevel == 3) {
+    let enemyType = Math.floor(Math.random() * 2);
     if (enemyType == 0) {
       return "bright";
     } else {
       return "corrupted";
     }
   } else if (enemyLevel == 4) {
+    let enemyType = Math.floor(Math.random() * 2);
     if (enemyType == 0) {
       return "radiant";
     } else {
       return "possessed";
     }
   } else if (enemyLevel == 5) {
+    let enemyType = Math.floor(Math.random() * 2);
     if (enemyType == 0) {
       return "luminescent";
     } else {
@@ -232,12 +246,13 @@ function createWave() {
   clearEnemySet();
   //determines enemy level
   let enemyLevel = determineEnemyLevel(playerLevel);
-  //3 enemies per wave
-  let num = 3;
-  //determines enemy type
-  let enemyType = determineEnemy(enemyLevel);
   //updates enemy set
-  updateEnemySet(enemyType, num);
+  for (let i = 0; i < 3; i++) {
+    let enemyType = determineEnemy(enemyLevel);
+    updateEnemySet(enemyType, 1);
+  }
+  //sets enemy images
+  setEnemyImages();
   //increases overall difficulty
   overAllDifficulty += 1;
   //increases current wave
