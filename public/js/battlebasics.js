@@ -9,7 +9,7 @@
 
 var curwave = 0;
 var playerLevel = 1;
-
+var won = false;
 
 let EmberCard = new card("ember","EmberCard", 3, 2, "fire", 1, new empty, new linkCard("Applies Burn I for 2 seconds", 1));
 let FrostCard = new card("frost", "FrostCard", 3, 2, "ice", 1, new empty, new emptyLink());
@@ -165,8 +165,58 @@ function drawPlayerTeam() {
   }
 }
 
-//Creates a battle
+//Delete enemy when health is 0
+function deleteEnemy() {
+  if (enemy0.health <= 0) {
+    enemy0 = new enemy("null", 0, 0, 0, 0, 0);
+  }
+  if (enemy1.health <= 0) {
+    enemy1 = new enemy("null", 0, 0, 0, 0, 0);
+  }
+  if (enemy2.health <= 0) {
+    enemy2 = new enemy("null", 0, 0, 0, 0, 0);
+  }
+}
 
+//Delete blob when health is 0
+function deleteBlob() {
+  if (blob0.health <= 0) {
+    blob0 = null;
+  }
+  if (blob1.health <= 0) {
+    blob1 = null;
+  }
+  if (blob2.health <= 0) {
+    blob2 = null;
+  }
+}
+
+//Checks if the player has won
+function checkWin() {
+  if (enemy0.health == 0 && enemy1.health == 0 && enemy2.health == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//Checks if the player has lost
+function checkLoss() {
+  if (blob0 == null && blob1 == null && blob2 == null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//Starts a new wave
+function newWave() {
+  if (checkWin() == true && checkLoss() == false) {
+    createWave();
+  } 
+}
+
+//Creates a battle
 function startBattle() {
   Swal.fire({
     title: "???",
@@ -279,5 +329,51 @@ function createEncounter() {
     $("#enemy0health").html("Health: " + enemySet[0].health);
     $("#enemy1health").html("Health: " + enemySet[1].health);
     $("#enemy2health").html("Health: " + enemySet[2].health);
+  }, 100);
+  setInterval(function () {
+    $("#blob0health").html("Health: " + blob0.health);
+    $("#blob1health").html("Health: " + blob1.health);
+    $("#blob2health").html("Health: " + blob2.health);
+  }, 100);
+  setInterval(function () {
+    deleteBlob();
+    deleteEnemy();
+    if (checkWin() == true) {
+      newWave();
+    }
+    if (checkLoss() == true) {
+      Swal.fire({
+        title: "You lost!",
+        text: "You lost the battle!",
+        icon: "error",
+        confirmButtonText: "Back to main menu",
+      }).then((result) => {
+        if (result.value) {
+          $("#battle").hide();
+          $("#PlayScreen").show();
+        }
+      });
+    }
+    console.log(checkWin() + " " + curwave);
+    
+    if (curwave == 4 && won == false) {
+      won = true;
+      Swal.fire({
+        title: "You won!",
+        text: "You won the battle!",
+        icon: "success",
+        confirmButtonText: "Back to main menu",
+      }).then((result) => {
+        if (result.value) {
+          $("#battle").hide();
+          $("#PlayScreen").show();
+          won = false;
+          curwave = 0;
+          $("#waveNum").html("Wave: " + curwave);
+          
+
+        }
+      });
+    }
   }, 100);
 }
