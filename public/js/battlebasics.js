@@ -11,10 +11,10 @@ var curwave = 0;
 var playerLevel = 1;
 
 
-let EmberCard = new card("ember", 3, 2, "fire", 1, "EmberCard");
-let FrostCard = new card("frost", 3, 2, "ice", 1, "FrostCard");
-let ShockCard = new card("shock", 3, 2, "lightning", 1, "ShockCard");
-
+let EmberCard = new card("ember", 3, 2, "fire", 1, new empty, new LinkCard("Applies Burn I for 2 seconds", 1));
+let FrostCard = new card("frost", 3, 2, "ice", 1, new empty, new EmptyLink());
+let ShockCard = new card("shock", 3, 2, "lightning", 1, new empty, new EmptyLink());
+console.log(EmberCard.ability.description)
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
 var playerTeamMax = 3;
@@ -151,8 +151,9 @@ function drawPlayerTeam() {
       blob2 = playerBlobTeam[i];
     }
     let blob =
-      '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="Imageblob' + i + '" height = "100vh" width = "200vw">';
-    $(`#blob` + i).html(blob);
+      '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="Imageblob class="ImageBlobs"' + i + '"height = "75vh" width = "150vw ">';
+   
+      $(`#blob` + i).html(blob);
     console.log(blob);
     console.log($(`#blob` + i).html());
   }
