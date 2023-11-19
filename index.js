@@ -8,6 +8,7 @@ const db = new sqlite3.Database("./db/userlogins.sqlite");
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
@@ -84,24 +85,24 @@ app.post("/code", (req, res) => {
 });
 
 app.post("/save", (req, res) => {
-  const username = req.cookies.username;
-  const save = req.body.save;
-  db.all("UPDATE users SET save = ? WHERE username = ?", [save, username], (err, rows) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect("/");
-    }
+  let gameState = JSON.stringify(req.body);
+  let username = req.cookies.username;
+  db.run("UPDATE users SET userSave = ? WHERE username = ?", [gameState, username], function(err) {
+      if (err) {
+          return console.error(err.message);
+      }
+      console.log(`Saved game state for user ${username} to database. Game state: ${gameState}`);
+      res.send({status: "Game Saved!"});
   });
 });
 
 app.post("/load", (req, res) => {
   const username = req.cookies.username;
-  db.all("SELECT save FROM users WHERE username = ?", [username], (err, rows) => {
+  db.all("SELECT userSave FROM users WHERE username = ?", [username], (err, rows) => {
     if (err) {
       console.log(err);
     } else {
-      res.send(rows[0].save);
+      res.send(JSON.parse(rows[0].userSave));
     }
   });
 });
@@ -118,3 +119,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+

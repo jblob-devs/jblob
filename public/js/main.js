@@ -139,3 +139,6 @@ setInterval(function(){
     }
 }, 100);
 
+setInterval(function(){
+    saveGameState();
+}, 10000);
