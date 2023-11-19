@@ -8,7 +8,6 @@
 //Player stats
 
 var curwave = 0;
-var playerLevel = 1;
 var won = false;
 
 let EmberCard = new card(
@@ -40,6 +39,7 @@ var overAllDifficulty = 1;
 
 //Player starts with 3 cards
 var playerHand = [EmberCard, EmberCard, EmberCard];
+var playerHandTemp = [EmberCard, EmberCard, EmberCard];
 
 //blobs
 var blob0;
@@ -89,45 +89,45 @@ function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
     //the culled
     if (type == "enslaved") {
-      let enslaved = new enemy("enslaved", 15, 2, 1000, 0, 0);
+      let enslaved = new enemy("enslaved", 15, 2, 1500, 0, 0);
       enemySet.push(enslaved);
     }
     if (type == "warped") {
-      let warped = new enemy("warped", 20, 3, 1000, 0, 0);
+      let warped = new enemy("warped", 20, 3, 1500, 0, 0);
       enemySet.push(warped);
     }
     if (type == "corrupted") {
-      let corrupted = new enemy("corrupted", 25, 4, 1000, 0, 0);
+      let corrupted = new enemy("corrupted", 25, 4, 1500, 0, 0);
       enemySet.push(corrupted);
     }
     if (type == "possessed") {
-      let possessed = new enemy("possessed", 30, 5, 1000, 0, 0);
+      let possessed = new enemy("possessed", 30, 5, 1500, 0, 0);
       enemySet.push(possessed);
     }
     if (type == "tainted") {
-      let tainted = new enemy("tainted", 35, 6, 1000, 0, 0);
+      let tainted = new enemy("tainted", 35, 6, 1500, 0, 0);
       enemySet.push(tainted);
     }
 
     //the luminescent
     if (type == "dim") {
-      let dim = new enemy("dim", 15, 2, 1000, 0, 0);
+      let dim = new enemy("dim", 15, 2, 1500, 0, 0);
       enemySet.push(dim);
     }
     if (type == "gloom") {
-      let gloom = new enemy("gloom", 20, 3, 1000, 0, 0);
+      let gloom = new enemy("gloom", 20, 3, 1500, 0, 0);
       enemySet.push(gloom);
     }
     if (type == "bright") {
-      let bright = new enemy("bright", 25, 4, 1000, 0, 0);
+      let bright = new enemy("bright", 25, 4, 1500, 0, 0);
       enemySet.push(bright);
     }
     if (type == "radiant") {
-      let radiant = new enemy("radiant", 30, 5, 1000, 0, 0);
+      let radiant = new enemy("radiant", 30, 5, 1500, 0, 0);
       enemySet.push(radiant);
     }
     if (type == "luminescent") {
-      let luminescent = new enemy("luminescent", 35, 6, 1000, 0, 0);
+      let luminescent = new enemy("luminescent", 35, 6, 1500, 0, 0);
       enemySet.push(luminescent);
     }
   }
@@ -296,8 +296,7 @@ function startBattle() {
 //Use player level to determine enemy level
 
 function determineEnemyLevel(playerLevel) {
-  let enemyLevel = playerLevel + Math.floor(Math.random() * 2);
-  return enemyLevel;
+  return enemyLevel = Math.ceil(playerLevel/10) + Math.floor(Math.random() * 2);
 }
 
 function setEnemyImages() {
@@ -380,6 +379,28 @@ manaIncreaseInterval = setInterval(function () {
   }
 }, manaIncreaseTime);
 
+//Reset battle
+function resetBattle() {
+  $("#battle").hide();
+  $("#PlayScreen").show();
+  won = false;
+  curwave = 0;
+  playerBlobTeam = playerBlobTeamTemp;
+  playerHand = playerHandTemp;
+  blob0 = playerBlobTeam[0];
+  blob1 = playerBlobTeam[1];
+  blob2 = playerBlobTeam[2];
+  clearInterval(blob0Att);
+  clearInterval(blob1Att);
+  clearInterval(blob2Att);
+  $("#waveNum").html("Wave: " + curwave);
+  clearInterval(enemy0Att);
+  clearInterval(enemy1Att);
+  clearInterval(enemy2Att);
+  clearInterval(manaIncreaseInterval);
+  curMana = 0;
+}
+
 //Creates an encounter
 function createEncounter() {
   drawPlayerTeam();
@@ -408,26 +429,12 @@ function createEncounter() {
         title: "You lost!",
         text: "You lost the battle!",
         icon: "error",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
         confirmButtonText: "Back to main menu",
       }).then((result) => {
         if (result.value) {
-          $("#battle").hide();
-          $("#PlayScreen").show();
-          won = false;
-          curwave = 0;
-          playerBlobTeam = playerBlobTeamTemp;
-          blob0 = playerBlobTeam[0];
-          blob1 = playerBlobTeam[1];
-          blob2 = playerBlobTeam[2];
-          clearInterval(blob0Att);
-          clearInterval(blob1Att);
-          clearInterval(blob2Att);
-          $("#waveNum").html("Wave: " + curwave);
-          clearInterval(enemy0Att);
-          clearInterval(enemy1Att);
-          clearInterval(enemy2Att);
-          clearInterval(manaIncreaseInterval);
-          curMana = 0;
+          resetBattle();
         }
       });
     }
@@ -438,26 +445,14 @@ function createEncounter() {
         title: "You won!",
         text: "You won the battle!",
         icon: "success",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
         confirmButtonText: "Back to main menu",
       }).then((result) => {
         if (result.value) {
-          $("#battle").hide();
-          $("#PlayScreen").show();
-          won = false;
-          curwave = 0;
-          playerBlobTeam = playerBlobTeamTemp;
-          blob0 = playerBlobTeam[0];
-          blob1 = playerBlobTeam[1];
-          blob2 = playerBlobTeam[2];
-          clearInterval(blob0Att);
-          clearInterval(blob1Att);
-          clearInterval(blob2Att);
-          $("#waveNum").html("Wave: " + curwave);
-          clearInterval(enemy0Att);
-          clearInterval(enemy1Att);
-          clearInterval(enemy2Att);
-          clearInterval(manaIncreaseInterval);
-          curMana = 0;
+          resetBattle();
+          gold += playerLevel * overAllDifficulty * 2;
+          playerExp += Math.ceil(playerLevel/10) * overAllDifficulty;
         }
       });
     }

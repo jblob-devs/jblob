@@ -3,7 +3,7 @@ class basicBlob {
     this.health = 30;
     this.basicAtkDmg = 3;
     //atk spd written in ms
-    this.basicAtkSpd = 2000;
+    this.basicAtkSpd = 1500;
     //adjust specialAtk stats when implemented
     this.specialAtkDmg = 6;
     this.specialAtkSpd = 4000;

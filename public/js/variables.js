@@ -16,6 +16,7 @@ function getCookie(cname) {
 
 var gold = 0;
 var playerLevel = 1;
+var playerExp = 0;
 var username = getCookie("username");
 
 var basicBlobLvl = 1;
@@ -26,6 +27,7 @@ function saveGameState() {
   var gameState = {
     gold: gold,
     playerLevel: playerLevel,
+    playerExp: playerExp,
     username: username,
     basicBlobLvl: basicBlobLvl,
     squishyBlobLvl: squishyBlobLvl,

@@ -52,7 +52,7 @@
 
     <div id="Credits">
       <h1>Credits</h1>
-      <p>Dev: </p>
+      <p>Devs: </p>
       <p>Art: </p>
       <p>Music: </p>
       <button id="BackCredits" onclick="backcredits()">Back</button>
@@ -76,12 +76,19 @@
       </div> -->
       <br>
 
+      <div id="stats">
+        Level: <span id="level">1</span>
+        <br />
+        Exp: <span id="exp">0</span>
+        <br />
+        Gold: <span id="gold">0</span>
+        <br />
+      </div>
+
       <button onclick="gold++;">Gold hack increase</button>
 
       <button id="Settings">settings</button>
-      <form action="/save" id="Save" >
-        <button type="submit" value="Save">Save</button>
-      </form> 
+      <button onclick="saveGameState()">Save</button>
     </div>
 
     <div id="battle"></div>
