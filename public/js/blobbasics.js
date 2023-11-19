@@ -3,12 +3,17 @@ class basicBlob {
     this.health = 30;
     this.basicAtkDmg = 3;
     //atk spd written in ms
-    this.basicAtkSpd = 500;
+    this.basicAtkSpd = 2000;
+    //adjust specialAtk stats when implemented
     this.specialAtkDmg = 6;
     this.specialAtkSpd = 4000;
 
     this.level = 1;
     this.img = "";
+
+    this.attack = function (target) {
+      target.health -= this.basicAtkDmg;
+    }
   }
 }
 
@@ -43,6 +48,19 @@ class slimeBlob {
   }
 }
 
+class deadBlob {
+  constructor() {
+    this.name = "dead"
+    this.health = 0;
+    this.basicAtkDmg = 0;
+    //atk spd written in ms
+    this.basicAtkSpd = 0;
+    this.specialAtkDmg = 0;
+    this.specialAtkSpd = 0;
+    this.level = 1;
+  }
+}
+
 class enemy {
   constructor(name, health, basicAtkDmg, basicAtkSpd, specialAtkDmg, specialAtkSpd) {
     this.health = health;
@@ -51,5 +69,9 @@ class enemy {
     this.specialAtkDmg = specialAtkDmg;
     this.specialAtkSpd = specialAtkSpd;
     this.name = name;
+
+    this.attack = function (target) {
+      target.health -= this.basicAtkDmg;
+    }
   }
 }

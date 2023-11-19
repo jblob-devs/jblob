@@ -1,4 +1,4 @@
-// Creator: Ekærina
+// Creator: 𐤃kʊrin (Pronounced Dakurin)
 // Starter Enemy: Enslaved, Dim
 // Intermediate Enemy: Warped, Gloom
 // Advanced Enemy: Corrupted, Bright
@@ -11,14 +11,29 @@ var curwave = 0;
 var playerLevel = 1;
 var won = false;
 
-let EmberCard = new card("ember","EmberCard", 3, 2, "fire", 1, new empty, new linkCard("Applies Burn I for 2 seconds", 1));
-let FrostCard = new card("frost", "FrostCard", 3, 2, "ice", 1, new empty, new emptyLink());
-let ShockCard = new card("shock", "ShockCard", 3, 2, "lightning", 1, new empty, new emptyLink());
+let EmberCard = new card(
+  "ember",
+  "EmberCard",
+  3,
+  3,
+  "fire",
+  1,
+  new empty(),
+  new linkCard("Applies Burn I for 2 seconds", 1)
+);
+let FrostCard = new card("frost", "FrostCard", 3, 3, "ice", 1, new empty(), new emptyLink());
+let ShockCard = new card("shock", "ShockCard", 3, 3, "lightning", 1, new empty(), new emptyLink());
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
-var playerTeamMax = 3;
+var playerBlobTeamTemp = ["basicBlob", "basicBlob", "basicBlob"];
+
+let playerTeamMax = 3;
 let maxHandSize = 3;
+let maxManaCap = 10;
+let curMana = 0;
+let manaIncrement = 1;
+let manaIncreaseTime = 1000;
 //can be increased
 
 var overAllDifficulty = 1;
@@ -41,16 +56,30 @@ function drawHand() {
   for (let i = 0; i < maxHandSize; i++) {
     let card = playerHand[i];
     let cardHTML =
+      '<span id="card' +
+      i +
+      '"  onmouseleave=$("#card' +
+      i +
+      'Info").hide(); onmouseenter=$("#card' +
+      i +
+      'Info").show();>' +
+      '<p id="card' +
+      i +
+      'Info" class="cardInfo">' +
+      card.descrip +
+      "</p>" +
       '<img src="images/' +
       card.name +
       '.png" ' +
       ' id="card' +
       i +
       "img" +
-      '" height = "150vh" onclick=' +
+      '" height = "150vh" class="cardImg" onclick=' +
       card.varName +
-      ".useCard()>";
+      ".useCard()>" +
+      "</span>";
     $(`#card` + i).html(cardHTML);
+    $(`#card` + i + "Info").hide();
   }
 }
 
@@ -58,6 +87,7 @@ function drawHand() {
 
 function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
+    //the culled
     if (type == "enslaved") {
       let enslaved = new enemy("enslaved", 15, 2, 1000, 0, 0);
       enemySet.push(enslaved);
@@ -78,6 +108,8 @@ function updateEnemySet(type, num) {
       let tainted = new enemy("tainted", 35, 6, 1000, 0, 0);
       enemySet.push(tainted);
     }
+
+    //the luminescent
     if (type == "dim") {
       let dim = new enemy("dim", 15, 2, 1000, 0, 0);
       enemySet.push(dim);
@@ -107,46 +139,59 @@ function clearEnemySet() {
   enemySet = [];
 }
 
-//Selects an enemy when using cards
-async function selectEnemy() {
-  let userInput = await Toast.fire({
-    title: "Choose a target",
-    input: "radio",
-    inputOptions: {
-      enemy0: "Enemy 1",
-      enemy1: "Enemy 2",
-      enemy2: "Enemy 3",
-    },
-    inputPlaceholder: "Select an enemy",
-    showCancelButton: true,
-    showConfirmButton: true,
-    timer: 25000,
-    position: "bottom-right",
-    //10 seconds is ample time to do whatever
-    timerProgressBar: true,
-    inputValidator: (value) => {
-      return new Promise((resolve) => {
-        if (value === "enemy0" || value === "enemy1" || value === "enemy2") {
-          resolve();
-        } else {
-          resolve("You need to select an enemy");
-        }
-      });
-    },
+function selectEnemy() {
+  return new Promise((resolve) => {
+    Toast.fire({
+      title: "Choose a target",
+      html: `
+        <button id="option1" class="swal2-confirm swal2-styled">Enemy 1</button>
+        <button id="option2" class="swal2-confirm swal2-styled">Enemy 2</button>
+        <button id="option3" class="swal2-confirm swal2-styled">Enemy 3</button>
+      `,
+      timer: 25000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      showCancelButton: false,
+      position: "bottom-right",
+    });
+    $("#option1").click(function () {
+      Toast.close();
+      resolve("enemy0");
+    });
+    $("#option2").click(function () {
+      Toast.close();
+      resolve("enemy1");
+    });
+    $("#option3").click(function () {
+      Toast.close();
+      resolve("enemy2");
+    });
   });
-  return userInput.value;
 }
 
-//Creates a blob, of a certain type
-//type is the type of blob to create
-//type is 0-2
+//Creates basic blobs
 
-function createBlob() {
-  if (playerBlobTeam.contains("basicBlob")) {
-    let basic = new basicBlob();
+function createBlob(i) {
+  if (playerBlobTeam[i] == "basicBlob") {
+    playerBlobTeam[i] = new basicBlob();
+  } else if (playerBlobTeam[i] == "squishyBlob") {
+    playerBlobTeam[i] = new squishyBlob();
+  } else if (playerBlobTeam[i] == "slimeBlob") {
+    playerBlobTeam[i] = new slimeBlob();
+  }
+
+  for (i = 0; i < playerBlobTeam.length; i++) {
+    if (i == 0) {
+      blob0 = playerBlobTeam[i];
+    } else if (i == 1) {
+      blob1 = playerBlobTeam[i];
+    } else {
+      blob2 = playerBlobTeam[i];
+    }
   }
 }
 
+//Draws the player's blob team
 function drawPlayerTeam() {
   for (i = 0; i < playerBlobTeam.length; i++) {
     if (i == 0) {
@@ -156,12 +201,21 @@ function drawPlayerTeam() {
     } else {
       blob2 = playerBlobTeam[i];
     }
+    //BRUH WHAT IS THISSSS
     let blob =
-      '<img src="images/' + playerBlobTeam[i] + '.png" ' + ' id="Imageblob class="ImageBlobs"' + i + '"height = "75vh" width = "150vw ">';
-   
-      $(`#blob` + i).html(blob);
-    console.log(blob);
-    console.log($(`#blob` + i).html());
+      '<img src="images/' +
+      playerBlobTeam[i] +
+      '.png" ' +
+      ' id="Imageblobs class="ImageBlobs"' +
+      i +
+      '"height = "75vh" width = "150vw "><p id="blob' +
+      i +
+      'health" class="blobHealth">Health: ' +
+      playerBlobTeam[i].health +
+      "</p>";
+
+    $(`#blob` + i).html(blob);
+    createBlob(i);
   }
 }
 
@@ -181,13 +235,13 @@ function deleteEnemy() {
 //Delete blob when health is 0
 function deleteBlob() {
   if (blob0.health <= 0) {
-    blob0 = null;
+    blob0 = new deadBlob();
   }
   if (blob1.health <= 0) {
-    blob1 = null;
+    blob1 = new deadBlob();
   }
   if (blob2.health <= 0) {
-    blob2 = null;
+    blob2 = new deadBlob();
   }
 }
 
@@ -202,7 +256,7 @@ function checkWin() {
 
 //Checks if the player has lost
 function checkLoss() {
-  if (blob0 == null && blob1 == null && blob2 == null) {
+  if (blob0.name == "dead" && blob1.name == "dead" && blob2.name == "dead") {
     return true;
   } else {
     return false;
@@ -213,7 +267,7 @@ function checkLoss() {
 function newWave() {
   if (checkWin() == true && checkLoss() == false) {
     createWave();
-  } 
+  }
 }
 
 //Creates a battle
@@ -250,7 +304,7 @@ function setEnemyImages() {
   for (let i = 0; i < enemySet.length; i++) {
     let enemy = enemySet[i];
     let enemyHTML = '<img src="images/' + enemy.name + '.png" ' + ' id="enemy' + i + "img" + '" height = "150vh">';
-    $(`#enemy` + i + 'img').html(enemyHTML);
+    $(`#enemy` + i + "img").html(enemyHTML);
   }
 }
 
@@ -319,6 +373,13 @@ function createWave() {
   $("#waveNum").html("Wave: " + curwave);
 }
 
+manaIncreaseInterval = setInterval(function () {
+  $("#curManaDisplay").html("Mana: " + curMana);
+  if (curMana < maxManaCap) {
+    curMana += manaIncrement;
+  }
+}, manaIncreaseTime);
+
 //Creates an encounter
 function createEncounter() {
   drawPlayerTeam();
@@ -341,7 +402,8 @@ function createEncounter() {
     if (checkWin() == true) {
       newWave();
     }
-    if (checkLoss() == true) {
+    if (checkLoss() == true && won == false) {
+      won = true;
       Swal.fire({
         title: "You lost!",
         text: "You lost the battle!",
@@ -351,11 +413,25 @@ function createEncounter() {
         if (result.value) {
           $("#battle").hide();
           $("#PlayScreen").show();
+          won = false;
+          curwave = 0;
+          playerBlobTeam = playerBlobTeamTemp;
+          blob0 = playerBlobTeam[0];
+          blob1 = playerBlobTeam[1];
+          blob2 = playerBlobTeam[2];
+          clearInterval(blob0Att);
+          clearInterval(blob1Att);
+          clearInterval(blob2Att);
+          $("#waveNum").html("Wave: " + curwave);
+          clearInterval(enemy0Att);
+          clearInterval(enemy1Att);
+          clearInterval(enemy2Att);
+          clearInterval(manaIncreaseInterval);
+          curMana = 0;
         }
       });
     }
-    console.log(checkWin() + " " + curwave);
-    
+
     if (curwave == 4 && won == false) {
       won = true;
       Swal.fire({
@@ -369,11 +445,60 @@ function createEncounter() {
           $("#PlayScreen").show();
           won = false;
           curwave = 0;
+          playerBlobTeam = playerBlobTeamTemp;
+          blob0 = playerBlobTeam[0];
+          blob1 = playerBlobTeam[1];
+          blob2 = playerBlobTeam[2];
+          clearInterval(blob0Att);
+          clearInterval(blob1Att);
+          clearInterval(blob2Att);
           $("#waveNum").html("Wave: " + curwave);
-          
-
+          clearInterval(enemy0Att);
+          clearInterval(enemy1Att);
+          clearInterval(enemy2Att);
+          clearInterval(manaIncreaseInterval);
+          curMana = 0;
         }
       });
     }
   }, 100);
+  //Blob Attack
+  blob0Att = setInterval(function () {
+    var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    if (blob0.health > 0 && attackedEnemy.health > 0) {
+      blob0.attack(attackedEnemy);
+    }
+  }, blob0.basicAtkSpd);
+  blob1Att = setInterval(function () {
+    var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    if (blob1.health > 0 && attackedEnemy.health > 0) {
+      blob1.attack(attackedEnemy);
+    }
+  }, blob1.basicAtkSpd);
+  blob2Att = setInterval(function () {
+    var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    if (blob2.health > 0 && attackedEnemy.health > 0) {
+      blob2.attack(attackedEnemy);
+    }
+  }, blob2.basicAtkSpd);
+
+  //Enemy Attack
+  enemy0Att = setInterval(function () {
+    var attackedBlob = playerBlobTeam[Math.floor(Math.random() * 3)];
+    if (enemy0.health > 0 && attackedBlob.health > 0) {
+      enemy0.attack(attackedBlob);
+    }
+  }, enemy0.basicAtkSpd);
+  enemy1Att = setInterval(function () {
+    var attackedBlob = playerBlobTeam[Math.floor(Math.random() * 3)];
+    if (enemy1.health > 0 && attackedBlob.health > 0) {
+      enemy1.attack(attackedBlob);
+    }
+  }, enemy1.basicAtkSpd);
+  enemy2Att = setInterval(function () {
+    var attackedBlob = playerBlobTeam[Math.floor(Math.random() * 3)];
+    if (enemy2.health > 0 && attackedBlob.health > 0) {
+      enemy2.attack(attackedBlob);
+    }
+  }, enemy2.basicAtkSpd);
 }

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <style>
+  body {
+    overflow: hidden; /* Hide scrollbars */
+  }
   #blobTeamDisplay {
     margin-left: 0%;
     position: absolute;
@@ -19,40 +22,51 @@
     position: absolute;
     transform: translateY(60vh) translateX(-45vw);
     margin-bottom: 0%;
+  }#card0, #card1, #card2{
+    position: absolute;
   }
   #card0 {
     margin-left: 10%;
-    position: absolute;
   }
   #card1 {
     margin-left: 30%;
-    position: absolute;
   }
   #card2 {
     margin-left: 50%;
-    position: absolute;
-    
   } 
   .card{
     transition: transform 0.75s;
   }
   .card:hover {
-    transform: translateY(-3vh);
-  }.ImageBlobs{
+    transform: translateY(-15vh);
+  }
+  
+  .ImageBlobs{
     width: 100%;
     height: auto;
-  }#blob0, #blob1, #blob2{
+  }
+  #blob0, #blob1, #blob2{
     width: 25%
+  }
+  #curManaDisplay{
+    position: absolute;
+    margin-left: 50%;
+    transform: translateY(-5vh);
   }
 </style>
 
 <script src="js/cardDetails.js"></script>
 
 <script src="js/battlebasics.js"></script>
+<script src="js/playerBattle.js"></script>
 
 <div id="BattleScreen">
   <p id="battleName"></p>
   <br /><br /><br /><br />
+
+  <p id="curManaDisplay">peepeepoopoo</p>
+  <br>
+
   <div id="blobTeamDisplay">
     <div id="blob0">
       <img id="blob0img" />
@@ -73,27 +87,24 @@
       <p>Enemy Squadron</p>
       <div id="enemy0">
         <div id="enemy0img"></div>
-        <p id="enemy0health">1</p>
+        <p id="enemy0health"></p>
       </div>
       <div id="enemy1">
         <div id="enemy1img"></div>
-        <p id="enemy1health">1</p>
+        <p id="enemy1health"></p>
       </div>
       <div id="enemy2">
         <div id="enemy2img"></div>
-        <p id="enemy2health">1</p>
+        <p id="enemy2health"></p>
       </div>
     </wave>
   </div>
   <card id="cardDiv">
     <span id="card0" class="card">
-      <img id="card0img" />
     </span>
     <span id="card1" class="card">
-      <img id="card1img" />
     </span>
     <span id="card2" class="card">
-      <img id="card2img" />
     </span>
   </card>
 </div>

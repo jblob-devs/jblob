@@ -8,55 +8,77 @@ class card {
     this.ability = ability;
     this.linkDescrip = linkDescrip;
     this.varName = varName;
+    let descrip = new cardDescrips();
+    if (this.name == "ember") {
+      this.descrip = descrip.emberDescrip;
+    } else if (this.name == "drip") {
+      this.descrip = descrip.dripDescrip;
+    }
 
     this.useCard = async function () {
-      let index = playerHand.indexOf(name);
-      playerHand.splice(index, 1);
-      Toast.fire({
-        title: "Choose a target",
-      });
-      selectState = true;
-      let userInput = await selectEnemy();
-
-      if (userInput == "enemy0") {
-        enemy0.health -= this.dmg;
-      } else if (userInput == "enemy1") {
-        enemy1.health -= this.dmg;
-      } else if (userInput == "enemy2") {
-        enemy2.health -= this.dmg;
+      if (curMana > manaCost) {
+        let index = playerHand.indexOf(name);
+        playerHand.splice(index, 1);
+        Toast.fire({
+          title: "Choose a target",
+        });
+        selectState = true;
+        let userInput = await selectEnemy();
+        curMana -= manaCost;
+        if (userInput == "enemy0" && enemy0.health > 0) {
+          enemy0.health -= this.dmg;
+        } else if (userInput == "enemy1" && enemy1.health > 0) {
+          enemy1.health -= this.dmg;
+        } else if (userInput == "enemy2" && enemy2.health > 0) {
+          enemy2.health -= this.dmg;
+        } else {
+          Toast.fire({
+            title: "The enemy you chose is dead, choose another!",
+          });
+          curMana += manaCost,
+          playerHand.push(name);
+        }
+      } else {
+        Toast.fire({
+          title: "You don't have enough mana to perform this!",
+        });
       }
     };
   }
 }
 
-
-
-class burnEffect{
-  constructor(dmg, duration){
-    this.dmg=dmg;
-    this.duration=duration;
-    this.description = "Burns the enemy, scorching for "+ dmg + " over " + duration + "ms."
+class burnEffect {
+  constructor(dmg, duration) {
+    this.dmg = dmg;
+    this.duration = duration;
+    this.description = "Burns the enemy, scorching for " + dmg + " over " + duration + "ms.";
   }
 }
 
 //An empy constructor for when a card has no extra abilities
-class empty{
-  constructor(){
-    this.description = "No abilities"
+class empty {
+  constructor() {
+    this.description = "No abilities";
   }
 }
 
-
-class linkCard{
-  constructor(linkDescrip, linkCost){
+class linkCard {
+  constructor(linkDescrip, linkCost) {
     this.linkDescrip = linkDescrip;
     this.linkCost = linkCost;
   }
 }
 
-class emptyLink{
-  constructor(){
+class emptyLink {
+  constructor() {
     this.linkDescrip = "No Link effect";
     this.linkCost = 0;
+  }
+}
+
+class cardDescrips {
+  constructor() {
+    this.emberDescrip = "Shoots a mildly hot ember. Does 3 damage on hit.";
+    this.dripDescrip = "Splash water on your enemy. Does 3 damage on hit.";
   }
 }
