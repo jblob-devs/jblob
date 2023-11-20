@@ -56,6 +56,7 @@ window.onload = function() {
     .then(data => {
       gold = data.gold;
       playerLevel = data.playerLevel;
+      playerExp = data.playerExp;
       basicBlobLvl = data.basicBlobLvl;
       squishyBlobLvl = data.squishyBlobLvl;
       slimeBlobLvl = data.slimeBlobLvl;

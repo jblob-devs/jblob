@@ -26,7 +26,7 @@ let ShockCard = new card("shock", "ShockCard", 3, 3, "lightning", 1, new empty()
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
 var playerBlobTeamTemp = ["basicBlob", "basicBlob", "basicBlob"];
-
+var playerDeck = [EmberCard]
 let playerTeamMax = 3;
 let maxHandSize = 3;
 let maxManaCap = 10;
@@ -52,36 +52,6 @@ var enemy1;
 var enemy2;
 var enemySet = [];
 
-function drawHand() {
-  for (let i = 0; i < maxHandSize; i++) {
-    let card = playerHand[i];
-    let cardHTML =
-      '<span id="card' +
-      i +
-      '"  onmouseleave=$("#card' +
-      i +
-      'Info").hide(); onmouseenter=$("#card' +
-      i +
-      'Info").show();>' +
-      '<p id="card' +
-      i +
-      'Info" class="cardInfo">' +
-      card.descrip +
-      "</p>" +
-      '<img src="images/' +
-      card.name +
-      '.png" ' +
-      ' id="card' +
-      i +
-      "img" +
-      '" height = "150vh" class="cardImg" onclick=' +
-      card.varName +
-      ".useCard()>" +
-      "</span>";
-    $(`#card` + i).html(cardHTML);
-    $(`#card` + i + "Info").hide();
-  }
-}
 
 //Creates enemies, of a certain type and number
 
@@ -372,13 +342,6 @@ function createWave() {
   $("#waveNum").html("Wave: " + curwave);
 }
 
-manaIncreaseInterval = setInterval(function () {
-  $("#curManaDisplay").html("Mana: " + curMana);
-  if (curMana < maxManaCap) {
-    curMana += manaIncrement;
-  }
-}, manaIncreaseTime);
-
 //Reset battle
 function resetBattle() {
   $("#battle").hide();
@@ -403,6 +366,7 @@ function resetBattle() {
 
 //Creates an encounter
 function createEncounter() {
+  console.log("Encounter created");
   drawPlayerTeam();
   drawHand();
   createWave();
@@ -425,6 +389,7 @@ function createEncounter() {
     }
     if (checkLoss() == true && won == false) {
       won = true;
+      resetBattle();
       Swal.fire({
         title: "You lost!",
         text: "You lost the battle!",
@@ -434,13 +399,15 @@ function createEncounter() {
         confirmButtonText: "Back to main menu",
       }).then((result) => {
         if (result.value) {
-          resetBattle();
+          won = true;
+         console.log("You lost the battle!"); 
         }
       });
     }
 
     if (curwave == 4 && won == false) {
       won = true;
+      resetBattle();
       Swal.fire({
         title: "You won!",
         text: "You won the battle!",
@@ -450,7 +417,6 @@ function createEncounter() {
         confirmButtonText: "Back to main menu",
       }).then((result) => {
         if (result.value) {
-          resetBattle();
           gold += playerLevel * overAllDifficulty * 2;
           playerExp += Math.ceil(playerLevel/10) * overAllDifficulty;
         }
@@ -496,4 +462,12 @@ function createEncounter() {
       enemy2.attack(attackedBlob);
     }
   }, enemy2.basicAtkSpd);
+
+  //Mana
+  manaIncreaseInterval = setInterval(function () {
+    $("#curManaDisplay").html("Mana: " + curMana);
+    if (curMana < maxManaCap) {
+      curMana += manaIncrement;
+    }
+  }, manaIncreaseTime);
 }

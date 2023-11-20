@@ -143,7 +143,7 @@ setInterval(function(){
     $("#gold").html(gold);
     $("#level").html(playerLevel);
     $("#exp").html(playerExp);
-}, 100);
+}, 1000);
 
 setInterval(function(){
     saveGameState();

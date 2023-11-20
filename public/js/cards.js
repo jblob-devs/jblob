@@ -17,8 +17,57 @@ var playerHand = [];
 //changes to true if the user has a card selected, usually when the programs needs an user input to continue.
 var selectState = false;
 
-function dealNewCard(){
-    let deckLength = playerDeck.length()
-    let randy = Math.floor(Math.random() * deckLength) - 1;
-    playerHand.push[playerDeck[randy]];
-}
+
+function dealCards(){
+    let deckLen = playerDeck.length;
+    let randIndex = Math.floor(Math.random()*deckLen)
+    playerHand.append(playerDeck[randIndex])
+    }
+    
+    
+
+    
+    function drawHand() {
+      for (let i = 0; i < playerHand.length; i++) {
+        let curCard = playerHand[i];
+        console.log(curCard);
+        $(`#card` + i).html("")
+        let cardHTML =
+          '<span id="card' +
+          i +
+          '"  onmouseleave=$("#card' +
+          i +
+          'Info").hide(); onmouseenter=$("#card' +
+          i +
+          'Info").show();>' +
+          '<p id="card' +
+          i +
+          'Info" class="cardInfo">' +
+          curCard.descrip +
+          "</p>" +
+          '<img src="images/' +
+          curCard.name +
+          '.png" ' +
+          ' id="card' +
+          i +
+          "img" +
+          '" height = "150vh" class="cardImg" onclick=' +
+          curCard.varName +
+          ".useCard()>" +
+          "</span>";
+        $(`#card` + i).html(cardHTML);
+        $(`#card` + i + "Info").hide();
+      }
+    }
+
+
+    function updatePlayerHand(cardy, isPush){
+        if(isPush){
+          playerHand.push(cardy)
+        }else{
+          playerHand.splice(cardy,1)
+        }
+        drawHand()
+        console.log(playerHand)
+        }
+        

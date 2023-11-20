@@ -25,6 +25,7 @@ class card {
         selectState = true;
         let userInput = await selectEnemy();
         curMana -= manaCost;
+        updatePlayerHand(this, false)
         if (userInput == "enemy0" && enemy0.health > 0) {
           enemy0.health -= this.dmg;
         } else if (userInput == "enemy1" && enemy1.health > 0) {
@@ -35,8 +36,8 @@ class card {
           Toast.fire({
             title: "The enemy you chose is dead, choose another!",
           });
-          curMana += manaCost,
-          playerHand.push(name);
+          curMana += manaCost;
+          updatePlayerHand(this, true)
         }
       } else {
         Toast.fire({
@@ -46,6 +47,7 @@ class card {
     };
   }
 }
+
 
 class burnEffect {
   constructor(dmg, duration) {

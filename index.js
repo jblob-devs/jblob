@@ -59,11 +59,22 @@ app.post("/register", (req, res) => {
   if (password !== password2) {
     res.redirect("/register");
   }
-  db.all("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], (err, rows) => {
+  // Check if username already exists
+  db.all("SELECT * FROM users WHERE username = ?", [username], (err, rows) => {
     if (err) {
       console.log(err);
+    } else if (rows.length > 0) {
+      // Username already exists
+      res.send('Username already exists');
     } else {
-      res.redirect("/login");
+      // Username does not exist, proceed with registration
+      db.all("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], (err, rows) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect("/login");
+        }
+      });
     }
   });
 });
