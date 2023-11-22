@@ -34,14 +34,14 @@ app.post("/login", (req, res) => {
       console.log(err);
     } else if (rows.length > 0) {
       res.cookie("username", username);
-      db.all("SELECT save FROM users WHERE username = ?", [username], (err, rows) => {
+      db.all("SELECT userSave FROM users WHERE username = ?", [username], (err, rows) => {
         if (err) {
           console.log(err);
         } else {
           res.cookie("save", rows[0].save);
+          res.redirect("/");
         }
       });
-      res.redirect("/");
     } else {
       res.redirect("/login");
     }
@@ -65,7 +65,7 @@ app.post("/register", (req, res) => {
       console.log(err);
     } else if (rows.length > 0) {
       // Username already exists
-      res.send('Username already exists');
+      res.send('<html><head>    <link rel="stylesheet" href="/css/index.css" /><link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" /></head><h1>Username already exists.</h1> <br><h1> <a href="/register">Try again</a></h1></html>');
     } else {
       // Username does not exist, proceed with registration
       db.all("INSERT INTO users (username, password) VALUES (?, ?)", [username, password], (err, rows) => {
