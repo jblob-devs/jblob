@@ -107,11 +107,11 @@ function back6(){
 
 function backcredits(){
     $("#ExtraStuff").show();
-    $("#credits").hide();
+    $("#Credits").hide();
 }
 
 function toCredits(){
-    $("#credits").show();
+    $("#Credits").show();
 }
 
 function toBattle(){

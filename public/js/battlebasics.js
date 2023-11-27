@@ -111,6 +111,7 @@ function clearEnemySet() {
 
 function selectEnemy() {
   return new Promise((resolve) => {
+    hideButtons();
     Toast.fire({
       title: "Choose a target",
       html: `
@@ -137,6 +138,31 @@ function selectEnemy() {
       resolve("enemy2");
     });
   });
+}
+
+setInterval(function(){
+  if(enemy0.health <= 0){
+    $("#option1").hide();
+  }
+  if(enemy1.health <= 0){
+    $("#option2").hide();
+  }
+  if(enemy2.health <= 0){
+    $("option3").hide();
+  }
+},100)
+
+//hide the buttons if the enemy is dead
+function hideButtons() {
+  if (enemy0.health <= 0) {
+    $("#option1").hide();
+  }
+  if (enemy1.health <= 0) {
+    $("#option2").hide();
+  }
+  if (enemy2.health <= 0) {
+    $("option3").hide();
+  }
 }
 
 //Creates basic blobs

@@ -16,16 +16,21 @@ class card {
     }
 
     this.useCard = async function () {
-      if (curMana > manaCost) {
+      console.log("useCard");
+      console.log(this.name);
+      console.log(playerHand);
+      console.log(playerHand.length);
+      if (curMana > manaCost && playerHand.length > 0) {
         let index = playerHand.indexOf(name);
-        playerHand.splice(index, 1);
         Toast.fire({
           title: "Choose a target",
         });
         selectState = true;
         let userInput = await selectEnemy();
         curMana -= manaCost;
-        updatePlayerHand(this, false)
+
+        playerHand.splice(index,1)
+        drawHand();
         if (userInput == "enemy0" && enemy0.health > 0) {
           enemy0.health -= this.dmg;
         } else if (userInput == "enemy1" && enemy1.health > 0) {
@@ -37,11 +42,19 @@ class card {
             title: "The enemy you chose is dead, choose another!",
           });
           curMana += manaCost;
-          updatePlayerHand(this, true)
+          drawHand();
+          //wait for drawDelay
+          setTimeout(function () {
+            dealCard();
+          }, playerDrawDelay);
         }
-      } else {
+      } else if (curMana < manaCost) {
         Toast.fire({
           title: "You don't have enough mana to perform this!",
+        });
+      } else {
+        Toast.fire({
+          title: "You don't have any cards in your hand!",
         });
       }
     };
