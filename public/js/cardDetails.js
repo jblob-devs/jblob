@@ -44,9 +44,9 @@ class card {
           curMana += manaCost;
           drawHand();
           //wait for drawDelay
-          setTimeout(function () {
-            dealCard();
-          }, playerDrawDelay);
+          //setTimeout(function () {
+            //dealCard();
+          //}, playerDrawDelay);
         }
       } else if (curMana < manaCost) {
         Toast.fire({

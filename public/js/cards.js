@@ -18,12 +18,13 @@ var selectState = false;
 function dealCards() {
   let deckLen = playerDeck.length;
   let randIndex = Math.floor(Math.random() * deckLen);
+  console.log(randIndex)
   playerHand.push(playerDeck[randIndex]);
+  console.log("dealCards")
 }
 
 //draws the players new hand (does not DRAW a new card, like physically draws the card on the screen)
 function drawHand() {
-  console.log(playerHand.length)
   $(`#card0`).html("");
   $(`#card1`).html("");
   $(`#card2`).html("");
@@ -60,18 +61,29 @@ function drawHand() {
 
 //Deals a new card and draws the players hand after a short wait duration
 function dealCard(){
-  wait(playerDrawDelay).then(() => { 
-    if(playerHand.length < playerMaxHandSize){
-      dealCards();
-      drawHand();
-      console.log("dealt card");
-    }
-  });
+  setTimeout(function(){
+    dealCards();
+    drawHand();
+    console.log("dealt card");
+    playerMaxHandSize += 1;
+  }, 4000);
 }
-
+ 
+drawInt = setInterval(function(){
+  console.log("interval")
+  console.log(playerHand.length)
+  console.log(playerMaxHandSize)
+  console.log(playerHand.length < playerMaxHandSize)
+  console.log("interval")
+  
+  if(playerHand.length < playerMaxHandSize){
+    dealCard()
+    playerMaxHandSize -= 1;
+  }
+},500)
 
 //A wait function that allows the javascript to wait for a bit before continuing
-function wait(milliseconds) {
+function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
