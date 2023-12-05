@@ -9,27 +9,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script> 
-      $(function(){
-        $("#battle").load("/html/battle.html"); 
+    <script>
+      $(function () {
+        $("#battle").load("/html/battle.html");
       });
     </script>
     <title>jBlob</title>
   </head>
   <body>
-
     <div id="StartScreen">
       <h1>jBlob</h1>
-      <marquee id="splash" behavior="scroll" direction="left" scrollamount="30" style="width: 100%; height: 100px; font-size: 30px; color: black; text-shadow: 2px 2px 2px red;">
+      <marquee
+        id="splash"
+        behavior="scroll"
+        direction="left"
+        scrollamount="30"
+        style="width: 100%; height: 100px; font-size: 30px; color: black; text-shadow: 2px 2px 2px red"
+      >
         You will never see this!
       </marquee>
       <br />
       <button id="PlayButton" onclick="play()">Play</button>
       <button id="ExtraButton" onclick="extra()">Extra Stuff</button>
-      <br>
-      <br>
-      <form action="/logout" id="Logout" >
-        <button type="submit" value="Logout">Logout</button>  
+      <br />
+      <br />
+      <form action="/logout" id="Logout">
+        <button type="submit" value="Logout">Logout</button>
       </form>
     </div>
 
@@ -38,12 +43,12 @@
       <button id="ToExtra" onclick="extra2()">Input Extra code</button>
       <button id="ToCredits" onclick="toCredits();">Credits</button>
       <button id="BackExtra" onclick="back2()">Back</button>
-      
+
       <div id="ExtraCode">
         <form action="/code" method="POST">
           <input type="text" name="code" placeholder="Enter Code!" />
-          <br>
-          <button type="submit" value="Submit" >Gimme!</button> 
+          <br />
+          <button type="submit" value="Submit">Gimme!</button>
         </form>
         <br />
         <button id="BackCode" onclick="back6()">Back</button>
@@ -52,29 +57,26 @@
 
     <div id="Credits">
       <h1>Credits</h1>
-      <p>Devs: </p>
-      <p>Art: </p>
-      <p>Music: </p>
+      <p>Devs:</p>
+      <p>Art:</p>
+      <p>Music:</p>
       <button id="BackCredits" onclick="backcredits()">Back</button>
     </div>
     <!--START PLAY SCREEN-->
 
     <div id="PlayScreen">
       <h1>jBlob</h1>
-      
-      <br>
 
-      
-      
-      <div id="WarpBar"> 
-        <button>Warp Shop</button>
-        <button onclick = "toBattle()">Warp Battle</button>
+      <br />
 
+      <div id="WarpBar">
+        <button onclick="toShop()">Warp Shop</button>
+        <button onclick="toBattle()">Warp Battle</button>
       </div>
       <!-- <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
         <div id="expIn" style="border-radius: 20px; background-color: lightgreen; width: 0px; height: 20px"></div>
       </div> -->
-      <br>
+      <br />
 
       <div id="stats">
         Level: <span id="level">1</span>
@@ -90,12 +92,33 @@
       <button id="Settings">settings</button>
       <button onclick="saveGameState()">Save</button>
     </div>
+    <div id="shop">
+      <h1>Shop</h1>
+      <div id="shopItems">
+        <span id="shopItem1">
+          <p>Item 1</p>
+          <button onclick="buyItem1()">Buy</button>
+        </span>
+        <span id="shopItem2">
+          <p>Item 2</p>
+          <button onclick="buyItem2()">Buy</button>
+        </span>
+        <span id="shopItem3">
+          <p>Item 3</p>
+          <button onclick="buyItem3()">Buy</button>
+        </span>
+        <span id="shopItem4">
+          <p>Item 4</p>
+          <button onclick="buyItem4()">Buy</button>
+        </span>
+      </div>
+      <br />
+      <button id="BackShop" onclick="back7()">Back</button>
+    </div>
 
     <div id="battle"></div>
 
-
     <!--END PLAY SCREEN-->
-
 
     <div id="slimepedia">
       <div id="blobpedia">
@@ -130,10 +153,6 @@
     <script src="/js/main.js"></script>
     <script src="/js/cards.js"></script>
 
-
-
-    <script>
-    
-    </script>
+    <script></script>
   </body>
 </html>

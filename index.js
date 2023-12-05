@@ -102,7 +102,6 @@ app.post("/save", (req, res) => {
       if (err) {
           return console.error(err.message);
       }
-      console.log(`Saved game state for user ${username} to database. Game state: ${gameState}`);
       res.send({status: "Game Saved!"});
   });
 });

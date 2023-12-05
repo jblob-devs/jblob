@@ -22,7 +22,7 @@ $("#slimepedia").hide();
 $("#ExtraCode").hide();
 $("#DevHacks").hide();
 $("#Blobs").hide();
-$("#Shop").hide();
+$("#shop").hide();
 $("#Blobs").hide();
 $("#PlayScreen").hide();
 $("#inventory").hide();
@@ -61,9 +61,9 @@ function devhacks(){
     $("#DevHacks").show();
 }
 
-function shop(){
+function toShop(){
     $("#PlayScreen").hide();
-    $("#Shop").show();
+    $("#shop").show();
 }
 
 function inventory(){
@@ -103,6 +103,11 @@ function back5(){
 
 function back6(){
     $("#ExtraCode").hide();
+}
+
+function back7(){
+    $("#PlayScreen").show();
+    $("#shop").hide();
 }
 
 function backcredits(){

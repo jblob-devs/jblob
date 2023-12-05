@@ -26,7 +26,7 @@ let ShockCard = new card("shock", "ShockCard", 3, 3, "lightning", 1, new empty()
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
 var playerBlobTeamTemp = ["basicBlob", "basicBlob", "basicBlob"];
-var playerDeck = [EmberCard]
+var playerDeck = [EmberCard];
 let playerTeamMax = 3;
 let maxHandSize = 3;
 let maxManaCap = 10;
@@ -52,40 +52,39 @@ var enemy1;
 var enemy2;
 var enemySet = [];
 
-
 //Creates enemies, of a certain type and number
 
 function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
     //the culled
     if (type == "enslaved") {
-      let enslaved = new enemy("enslaved", 15, 2, 1900, 0, 0);
+      let enslaved = new enemy("enslaved", 15, 2, 1790, 0, 0);
       enemySet.push(enslaved);
     }
     if (type == "warped") {
-      let warped = new enemy("warped", 20, 3, 1900, 0, 0);
+      let warped = new enemy("warped", 20, 3, 1790, 0, 0);
       enemySet.push(warped);
     }
     if (type == "corrupted") {
-      let corrupted = new enemy("corrupted", 25, 4, 1900, 0, 0);
+      let corrupted = new enemy("corrupted", 25, 4, 1790, 0, 0);
       enemySet.push(corrupted);
     }
     if (type == "possessed") {
-      let possessed = new enemy("possessed", 30, 5, 1900, 0, 0);
+      let possessed = new enemy("possessed", 30, 5, 1790, 0, 0);
       enemySet.push(possessed);
     }
     if (type == "tainted") {
-      let tainted = new enemy("tainted", 35, 6, 1900, 0, 0);
+      let tainted = new enemy("tainted", 35, 6, 1790, 0, 0);
       enemySet.push(tainted);
     }
 
     //the luminescent
     if (type == "dim") {
-      let dim = new enemy("dim", 15, 2, 1900, 0, 0);
+      let dim = new enemy("dim", 15, 2, 1790, 0, 0);
       enemySet.push(dim);
     }
     if (type == "gloom") {
-      let gloom = new enemy("gloom", 20, 3, 1900, 0, 0);
+      let gloom = new enemy("gloom", 20, 3, 1790, 0, 0);
       enemySet.push(gloom);
     }
     if (type == "bright") {
@@ -140,18 +139,19 @@ function selectEnemy() {
   });
 }
 
-setInterval(function(){
-  if (enemy0 != null && enemy1 != null && enemy2 != null){
-  if(enemy0.health <= 0){
-    $("#option1").hide();
+setInterval(function () {
+  if (enemy0 != null && enemy1 != null && enemy2 != null) {
+    if (enemy0.health <= 0) {
+      $("#option1").hide();
+    }
+    if (enemy1.health <= 0) {
+      $("#option2").hide();
+    }
+    if (enemy2.health <= 0) {
+      $("option3").hide();
+    }
   }
-  if(enemy1.health <= 0){
-    $("#option2").hide();
-  }
-  if(enemy2.health <= 0){
-    $("option3").hide();
-  }}
-},100)
+}, 100);
 
 //hide the buttons if the enemy is dead
 function hideButtons() {
@@ -282,7 +282,7 @@ function startBattle() {
       $("#battle").show();
       //wait function in future maybe cuz studies
       //show that a loading screen makes people think smthng is happening
-      createEncounter();
+      createEncounter(true, false);
     } else {
       $("#PlayScreen").show();
       $("#battle").hide();
@@ -293,7 +293,7 @@ function startBattle() {
 //Use player level to determine enemy level
 
 function determineEnemyLevel(playerLevel) {
-  return enemyLevel = Math.ceil(playerLevel/10) + Math.floor(Math.random() * 2);
+  return (enemyLevel = Math.ceil(playerLevel / 10) + Math.floor(Math.random() * 2));
 }
 
 function setEnemyImages() {
@@ -369,6 +369,32 @@ function createWave() {
   $("#waveNum").html("Wave: " + curwave);
 }
 
+//Creates a boss
+function createBoss() {
+  //clears enemy set
+  clearEnemySet();
+  //determines enemy level
+  let enemyLevel = determineEnemyLevel(playerLevel);
+  //updates enemy set
+  for (let i = 0; i < 3; i++) {
+    let enemyType = determineEnemy(enemyLevel);
+    updateEnemySet(enemyType, 1);
+  }
+  //sets enemy images
+  setEnemyImages();
+  //increases overall difficulty
+  overAllDifficulty += 1;
+  //increases current wave
+  curwave += 1;
+  //updates the enemy health
+  enemy0 = enemySet[0];
+  enemy1 = enemySet[1];
+  enemy2 = enemySet[2];
+  //updates the wave number
+  curwave = "Boss";
+  $("#waveNum").html("Wave: " + curwave);
+}
+
 //Reset battle
 function resetBattle() {
   $("#battle").hide();
@@ -394,12 +420,18 @@ function resetBattle() {
 }
 
 //Creates an encounter
-function createEncounter() {
+function createEncounter(normal, boss) {
   console.log("Encounter created");
   drawPlayerTeam();
   drawHand();
-  createWave();
+  if (normal) {
+    createWave();
+  }
+  if (boss) {
+    createBoss();
+  }
 
+  //Health
   setInterval(function () {
     $("#enemy0health").html("Health: " + enemySet[0].health);
     $("#enemy1health").html("Health: " + enemySet[1].health);
@@ -429,7 +461,7 @@ function createEncounter() {
       }).then((result) => {
         if (result.value) {
           won = true;
-         console.log("You lost the battle!"); 
+          console.log("You lost the battle!");
         }
       });
     }
@@ -447,7 +479,7 @@ function createEncounter() {
       }).then((result) => {
         if (result.value) {
           gold += playerLevel * overAllDifficulty * 2;
-          playerExp += Math.ceil(playerLevel/10) * overAllDifficulty;
+          playerExp += Math.ceil(playerLevel / 10) * overAllDifficulty;
         }
       });
     }
