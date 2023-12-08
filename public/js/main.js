@@ -16,10 +16,12 @@ $("StartScreen").show();
 //Make all the screens/divs slide up at the start of the game
 $("#MyBlobs").hide();
 $("#ExtraStuff").hide();
+$("#ExtraStuff2").hide();
 $("#GetBlobs").hide();
 $("#settings").hide();
 $("#slimepedia").hide();
 $("#ExtraCode").hide();
+$("#ExtraCode2").hide();
 $("#DevHacks").hide();
 $("#Blobs").hide();
 $("#shop").hide();
@@ -54,6 +56,15 @@ function extra(){
 
 function extra2(){
     $("#ExtraCode").show();
+}
+
+function extra3(){
+    $("#PlayScreen").hide();
+    $("#ExtraStuff2").show();
+}
+
+function extra4(){
+    $("#ExtraCode2").show();
 }
 
 function devhacks(){
@@ -108,6 +119,15 @@ function back6(){
 function back7(){
     $("#PlayScreen").show();
     $("#shop").hide();
+}
+
+function back8(){
+    $("#PlayScreen").show();
+    $("#ExtraStuff2").hide();
+}
+
+function back9(){
+    $("#ExtraCode2").hide();
 }
 
 function backcredits(){

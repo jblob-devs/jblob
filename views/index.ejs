@@ -33,15 +33,18 @@
       <button id="ExtraButton" onclick="extra()">Extra Stuff</button>
       <br />
       <br />
-      <form action="/logout" id="Logout">
-        <button type="submit" value="Logout">Logout</button>
-      </form>
     </div>
 
     <div id="ExtraStuff">
       <h1>jBlob Extras</h1>
       <button id="ToExtra" onclick="extra2()">Input Extra code</button>
       <button id="ToCredits" onclick="toCredits();">Credits</button>
+      <br />
+      <br />
+      <form action="/logout" id="Logout">
+        <button type="submit" value="Logout">Logout</button>
+      </form>
+      <br />
       <button id="BackExtra" onclick="back2()">Back</button>
 
       <div id="ExtraCode">
@@ -51,9 +54,33 @@
           <button type="submit" value="Submit">Gimme!</button>
         </form>
         <br />
-        <button id="BackCode" onclick="back6()">Back</button>
+        <button id="BackCode" onclick="back6()">Exit Code</button>
       </div>
     </div>
+
+    <div id="ExtraStuff2">
+      <h1>jBlob Extras</h1>
+      <button id="ToExtra" onclick="extra4()">Input Extra code</button>
+      <button id="ToCredits" onclick="toCredits();">Credits</button>
+      <br />
+      <br />
+      <form action="/logout" id="Logout">
+        <button type="submit" value="Logout">Logout</button>
+      </form>
+      <br />
+      <button id="BackExtra" onclick="back8()">Back</button>
+
+      <div id="ExtraCode2">
+        <form action="/code" method="POST">
+          <input type="text" name="code" placeholder="Enter Code!" />
+          <br />
+          <button type="submit" value="Submit">Gimme!</button>
+        </form>
+        <br />
+        <button id="BackCode" onclick="back9()">Exit Code</button>
+      </div>
+    </div>
+
 
     <div id="Credits">
       <h1>Credits</h1>
@@ -89,7 +116,7 @@
 
       <button onclick="gold++;">Gold hack increase</button>
 
-      <button id="Settings">settings</button>
+      <button id="Settings" onclick="extra3()">settings</button>
       <button onclick="saveGameState()">Save</button>
     </div>
     <div id="shop">
