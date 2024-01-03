@@ -78,6 +78,28 @@ button:hover {
     position: relative;
     border-bottom: 1px dotted black;
     
-}#PlayScreen{ 
-    background-color: skyblue;
+}#stats{
+    position: absolute;
+    top:15px;
+    left:15px;
+}#blobTeam3,#blobTeam2{
+    position:relative;
+    top:50px;
+    right:5px
+}#blobTeam1{
+    position:relative;
+    top:70px;
+    right:5px
+}#goldhack{
+    position:absolute;
+    top:30px;
+    right:5px;
+}#Settings{
+    position:absolute;
+    top:400px;
+    left:40px;
+}#WarpBar{
+    position:absolute;
+    top:400px;
+    right:90px;
 }

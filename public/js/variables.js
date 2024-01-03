@@ -22,6 +22,8 @@ var username = getCookie("username");
 var basicBlobLvl = 1;
 var squishyBlobLvl = 0;
 var slimeBlobLvl = 0;
+var canClaimDaily = false;
+var dailyCount = 5000;
 
 function saveGameState() {
   var gameState = {
@@ -29,9 +31,11 @@ function saveGameState() {
     playerLevel: playerLevel,
     playerExp: playerExp,
     username: username,
+    canClaimDaily: canClaimDaily,
     basicBlobLvl: basicBlobLvl,
     squishyBlobLvl: squishyBlobLvl,
     slimeBlobLvl: slimeBlobLvl,
+    dailyCount: dailyCount,
   };
   fetch("/save", {
     method: "POST",

@@ -13,6 +13,9 @@
       $(function () {
         $("#battle").load("/html/battle.html");
       });
+      $(function() {
+         $("#packs").load("/html/packs.html");
+      });
     </script>
     <title>jBlob</title>
   </head>
@@ -100,9 +103,11 @@
         <button onclick="toShop()">Warp Shop</button>
         <button onclick="toBattle()">Warp Battle</button>
       </div>
-      <!-- <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
+      <!--
+       <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
         <div id="expIn" style="border-radius: 20px; background-color: lightgreen; width: 0px; height: 20px"></div>
-      </div> -->
+      </div>
+    -->
       <br />
 
       <div id="stats">
@@ -112,19 +117,32 @@
         <br />
         Gold: <span id="gold">0</span>
         <br />
+        Resonance: <span id="resonance">0</span>
       </div>
 
-      <button onclick="gold++;">Gold hack increase</button>
+      <div id="blobPicTeam">
+
+      <img id="blobTeam2" src="images/basicBlob.png" height = "75vh" width = "150vw "/>
+
+      <img id="blobTeam1" src="images/basicBlob.png" height = "75vh" width = "150vw "/>
+
+      <img id="blobTeam3" src="images/basicBlob.png" height = "75vh" width = "150vw "/>
+      </div>
+
+
+      <button id="goldhack" onclick="gold++;">Gold hack increase</button>
 
       <button id="Settings" onclick="extra3()">settings</button>
       <button onclick="saveGameState()">Save</button>
     </div>
+
+
     <div id="shop">
       <h1>Shop</h1>
       <div id="shopItems">
         <span id="shopItem1">
-          <p>Item 1</p>
-          <button onclick="buyItem1()">Buy</button>
+          <p>Daily</p>
+          <button id="dailyButton" onclick="buyDailyPack()">Buy</button>
         </span>
         <span id="shopItem2">
           <p>Item 2</p>
@@ -144,6 +162,7 @@
     </div>
 
     <div id="battle"></div>
+    <div id="packs"></div>
 
     <!--END PLAY SCREEN-->
 
@@ -179,6 +198,7 @@
     <script src="/js/blobbasics.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/cards.js"></script>
+    <script src="/js/packs.js"></script>
 
     <script></script>
   </body>

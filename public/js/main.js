@@ -32,6 +32,7 @@ $("#inventory").hide();
 $("#DevHacks").hide();
 $("#Credits").hide();
 $("#battle").hide();
+$("#packs").hide();
 
 function play(){
     $("#Credits").hide();
@@ -90,6 +91,7 @@ function back(){
     $("#DevHacks").hide();
     $("#Shop").hide();
     $("#inventory").hide();
+    $("#packs").hide();
 }
 
 function back2(){
@@ -173,3 +175,15 @@ setInterval(function(){
 setInterval(function(){
     saveGameState();
 }, 10000);
+
+
+setInterval(function(){
+    dailyCount -= 100
+    if(dailyCount <= 0){
+        canClaimDaily = true;
+    }
+}, 100)
+
+setInterval(function(){
+$("#dailyButton").html(`Buy (Next Daily in: ${dailyCount})`)
+},100)
