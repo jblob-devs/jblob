@@ -24,6 +24,7 @@ var squishyBlobLvl = 0;
 var slimeBlobLvl = 0;
 var canClaimDaily = false;
 var dailyCount = 5000;
+var packSlot = 1;
 
 function saveGameState() {
   var gameState = {
@@ -36,6 +37,7 @@ function saveGameState() {
     squishyBlobLvl: squishyBlobLvl,
     slimeBlobLvl: slimeBlobLvl,
     dailyCount: dailyCount,
+    packSlot: packSlot,
   };
   fetch("/save", {
     method: "POST",

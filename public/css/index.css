@@ -102,4 +102,9 @@ button:hover {
     position:absolute;
     top:400px;
     right:90px;
+}.slideUp
+{
+  transform: translate(0,-100%);
+}#packs{
+    transition: transform linear 0.5s;
 }
