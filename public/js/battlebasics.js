@@ -299,7 +299,7 @@ function determineEnemyLevel(playerLevel) {
 function setEnemyImages() {
   for (let i = 0; i < enemySet.length; i++) {
     let enemy = enemySet[i];
-    let enemyHTML = '<img src="images/' + enemy.name + '.png" ' + ' id="enemy' + i + "img" + '" height = "150vh">';
+    let enemyHTML = '<img src="images/enemies/' + enemy.name + '.png" ' + ' id="enemy' + i + "img" + '" height = "100vh">';
     $(`#enemy` + i + "img").html(enemyHTML);
   }
 }
@@ -307,40 +307,15 @@ function setEnemyImages() {
 // Use enemy level to determine enemy
 function determineEnemy(enemyLevel) {
   if (enemyLevel == 1) {
-    let enemyType = Math.floor(Math.random() * 2);
-    if (enemyType == 0) {
-      return "dim";
-    } else {
       return "enslaved";
-    }
   } else if (enemyLevel == 2) {
-    let enemyType = Math.floor(Math.random() * 2);
-    if (enemyType == 0) {
-      return "gloom";
-    } else {
       return "warped";
-    }
   } else if (enemyLevel == 3) {
-    let enemyType = Math.floor(Math.random() * 2);
-    if (enemyType == 0) {
-      return "bright";
-    } else {
       return "corrupted";
-    }
   } else if (enemyLevel == 4) {
-    let enemyType = Math.floor(Math.random() * 2);
-    if (enemyType == 0) {
-      return "radiant";
-    } else {
       return "possessed";
-    }
   } else if (enemyLevel == 5) {
-    let enemyType = Math.floor(Math.random() * 2);
-    if (enemyType == 0) {
-      return "luminescent";
-    } else {
       return "tainted";
-    }
   }
 }
 

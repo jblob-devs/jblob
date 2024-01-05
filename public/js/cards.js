@@ -44,7 +44,7 @@ function drawHand() {
       'Info" class="cardInfo">' +
       curCard.descrip +
       "</p>" +
-      '<img src="images/' +
+      '<img src="images/cards/' +
       curCard.name +
       '.png" ' +
       ' id="card' +
