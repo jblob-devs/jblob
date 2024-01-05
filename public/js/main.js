@@ -170,6 +170,7 @@ setInterval(function(){
     $("#gold").html(gold);
     $("#level").html(playerLevel);
     $("#exp").html(playerExp);
+    $("#resonance").html(resonance)
 }, 1000);
 
 setInterval(function(){
@@ -181,9 +182,10 @@ setInterval(function(){
     dailyCount -= 100
     if(dailyCount <= 0){
         canClaimDaily = true;
-    }
-}, 100)
+        $("#dailyButton").html(`Claim Daily Pack!`)
 
-setInterval(function(){
-$("#dailyButton").html(`Buy (Next Daily in: ${dailyCount})`)
-},100)
+    }else{
+        $("#dailyButton").html(`Buy (Next Daily in: ${dailyCount})`)
+    }
+   
+}, 100)

@@ -17,13 +17,15 @@ function getCookie(cname) {
 var gold = 0;
 var playerLevel = 1;
 var playerExp = 0;
+var resonance = 0;
 var username = getCookie("username");
 
 var basicBlobLvl = 1;
 var squishyBlobLvl = 0;
 var slimeBlobLvl = 0;
 var canClaimDaily = false;
-var dailyCount = 5000;
+//this is technically an hourly count in millisecond but meh
+var dailyCount = 3600000;
 var packSlot = 1;
 
 function saveGameState() {
