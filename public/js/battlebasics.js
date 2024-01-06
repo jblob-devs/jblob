@@ -24,8 +24,8 @@ let FrostCard = new card("frost", "FrostCard", 3, 3, "ice", 1, new empty(), new 
 let ShockCard = new card("shock", "ShockCard", 3, 3, "lightning", 1, new empty(), new emptyLink());
 
 //Player starts with 1 blob
-var playerBlobTeam = ["basicBlob", "basicBlob", "basicBlob"];
-var playerBlobTeamTemp = ["basicBlob", "basicBlob", "basicBlob"];
+var playerBlobTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
+var playerBlobTeamTemp = ["basicBlob", "slimeBlob", "squishyBlob"];
 var playerDeck = [EmberCard];
 let playerTeamMax = 3;
 let maxHandSize = 3;
@@ -200,7 +200,7 @@ function drawPlayerTeam() {
     }
     //BRUH WHAT IS THISSSS
     let blob =
-      '<img src="images/' +
+      '<img src="images/blobs/' +
       playerBlobTeam[i] +
       '.png" ' +
       ' id="Imageblobs class="ImageBlobs"' +
