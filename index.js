@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./db/userlogins.sqlite");
-const port = 3000;
+const port = 1100;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
