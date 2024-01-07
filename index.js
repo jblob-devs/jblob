@@ -3,7 +3,7 @@ const app = express();
 const notifier = require("node-notifier");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const CronJob = require('node-cron').CronJob;
+const cron = require('node-cron');
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./db/userlogins.sqlite");
 const port = 1100;
@@ -137,17 +137,9 @@ function updateCardPackAvailibility() {
   });
 }
 
-var job = new CronJob('00 00 12 * * 0-6', function() {
-  /*
-   * Runs every day
-   * at 12:00:00 AM.
-   */
-  }, function () {
-    /* This function is executed when the job stops */
-    updateCardPackAvailibility();
-  },
-  true, /* Start the job right now */
-);
+cron.schedule('0 0 * * *', () => {
+  updateCardPackAvailibility();
+});
 
 app.get("/adminResetCards", (req, res) => {
   updateCardPackAvailibility();
