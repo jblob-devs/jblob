@@ -32,7 +32,17 @@ $("#inventory").hide();
 $("#DevHacks").hide();
 $("#Credits").hide();
 $("#battle").hide();
-$("#packs").hide();
+$("#dailyButton").hide();
+
+//ping the server post request to see if daily pack is available
+$.post("/checkdaily", function(data){
+    if(data == "T"){
+        $("#dailyAvailible").html("Daily Pack Availible")
+        $("#dailyButton").show()
+    } else if (data == "F"){
+        $("#dailyAvailible").html("Daily Pack Unavailible. Check back tomorrow!")
+    }
+});
 
 function play(){
     $("#Credits").hide();
@@ -180,15 +190,3 @@ setInterval(function(){
     saveGameState();
 }, 10000);
 
-
-setInterval(function(){
-    dailyCount -= 100
-    if(dailyCount <= 0){
-        canClaimDaily = true;
-        $("#dailyButton").html(`Claim Daily Pack!`)
-
-    }else{
-        $("#dailyButton").html(`Buy (Next Daily in: ${dailyCount})`)
-    }
-   
-}, 100)

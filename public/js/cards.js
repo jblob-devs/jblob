@@ -18,9 +18,7 @@ var selectState = false;
 function dealCards() {
   let deckLen = playerDeck.length;
   let randIndex = Math.floor(Math.random() * deckLen);
-  console.log(randIndex)
   playerHand.push(playerDeck[randIndex]);
-  console.log("dealCards")
 }
 
 //draws the players new hand (does not DRAW a new card, like physically draws the card on the screen)
@@ -64,17 +62,11 @@ function dealCard(){
   setTimeout(function(){
     dealCards();
     drawHand();
-    console.log("dealt card");
     playerMaxHandSize += 1;
   }, 4000);
 }
  
 drawInt = setInterval(function(){
-  console.log("interval")
-  console.log(playerHand.length)
-  console.log(playerMaxHandSize)
-  console.log(playerHand.length < playerMaxHandSize)
-  console.log("interval")
   
   if(playerHand.length < playerMaxHandSize){
     dealCard()

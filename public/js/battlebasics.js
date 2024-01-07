@@ -58,47 +58,27 @@ function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
     //the culled
     if (type == "enslaved") {
-      let enslaved = new enemy("enslaved", 15, 2, 1790, 0, 0);
+      let enslaved = new enemy("enslaved", 10, 2, 1500, 0, 0);
       enemySet.push(enslaved);
     }
     if (type == "warped") {
-      let warped = new enemy("warped", 20, 3, 1790, 0, 0);
+      let warped = new enemy("warped", 15, 2, 1500, 0, 0);
       enemySet.push(warped);
     }
     if (type == "corrupted") {
-      let corrupted = new enemy("corrupted", 25, 4, 1790, 0, 0);
+      let corrupted = new enemy("corrupted", 15, 5, 2500, 0, 0);
       enemySet.push(corrupted);
     }
     if (type == "possessed") {
-      let possessed = new enemy("possessed", 30, 5, 1790, 0, 0);
+      let possessed = new enemy("possessed", 25, 3, 1790, 0, 0);
       enemySet.push(possessed);
     }
     if (type == "tainted") {
-      let tainted = new enemy("tainted", 35, 6, 1790, 0, 0);
+      //Lidoially 1984
+      let tainted = new enemy("tainted", 35, 6, 1984, 0, 0);
       enemySet.push(tainted);
     }
 
-    //the luminescent
-    if (type == "dim") {
-      let dim = new enemy("dim", 15, 2, 1790, 0, 0);
-      enemySet.push(dim);
-    }
-    if (type == "gloom") {
-      let gloom = new enemy("gloom", 20, 3, 1790, 0, 0);
-      enemySet.push(gloom);
-    }
-    if (type == "bright") {
-      let bright = new enemy("bright", 25, 4, 1500, 0, 0);
-      enemySet.push(bright);
-    }
-    if (type == "radiant") {
-      let radiant = new enemy("radiant", 30, 5, 1500, 0, 0);
-      enemySet.push(radiant);
-    }
-    if (type == "luminescent") {
-      let luminescent = new enemy("luminescent", 35, 6, 1500, 0, 0);
-      enemySet.push(luminescent);
-    }
   }
   return enemySet;
 }

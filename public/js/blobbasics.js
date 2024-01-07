@@ -3,13 +3,10 @@ class basicBlob {
     this.health = 30;
     this.basicAtkDmg = 3;
     //atk spd written in ms
-    this.basicAtkSpd = 1875;
-    //adjust specialAtk stats when implemented
-    this.specialAtkDmg = 6;
-    this.specialAtkSpd = 4000;
+    this.basicAtkSpd = 2875;
 
     this.level = 1;
-    this.img = "";
+    this.img = "basicBlob.png";
 
     this.attack = function (target) {
       target.health -= this.basicAtkDmg;
@@ -22,11 +19,14 @@ class squishyBlob {
     this.health = 20;
     this.basicAtkDmg = 4;
     //atk spd written in ms
-    this.basicAtkSpd = 450;
-    this.specialAtkDmg = 6;
-    this.specialAtkSpd = 4000;
+    this.basicAtkSpd = 2450;
 
     this.level = 1;
+    this.img = "squishyBlob.png";
+
+    this.attack = function (target) {
+      target.health -= this.basicAtkDmg;
+    }
   }
 }
 
@@ -35,16 +35,13 @@ class slimeBlob {
     this.health = 35;
     this.basicAtkDmg = 3;
     //atk spd written in ms
-    this.basicAtkSpd = 400;
-    this.specialAtkDmg = 2;
-    this.specialAtkSpd = 8000;
-    //special attack applies "slimed" debuff
-    this.specialAtkDebuff = "slimed";
-    //makes the enemy take 1.5x damage from basic attacks
-    this.specialAtkDebuffEffect = 1.5;
-    //lasts 3 seconds
-    this.specialAtkDebuffDuration = 3000;
+    this.basicAtkSpd = 2400;
     this.level = 1;
+    this.img = "slimeBlob.png";
+
+    this.attack = function (target) {
+      target.health -= this.basicAtkDmg;
+    }
   }
 }
 
@@ -67,11 +64,16 @@ class enemy {
     this.basicAtkDmg = basicAtkDmg;
     this.basicAtkSpd = basicAtkSpd;
     this.specialAtkDmg = specialAtkDmg;
-    this.specialAtkSpd = specialAtkSpd;
     this.name = name;
 
     this.attack = function (target) {
+      let randy = Math.floor(Math.random()*5)
+      if(randy == 1){
+        target.health -= this.specialAtkDmg;
+      }else{
       target.health -= this.basicAtkDmg;
+      }
+
     }
   }
 }

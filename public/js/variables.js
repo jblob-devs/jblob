@@ -1,31 +1,27 @@
 function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
     }
-    return "";
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
   }
+  return "";
+}
 
 var gold = 0;
 var playerLevel = 1;
 var playerExp = 0;
 var resonance = 0;
 var username = getCookie("username");
-
 var basicBlobLvl = 1;
 var squishyBlobLvl = 0;
 var slimeBlobLvl = 0;
-var canClaimDaily = false;
-//this is technically an hourly count in millisecond but meh
-var dailyCount = 3600000;
 var packSlot = 1;
 
 function saveGameState() {
@@ -34,17 +30,16 @@ function saveGameState() {
     playerLevel: playerLevel,
     playerExp: playerExp,
     username: username,
-    canClaimDaily: canClaimDaily,
+    resonance: resonance,
     basicBlobLvl: basicBlobLvl,
     squishyBlobLvl: squishyBlobLvl,
     slimeBlobLvl: slimeBlobLvl,
-    dailyCount: dailyCount,
     packSlot: packSlot,
   };
   fetch("/save", {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(gameState),
   })
@@ -52,21 +47,22 @@ function saveGameState() {
     .then((data) => console.log(data.status));
 }
 
-window.onload = function() {
-    fetch('/load', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username: username}),
-    })
-    .then(response => response.json())
-    .then(data => {
+window.onload = function () {
+  fetch("/load", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ username: username }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
       gold = data.gold;
       playerLevel = data.playerLevel;
       playerExp = data.playerExp;
+      resonance = data.resonance;
       basicBlobLvl = data.basicBlobLvl;
       squishyBlobLvl = data.squishyBlobLvl;
       slimeBlobLvl = data.slimeBlobLvl;
     });
-  }
+};

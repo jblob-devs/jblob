@@ -7,21 +7,12 @@ slot 3: low chance for common card, else 2-5 resonance
 
 */
 function buyDailyPack(){
-    if(canClaimDaily){
+
         openDailyPack()
-        canClaimDaily = false;
-        dailyCount = 5000
-    }else{
-        Swal.fire({
-            text: "You have already claimed your Daily Pack for today!"
-        })
-    }
 }
 
 function openDailyPack(){
     $("#dailyPackOpen").show()
-    $("#packs").slideDown()
-    $("#shop").slideUp()
 }
 
 var recap = "Recap: <br>";
@@ -30,7 +21,7 @@ function openDailyPack2(){
         let randy = Math.floor(Math.random() * 10)+10;
         $("#dailyPackPic").attr("src","images/amogus.jpg")
         $("#pullsInfoP").html("Exp +" + randy)
-        exp+=randy
+        playerExp+=randy
         recap += "exp +" + randy +"<br>";
         packSlot++
     }
@@ -61,12 +52,11 @@ function openDailyPack2(){
     
     else{
     $("#dailyPackOpen").hide()
-    $("#packs").slideUp()
-    $("#shop").slideDown()
     $("#dailyPackPic").attr("src","images/cards/dailypack.png")
     $("#pullsInfoP").html("Click to open!")
     recap = "Recap: <br>";
     packSlot = 1
+    window.location.href='/'
     }
     
 
