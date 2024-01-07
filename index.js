@@ -137,7 +137,7 @@ function updateCardPackAvailibility() {
   });
 }
 
-var job = new cron('00 00 12 * * 0-6', function() {
+var job = new CronJob('00 00 12 * * 0-6', function() {
   /*
    * Runs every day
    * at 12:00:00 AM.
