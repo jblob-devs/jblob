@@ -142,11 +142,14 @@ function resetAtMidnight() {
   night.setDate(new Date().getDate() + 1);
   night.setHours(0, 0, 0);
   var msToMidnight = night.getTime() - now.getTime();
-}
+
 setTimeout(function () {
   updateCardPackAvailibility();
   resetAtMidnight();
 }, msToMidnight);
+}
+
+resetAtMidnight();
 
 app.get("/adminResetCards", (req, res) => {
   updateCardPackAvailibility();
