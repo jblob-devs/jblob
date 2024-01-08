@@ -181,9 +181,9 @@ setInterval(function(){
     $("#level").html(playerLevel);
     $("#exp").html(playerExp);
     $("#resonance").html(resonance)
-    $("#blobTeam1").attr("src","images/blobs/"+playerBlobTeam[0]+".png")
-    $("#blobTeam2").attr("src","images/blobs/"+playerBlobTeam[1]+".png")
-    $("#blobTeam3").attr("src","images/blobs/"+playerBlobTeam[2]+".png")
+    $("#blobTeam1").attr("src","images/blobs/"+playersTeam[0]+".png")
+    $("#blobTeam2").attr("src","images/blobs/"+playersTeam[1]+".png")
+    $("#blobTeam3").attr("src","images/blobs/"+playersTeam[2]+".png")
 }, 1000);
 
 setInterval(function(){

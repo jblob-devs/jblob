@@ -26,6 +26,7 @@ let ShockCard = new card("shock", "ShockCard", 3, 3, "lightning", 1, new empty()
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
 var playerBlobTeamTemp = ["basicBlob", "slimeBlob", "squishyBlob"];
+var playersTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
 var playerDeck = [EmberCard];
 let playerTeamMax = 3;
 let maxHandSize = 3;
@@ -178,14 +179,13 @@ function drawPlayerTeam() {
     } else {
       blob2 = playerBlobTeam[i];
     }
-    //BRUH WHAT IS THISSSS
     let blob =
       '<img src="images/blobs/' +
       playerBlobTeam[i] +
       '.png" ' +
-      ' id="Imageblobs class="ImageBlobs"' +
+      ` id="Imageblobs${i}" class="ImageBlobs"` +
       i +
-      '"height = "75vh" width = "150vw "><p id="blob' +
+      '"height = "auto" width = "150vw"/><p id="blob' +
       i +
       'health" class="blobHealth">Health: ' +
       playerBlobTeam[i].health +
@@ -444,18 +444,23 @@ function createEncounter(normal, boss) {
     var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
     if (blob0.health > 0 && attackedEnemy.health > 0) {
       blob0.attack(attackedEnemy);
+      $("#Imageblobs0").attr("src", "images/blobs/"+blob0.name+"Attack.png")
     }
   }, blob0.basicAtkSpd);
+
   blob1Att = setInterval(function () {
     var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
     if (blob1.health > 0 && attackedEnemy.health > 0) {
       blob1.attack(attackedEnemy);
+      $("#Imageblobs1").attr("src", "images/blobs/"+blob1.name+"Attack.png")
     }
   }, blob1.basicAtkSpd);
+
   blob2Att = setInterval(function () {
     var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
     if (blob2.health > 0 && attackedEnemy.health > 0) {
       blob2.attack(attackedEnemy);
+      $("#Imageblobs2").attr("src", "images/blobs/"+blob2.name+"Attack.png")
     }
   }, blob2.basicAtkSpd);
 
@@ -485,5 +490,8 @@ function createEncounter(normal, boss) {
     if (curMana < maxManaCap) {
       curMana += manaIncrement;
     }
+    $("#Imageblobs0").attr("src", "images/blobs/"+blob0.name+".png")
+    $("#Imageblobs1").attr("src", "images/blobs/"+blob1.name+".png")
+    $("#Imageblobs2").attr("src", "images/blobs/"+blob2.name+".png")
   }, manaIncreaseTime);
 }

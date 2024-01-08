@@ -1,5 +1,6 @@
 class basicBlob {
   constructor() {
+    this.name = "basicBlob";
     this.health = 30;
     this.basicAtkDmg = 3;
     //atk spd written in ms
@@ -16,6 +17,7 @@ class basicBlob {
 
 class squishyBlob {
   constructor() {
+    this.name = "squishyBlob";
     this.health = 20;
     this.basicAtkDmg = 4;
     //atk spd written in ms
@@ -32,6 +34,7 @@ class squishyBlob {
 
 class slimeBlob {
   constructor() {
+    this.name = "slimeBlob";
     this.health = 35;
     this.basicAtkDmg = 3;
     //atk spd written in ms
