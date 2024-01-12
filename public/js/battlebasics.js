@@ -374,17 +374,24 @@ function resetBattle() {
   clearInterval(drawInt);
 }
 
-//Creates an encounter
-function createEncounter(normal, boss) {
-  console.log("Encounter created");
+function drawEveryone(isnormalwave,isbosswave){
   drawPlayerTeam();
   drawHand();
-  if (normal) {
+  if (isnormalwave) {
     createWave();
   }
-  if (boss) {
+  if (isbosswave) {
     createBoss();
   }
+}
+
+//Creates an encounter
+function createEncounter(normal, boss) {
+
+  console.log("Encounter created");
+  drawEveryone(normal,boss)
+
+  
 
   //Health
   setInterval(function () {
@@ -397,6 +404,7 @@ function createEncounter(normal, boss) {
     $("#blob1health").html("Health: " + blob1.health);
     $("#blob2health").html("Health: " + blob2.health);
   }, 100);
+
   setInterval(function () {
     deleteBlob();
     deleteEnemy();
@@ -497,22 +505,32 @@ function createEncounter(normal, boss) {
 }
 
 
-function startPatrolbattle(){
+function startPatrolBattle(){
   Swal.fire({
     title: "???",
     text: "Choose a Patrol Zone",
+    showDenyButton: true,
     showCancelButton: true,
     focusConfirm: false,
-    confirmButtonText: "Proceed",
+    confirmButtonText: "Rolling Forests",
+    denyButtonText: `The chasm`,
     cancelButtonText: "Abort",
   }).then((result) => {
-    if (result.value) {
+    if (result.isConfirmed) {
       $("#PlayScreen").hide();
+      $("#battleOptions").hide();
       $("#battle").show();
       //wait function in future maybe cuz studies
       //show that a loading screen makes people think smthng is happening
       createEncounter(true, false);
-    } else {
+    } else if(result.isDenied){
+      $("#PlayScreen").hide();
+      $("#battleOptions").hide();
+      $("#battle").show();
+      //wait function in future maybe cuz studies
+      //show that a loading screen makes people think smthng is happening
+      createEncounter(true, false);
+    }else{
       $("#PlayScreen").show();
       $("#battle").hide();
     }
