@@ -33,14 +33,16 @@ $("#DevHacks").hide();
 $("#Credits").hide();
 $("#battle").hide();
 $("#dailyButton").hide();
+$("#battleOptions").hide();
+$("#battlescreen").hide();
 
 //ping the server post request to see if daily pack is available
 $.post("/checkdaily", function(data){
     if(data == "T"){
-        $("#dailyAvailible").html("Daily Pack Availible")
+        $("#dailyAvailible").html("Daily Pack Available")
         $("#dailyButton").show()
     } else if (data == "F"){
-        $("#dailyAvailible").html("Daily Pack Unavailible. Check back tomorrow!")
+        $("#dailyAvailible").html("Daily Pack unavailable. Check back tomorrow!")
     }
 });
 
@@ -102,6 +104,8 @@ function back(){
     $("#Shop").hide();
     $("#inventory").hide();
     $("#packs").hide();
+    $("battlescreen").hide()
+    $("#battleOptions").hide();
 }
 
 function back2(){
@@ -152,8 +156,11 @@ function toCredits(){
 }
 
 function toBattle(){
-startBattle()
+    $("#PlayScreen").slideUp();
+    $("#battleOptions").slideDown();
+    $("#battlescreen").show();
 }
+
 
 setInterval(function(){
     if(selectState){

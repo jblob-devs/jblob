@@ -495,3 +495,26 @@ function createEncounter(normal, boss) {
     $("#Imageblobs2").attr("src", "images/blobs/"+blob2.name+".png")
   }, manaIncreaseTime);
 }
+
+
+function startPatrolbattle(){
+  Swal.fire({
+    title: "???",
+    text: "Choose a Patrol Zone",
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText: "Proceed",
+    cancelButtonText: "Abort",
+  }).then((result) => {
+    if (result.value) {
+      $("#PlayScreen").hide();
+      $("#battle").show();
+      //wait function in future maybe cuz studies
+      //show that a loading screen makes people think smthng is happening
+      createEncounter(true, false);
+    } else {
+      $("#PlayScreen").show();
+      $("#battle").hide();
+    }
+  });
+}
