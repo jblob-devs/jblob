@@ -35,6 +35,7 @@ $("#battle").hide();
 $("#dailyButton").hide();
 $("#battleOptions").hide();
 $("#battlescreen").hide();
+$("#blobpedia").hide();
 
 //ping the server post request to see if daily pack is available
 $.post("/checkdaily", function(data){
@@ -106,6 +107,7 @@ function back(){
     $("#packs").hide();
     $("battlescreen").hide()
     $("#battleOptions").hide();
+    $("#blobpedia").hide();
 }
 
 function back2(){
@@ -160,7 +162,10 @@ function toBattle(){
     $("#battleOptions").slideDown();
     $("#battlescreen").show();
 }
-
+function toBlobScreen(){
+    $("#PlayScreen").slideUp();
+    $("#blobpedia").show();
+}
 
 setInterval(function(){
     if(selectState){

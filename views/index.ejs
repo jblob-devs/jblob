@@ -19,6 +19,9 @@
       $(function() {
          $("#battlescreen").load("/html/battlescreen.html");
       });
+      $(function() {
+         $("#blobpedia").load("/html/blobscreens.html");
+      });
     </script>
     <title>jBlob</title>
   </head>
@@ -105,6 +108,7 @@
       <div id="WarpBar">
         <button onclick="toShop()">Warp Shop</button>
         <button onclick="toBattle()">Warp Battle</button>
+        <button onclick="toBlobScreen()">Warp Blob Isle</button>
       </div>
       <!--
        <div id="expOut" style=" width: 40%; border: 1px lightgreen solid; left: 30%; position: absolute;height: 20px;border-radius: 20px; text-align: center;">
@@ -170,28 +174,7 @@
 
     <!--END PLAY SCREEN-->
 
-    <div id="slimepedia">
-      <div id="blobpedia">
-        <p>Blob:<i> A basic blob that can evolve into many different forms. Apparently good in stew.</i></p>
-      </div>
-      <br />
-      <div id="SlimeBlobpedia">
-        <p>
-          Slime Blob:
-          <i
-            >A blob who is very slimy compared to others. Supposedly you can increase its viscosity using honey to form
-            a new slime.</i
-          >
-        </p>
-      </div>
-      <br />
-      <div id="SquishyBlobPedia">
-        <p>Squishy Blob: <i>Squishy! Predators don't like to eat this slime because it's too chewy.</i></p>
-      </div>
-      <br />
-
-      <button id="BackSlimepedia">Back</button>
-    </div>
+    <div id="blobpedia"></div>
 
     <div id="settings">
       <h1>Settings</h1>

@@ -18,10 +18,9 @@ let EmberCard = new card(
   "fire",
   1,
   new empty(),
-  new linkCard("Applies Burn I for 2 seconds", 1)
+  "enemyone"
 );
-let FrostCard = new card("frost", "FrostCard", 3, 3, "ice", 1, new empty(), new emptyLink());
-let ShockCard = new card("shock", "ShockCard", 3, 3, "lightning", 1, new empty(), new emptyLink());
+
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
@@ -116,6 +115,37 @@ function selectEnemy() {
     $("#option3").click(function () {
       Toast.close();
       resolve("enemy2");
+    });
+  });
+}
+
+function selectFriend() {
+  return new Promise((resolve) => {
+    hideButtons();
+    Toast.fire({
+      title: "Choose a target",
+      html: `
+        <button id="option1" class="swal2-confirm swal2-styled">Blob 1</button>
+        <button id="option2" class="swal2-confirm swal2-styled">Blob 2</button>
+        <button id="option3" class="swal2-confirm swal2-styled">Blob 3</button>
+      `,
+      timer: 25000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      showCancelButton: false,
+      position: "bottom-right",
+    });
+    $("#option1").click(function () {
+      Toast.close();
+      resolve("blob0");
+    });
+    $("#option2").click(function () {
+      Toast.close();
+      resolve("blob1");
+    });
+    $("#option3").click(function () {
+      Toast.close();
+      resolve("blob2");
     });
   });
 }
@@ -441,6 +471,7 @@ function createEncounter(normal, boss) {
         confirmButtonText: "Back to main menu",
       }).then((result) => {
         if (result.value) {
+          //rewards applied
           gold += playerLevel * overAllDifficulty * 2;
           playerExp += Math.ceil(playerLevel / 10) * overAllDifficulty;
         }
@@ -533,6 +564,7 @@ function startPatrolBattle(){
     }else{
       $("#PlayScreen").show();
       $("#battle").hide();
+      $("#battleOptions").hide();
     }
   });
 }

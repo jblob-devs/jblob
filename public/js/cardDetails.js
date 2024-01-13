@@ -1,13 +1,13 @@
 class card {
-  constructor(name, varName, dmg, manaCost, attribute1, cardLevel, ability, linkDescrip) {
+  constructor(name, varName, dmg, manaCost, attribute1, cardLevel, ability,targets) {
     this.name = name;
     this.dmg = dmg;
     this.manaCost = manaCost;
     this.attribute1 = attribute1;
     this.cardLevel = cardLevel;
     this.ability = ability;
-    this.linkDescrip = linkDescrip;
     this.varName = varName;
+    this.targets = targets;
     let descrip = new cardDescrips();
     if (this.name == "ember") {
       this.descrip = descrip.emberDescrip;
@@ -26,7 +26,17 @@ class card {
           title: "Choose a target",
         });
         selectState = true;
-        let userInput = await selectEnemy();
+        if(this.targets == "enemyone"){
+          let userInput = await selectEnemy();
+        }else if(this.targets == "enemyall"){
+          let userInput = "enemyall"
+        }else if(this.targets == "friendone"){
+          let userInput = await selectFriend();
+        }else if(this.targets == "friendall"){
+          let userInput = "friendall"
+        }
+        
+
         curMana -= manaCost;
 
         playerHand.splice(index,1)
@@ -37,7 +47,11 @@ class card {
           enemy1.health -= this.dmg;
         } else if (userInput == "enemy2" && enemy2.health > 0) {
           enemy2.health -= this.dmg;
-        } else {
+        }else if(userInput == "enemyall"){
+          enemy0.health -= this.dmg;
+          enemy1.health -= this.dmg;
+          enemy2.health -= this.dmg;
+        }else{
           Toast.fire({
             title: "The enemy you chose is dead, choose another!",
           });
