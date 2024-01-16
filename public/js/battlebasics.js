@@ -13,14 +13,24 @@ var won = false;
 let EmberCard = new card(
   "ember",
   "EmberCard",
-  3,
+  30,
   3,
   "fire",
   1,
-  new empty(),
+  true,
   "enemyone"
 );
 
+let HealCard = new card(
+  "heal",
+  "HealCard",
+  20,
+  2,
+  "none",
+  1,
+  true,
+  "friendone"
+);
 
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
@@ -58,24 +68,24 @@ function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
     //the culled
     if (type == "enslaved") {
-      let enslaved = new enemy("enslaved", 10, 2, 1500, 0, 0);
+      let enslaved = new enemy("enslaved", 100, 20, 1500, 0, 0);
       enemySet.push(enslaved);
     }
     if (type == "warped") {
-      let warped = new enemy("warped", 15, 2, 1500, 0, 0);
+      let warped = new enemy("warped", 150, 20, 1500, 0, 0);
       enemySet.push(warped);
     }
     if (type == "corrupted") {
-      let corrupted = new enemy("corrupted", 15, 5, 2500, 0, 0);
+      let corrupted = new enemy("corrupted", 150, 50, 2500, 0, 0);
       enemySet.push(corrupted);
     }
     if (type == "possessed") {
-      let possessed = new enemy("possessed", 25, 3, 1790, 0, 0);
+      let possessed = new enemy("possessed", 250, 30, 1790, 0, 0);
       enemySet.push(possessed);
     }
     if (type == "tainted") {
       //Lidoially 1984
-      let tainted = new enemy("tainted", 35, 6, 1984, 0, 0);
+      let tainted = new enemy("tainted", 350, 60, 1984, 0, 0);
       enemySet.push(tainted);
     }
 
@@ -460,11 +470,13 @@ function createEncounter(normal, boss) {
     }
 
     if (curwave == 4 && won == false) {
+      let gottemgold = playerLevel * overAllDifficulty * 2;
+      let gottemexp = Math.ceil(playerLevel / 10) * overAllDifficulty;
       won = true;
       resetBattle();
       Swal.fire({
         title: "You won!",
-        text: "You won the battle!",
+        text: `You won the battle! You recieved ${gottemgold} and ${gottemexp} exp.`,
         icon: "success",
         allowOutsideClick: false,
         allowEscapeKey: false,
@@ -472,8 +484,8 @@ function createEncounter(normal, boss) {
       }).then((result) => {
         if (result.value) {
           //rewards applied
-          gold += playerLevel * overAllDifficulty * 2;
-          playerExp += Math.ceil(playerLevel / 10) * overAllDifficulty;
+          gold += gottemgold;
+          playerExp += gottemexp;
         }
       });
     }
