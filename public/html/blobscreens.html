@@ -1,8 +1,19 @@
 <!DOCTYPE HTML>
 <html>
-    <div id="basicBlobPedia">
-        <img src="/images/blobs/basicBlob.png" />
-        <p><i>A basic blob full of hidden potential. Supposedly good in stew.</i></p>
+    <select id="selectBlobView">
+        <option value = "">Select a blob</option>
+        <option value="basicBlob">Basic Blob</option>
+        <option value="squishyBlob">Squishy Blob</option>
+        <option value="slimeBlob">Slime Blob</option>
+      </select>
+    <div id="BlobPedia">
+        <img src="" />
+        <p id="blobFlavorText"><i>A basic blob full of hidden potential. Supposedly good in stew.</i></p>
+        <p>Stats:</p>
+        <p id="BlobHealthInfo">Health: </p>
+        <p id="BlobLevelInfo"></p>
+        <p id="BlobAttackDamage">Basic Attack Damage: </p>
+        <p id="BlobAttackSpeed">Attack Speed: </p>
         <button>Upgrade</button>
         <!--
             The mechanics for upgrades and customizing
@@ -15,5 +26,25 @@
             Lightcore ability info (if the blob has one)
         -->
     </div>
+
+    <script>
+    setInterval(function(){
+        let selectval = document.getElementById("selectBlobView").value
+        let tempBlob;
+        if(selectval == "basicBlob"){
+            tempBlob = new basicBlob();
+        }
+        if(!(selectval == "")){
+            $("#BlobHealthInfo").html("Health: " + tempBlob.prototype.health);
+            $("#BlobLevelInfo").html("Level: " + window[selectval].constructor.prototype.level);
+            $("#BlobAttackDamage").html("Basic Attack Damage: " + window[selectval].constructor.prototype.basicAtkDmg );
+            $("#BlobAttackSpeed").html("Attack Speed: " + window[selectval].constructor.prototype.basicAtkSpd +"ms ");
+        }
+        
+    
+    $("#blobTeam3").attr("src","images/blobs/"+playersTeam[2]+".png")
+    }, 1000);
+
+    </script>
     <button onclick="back()">Back</button>
 </html>
