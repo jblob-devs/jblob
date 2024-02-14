@@ -18,5 +18,5 @@ The second command is only used when you want to start the server and not make a
  - If you use the second command, you will have to stop the server and start it again to see the changes you made to the code.
  - To stop the server, you can press ctrl + c in the terminal.
 
-Once the server is running, you can access the frontend by going to http://localhost:3000
+Once the server is running, you can access the frontend by going to http://localhost:1100
 
