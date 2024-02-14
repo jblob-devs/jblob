@@ -17,8 +17,6 @@ This command will install all the dependencies needed to run the server.
 
 ## How to run the server
 
-make sure to have nodejs installed. If you don't have it, you can download it from here: https://nodejs.org/en/download/
-
 Once you have nodejs installed, you can run the following commands in the terminal to start the server:
 
 ```
