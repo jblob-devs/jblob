@@ -12,8 +12,9 @@ const Toast = Swal.mixin({
 
 
 //slides the title screen down
-$("StartScreen").show();
-//Make all the screens/divs slide up at the start of the game
+$("StartScreen").hide();
+play();
+//Make all the screens/divs slide up at the start of the game :O
 $("#MyBlobs").hide();
 $("#ExtraStuff").hide();
 $("#ExtraStuff2").hide();
@@ -26,7 +27,7 @@ $("#DevHacks").hide();
 $("#Blobs").hide();
 $("#shop").hide();
 $("#Blobs").hide();
-$("#PlayScreen").hide();
+$("#PlayScreen").show();
 $("#inventory").hide();
 //Hide dev hacks
 $("#DevHacks").hide();
@@ -149,7 +150,7 @@ function back9(){
 }
 
 function backcredits(){
-    $("#ExtraStuff").show();
+    $("#ExtraStuff2").show();
     $("#Credits").hide();
 }
 

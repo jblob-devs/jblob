@@ -3,7 +3,7 @@ const app = express();
 const notifier = require("node-notifier");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const cron = require('node-cron');
+const cron = require("node-cron");
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./db/userlogins.sqlite");
 const port = 1100;
@@ -128,16 +128,20 @@ app.get("/", (req, res) => {
 
 function updateCardPackAvailibility() {
   const newValue = "T";
+  notifier.notify({
+    title: "Daily Pack Available",
+    message: "Claim your daily pack now!",
+  });
   db.run("UPDATE users SET cardAvailibility = ?", [newValue], (err) => {
     if (err) {
       console.log(err);
     } else {
-      console.log("Database variable updated for all users");
+      console.log("Daily pack available!");
     }
   });
 }
 
-cron.schedule('0 0 * * *', () => {
+cron.schedule("0 0 * * *", () => {
   updateCardPackAvailibility();
 });
 
