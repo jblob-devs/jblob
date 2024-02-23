@@ -1,9 +1,69 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        .progressbar{
+            position: relative;
+            width: 200px;
+            height: 30px;
+            background: #D3D3D3;
+            border-radius: 5px;
+            overflow: hidden;
+        }.progressbarfill{
+            height: 100%;
+            width: 50%;
+            background-color: #a4be5c;
+        }.progressbartext{
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            font: bold;
+        }
+    </style>
+    <span>Fill up the meter by winning battles to claim a free battle pack!</span>
     <div id="battleOptions">
-        <span>Battle Pack in 3 battles</span>
+
+        <div class="progressbar">
+            <div class="progressbarfill" id="battleFill"></div>
+            <span class="progressbartext" id = "battleText">0%</span>
+        </div>
+        
         <button onclick="startPatrolBattle()">Start Patrol</button>
         <button onclick="back()">back</button>
     </div>
     <script src="/js/battlebasics.js"></script>
+    <script>
+        var curBattlesWon = 0; 
+        var curBattlesNeedToBeWon = 3;
+        var coolDownOver = true;
+        function updateProgressBar(progressBar,progressBarText, value, totVal, customTextYN, customText){
+            value = Math.round((value/totVal) * 100)
+            document.getElementById(progressBar).style.width = `${value}%`;
+            document.getElementById(progressBarText).textContent = `${value}%`;
+            if(customTextYN){
+                document.getElementById(progressBarText).textContent = customText;
+            }
+        }
+
+        setInterval(function(){
+        if(coolDownOver){
+            updateProgressBar("battleFill", "battleText", curBattlesWon, curBattlesNeedToBeWon, false, "")
+            if(curBattlesNeedToBeWon == curBattlesWon){
+                Swal.fire({
+                    text: "The battlejuice meter is completely full! A battle pack has been sent to your inventory!"
+                })
+                curBattlesWon = 0;
+                coolDownOver = false;
+                updateProgressBar("battleFill", "battleText", curBattlesWon, curBattlesNeedToBeWon, true, "On cooldown!")
+            }
+        }
+        }, 100)
+
+        //cooldown on battle pack stuff
+        setInterval(function(){
+        if(!coolDownOver){
+            coolDownOver = true;
+        }
+        }, 10000)
+    </script>
 </html>

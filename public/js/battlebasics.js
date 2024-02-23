@@ -265,6 +265,7 @@ function deleteBlob() {
 //Checks if the player has won
 function checkWin() {
   if (enemy0.health == 0 && enemy1.health == 0 && enemy2.health == 0) {
+    curBattlesWon++
     return true;
   } else {
     return false;
