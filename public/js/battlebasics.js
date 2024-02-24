@@ -32,6 +32,10 @@ let HealCard = new card(
   "friendone"
 );
 
+
+var basic_Blob = new basicBlob()
+var squishy_Blob = new squishyBlob()
+var slime_Blob = new slimeBlob()
 //Player starts with 1 blob
 var playerBlobTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
 var playerBlobTeamTemp = ["basicBlob", "slimeBlob", "squishyBlob"];
@@ -191,11 +195,11 @@ function hideButtons() {
 
 function createBlob(i) {
   if (playerBlobTeam[i] == "basicBlob") {
-    playerBlobTeam[i] = new basicBlob();
+    playerBlobTeam[i] = basic_Blob;
   } else if (playerBlobTeam[i] == "squishyBlob") {
-    playerBlobTeam[i] = new squishyBlob();
+    playerBlobTeam[i] = squishy_Blob;
   } else if (playerBlobTeam[i] == "slimeBlob") {
-    playerBlobTeam[i] = new slimeBlob();
+    playerBlobTeam[i] = slime_Blob;
   }
 
   for (i = 0; i < playerBlobTeam.length; i++) {

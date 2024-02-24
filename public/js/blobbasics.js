@@ -1,49 +1,92 @@
 class basicBlob {
   constructor() {
-    this.name = "basicBlob";
-    this.health = 300;
-    this.basicAtkDmg = 30;
-    //atk spd written in ms
-    this.basicAtkSpd = 2875;
 
-    this.level = 1;
+    //stats
+    this.statHealth = 300;
+    this.statBasicAtkDmg = 30;
+    this.statBasicAtkSpd = 2875;
+    this.statLevel = 1;
+
+
+    this.name = "basicBlob";
+    this.flavorText = "A basic blob full of hidden potential. Supposedly good in stew.";
+
+    //battle temp stats
+    this.health = this.statHealth;
+    this.basicAtkDmg = this.statBasicAtkDmg;
+    //atk spd written in ms
+    this.basicAtkSpd = this.statBasicAtkSpd;
+
+    this.level = this.statLevel;
     this.img = "basicBlob.png";
 
     this.attack = function (target) {
       target.health -= this.basicAtkDmg;
     }
+
+    this.upgradeLevel = function(){
+      this.statHealth  = Math.round(this.statHealth * 1.2)
+    }
+
+
+    
   }
 }
 
 class squishyBlob {
   constructor() {
-    this.name = "squishyBlob";
-    this.health = 200;
-    this.basicAtkDmg = 40;
+    this.statHealth = 200;
+    this.statBasicAtkDmg = 40;
     //atk spd written in ms
-    this.basicAtkSpd = 2450;
+    this.statBasicAtkSpd = 2450;
 
-    this.level = 1;
+    this.statLevel = 1;
+
+    this.name = "squishyBlob";
+    this.flavorText = "A very flat blob. Seems like it was squished by something heavy...";
+
+    this.health = this.statHealth;
+    this.basicAtkDmg = this.statBasicAtkDmg;
+    //atk spd written in ms
+    this.basicAtkSpd = this.statBasicAtkSpd;
+
+    this.level = this.statLevel;
     this.img = "squishyBlob.png";
 
     this.attack = function (target) {
       target.health -= this.basicAtkDmg;
+    }
+
+    this.upgradeLevel = function(){
+      this.statHealth  = Math.round(this.statHealth * 1.2)
     }
   }
 }
 
 class slimeBlob {
   constructor() {
-    this.name = "slimeBlob";
-    this.health = 350;
-    this.basicAtkDmg = 30;
+    this.statHealth = 350;
+    this.statBasicAtkDmg = 30;
     //atk spd written in ms
-    this.basicAtkSpd = 2400;
-    this.level = 1;
+    this.statBasicAtkSpd = 2400;
+    this.statLevel = 1;
+
+    this.name = "slimeBlob";
+    this.flavorText = "Very slime-y blob. So slime-y that it leaves a trail of slime wherever it goes.";
+
+    this.health = this.statHealth;
+    this.basicAtkDmg = this.statBasicAtkDmg;
+    //atk spd written in ms
+    this.basicAtkSpd = this.statBasicAtkSpd;
+    this.level = this.statLevel;
     this.img = "slimeBlob.png";
 
     this.attack = function (target) {
       target.health -= this.basicAtkDmg;
+    }
+
+    this.upgradeLevel = function(){
+      this.statHealth  = Math.round(this.statHealth * 1.2)
     }
   }
 }
