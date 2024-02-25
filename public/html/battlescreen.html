@@ -37,6 +37,7 @@
         var curBattlesWon = 0; 
         var curBattlesNeedToBeWon = 3;
         var coolDownOver = true;
+        
         function updateProgressBar(progressBar,progressBarText, value, totVal, customTextYN, customText){
             value = Math.round((value/totVal) * 100)
             document.getElementById(progressBar).style.width = `${value}%`;

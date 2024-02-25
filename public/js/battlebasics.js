@@ -269,7 +269,6 @@ function deleteBlob() {
 //Checks if the player has won
 function checkWin() {
   if (enemy0.health == 0 && enemy1.health == 0 && enemy2.health == 0) {
-    curBattlesWon++
     return true;
   } else {
     return false;
@@ -491,6 +490,7 @@ function createEncounter(normal, boss) {
           //rewards applied
           gold += gottemgold;
           playerExp += gottemexp;
+          curBattlesWon++
         }
       });
     }
@@ -552,6 +552,10 @@ function createEncounter(normal, boss) {
   }, manaIncreaseTime);
 }
 
+
+
+
+//different battles
 
 function startPatrolBattle(){
   Swal.fire({

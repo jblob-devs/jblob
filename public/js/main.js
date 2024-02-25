@@ -37,6 +37,7 @@ $("#dailyButton").hide();
 $("#battleOptions").hide();
 $("#battlescreen").hide();
 $("#blobpedia").hide();
+$("#inventory").hide();
 
 //ping the server post request to see if daily pack is available
 $.post("/checkdaily", function(data){
@@ -109,6 +110,7 @@ function back(){
     $("battlescreen").hide()
     $("#battleOptions").hide();
     $("#blobpedia").hide();
+    $("#inventory").hide();
 }
 
 function back2(){
@@ -149,6 +151,11 @@ function back9(){
     $("#ExtraCode2").hide();
 }
 
+function back10(){
+    $("#PlayScreen").show();
+    $("#inventory").hide();
+}
+
 function backcredits(){
     $("#ExtraStuff2").show();
     $("#Credits").hide();
@@ -162,6 +169,11 @@ function toBattle(){
     $("#PlayScreen").slideUp();
     $("#battleOptions").slideDown();
     $("#battlescreen").show();
+}
+
+function toInventory(){
+    $("#PlayScreen").slideUp();
+    $("#inventory").slideDown();
 }
 function toBlobScreen(){
     $("#PlayScreen").slideUp();
