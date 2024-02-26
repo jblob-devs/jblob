@@ -1,5 +1,5 @@
 class card {
-  constructor(name, varName, dmg, manaCost, attribute1, cardLevel, ability,targets) {
+  constructor(name, varName, dmg, manaCost, attribute1, cardLevel, ability,targets,descrip) {
     this.name = name;
     this.dmg = dmg;
     this.manaCost = manaCost;
@@ -8,19 +8,15 @@ class card {
     this.ability = ability;
     this.varName = varName;
     this.targets = targets;
-    let descrip = new cardDescrips();
-    if (this.name == "ember") {
-      this.descrip = descrip.emberDescrip;
-    } else if (this.name == "drip") {
-      this.descrip = descrip.dripDescrip;
-    }
+    this.descrip = descrip
+    
 
     this.useCard = async function () {
       console.log("useCard");
       console.log(this.name);
       console.log(playerHand);
       console.log(playerHand.length);
-      if (curMana > manaCost && playerHand.length > 0) {
+      if (curMana >= manaCost && playerHand.length > 0) {
         let index = playerHand.indexOf(name);
         Toast.fire({
           title: "Choose a target",
@@ -43,18 +39,32 @@ class card {
         }else if(this.targets == "friendall"){
           userInput = "friendall"
         }
-
-        if (userInput == "enemy0" && enemy0.health > 0) {
-          getCardAbility(this, enemy0)
-        } else if (userInput == "enemy1" && enemy1.health > 0) {
-          getCardAbility(this, enemy1)
-        } else if (userInput == "enemy2" && enemy2.health > 0) {
-          getCardAbility(this, enemy2)
-        }else if(userInput == "enemyall"){
-          getCardAbility(this, enemy0)
-          getCardAbility(this, enemy1)
-          getCardAbility(this, enemy2)
-        }else if(userInput == "blob0" && blob0.health > 0) {
+        if(this.targets.includes("enemy")){
+          if (userInput == "enemy0" && enemy0.health > 0) {
+            getCardAbility(this, enemy0)
+          } else if (userInput == "enemy1" && enemy1.health > 0) {
+            getCardAbility(this, enemy1)
+          } else if (userInput == "enemy2" && enemy2.health > 0) {
+            getCardAbility(this, enemy2)
+          }else if(userInput == "enemyall"){
+            getCardAbility(this, enemy0)
+            getCardAbility(this, enemy1)
+            getCardAbility(this, enemy2)
+          }else{
+            Toast.fire({
+              title: "The enemy you chose is dead, choose another!",
+            });
+            curMana += manaCost;
+            drawHand();
+            //wait for drawDelay
+            //setTimeout(function () {
+              //dealCard();
+            //}, playerDrawDelay);
+          }
+        }
+        
+        if(this.targets.includes("friend")){
+        if(userInput == "blob0" && blob0.health > 0) {
           getCardAbility(this, blob0)
         } else if (userInput == "blob1" && blob1.health > 0) {
           getCardAbility(this, blob1)
@@ -66,7 +76,7 @@ class card {
           getCardAbility(this, blob2)
         }else{
           Toast.fire({
-            title: "The enemy you chose is dead, choose another!",
+            title: "The blob you chose is dead, choose another!",
           });
           curMana += manaCost;
           drawHand();
@@ -75,6 +85,7 @@ class card {
             //dealCard();
           //}, playerDrawDelay);
         }
+      }
       } else if (curMana < manaCost) {
         Toast.fire({
           title: "You don't have enough mana to perform this!",
@@ -105,11 +116,6 @@ class burnEffect {
   }
 }
 
-class cardDescrips {
-  constructor() {
-    this.emberDescrip = "Shoots a mildly hot ember. Does 30 damage on hit.";
-  }
-}
 
 function healBlob(friend, amount){
   friend.health += amount;

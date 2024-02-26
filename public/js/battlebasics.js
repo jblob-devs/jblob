@@ -18,7 +18,8 @@ let EmberCard = new card(
   "fire",
   1,
   true,
-  "enemyone"
+  "enemyone",
+  "Shoots a mildly hot ember. Does 30 damage on hit."
 );
 
 let HealCard = new card(
@@ -29,7 +30,8 @@ let HealCard = new card(
   "none",
   1,
   true,
-  "friendone"
+  "friendone",
+  "Heals the vitality of an ally. Heals 20 health."
 );
 
 
@@ -40,7 +42,7 @@ var slime_Blob = new slimeBlob()
 var playerBlobTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
 var playerBlobTeamTemp = ["basicBlob", "slimeBlob", "squishyBlob"];
 var playersTeam = ["basicBlob", "slimeBlob", "squishyBlob"];
-var playerDeck = [EmberCard];
+var playerDeck = [EmberCard, HealCard];
 let playerTeamMax = 3;
 let maxHandSize = 3;
 let maxManaCap = 10;
@@ -497,15 +499,24 @@ function createEncounter(normal, boss) {
   }, 100);
   //Blob Attack
   blob0Att = setInterval(function () {
+
     var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    //rerolls the random enemy attack if that enemy is dead.
+    while(!(attackedEnemy.health > 0)&& (enemy0.health > 0 &&enemy1.health > 0 &&enemy2.health > 0 )){
+      attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    }
     if (blob0.health > 0 && attackedEnemy.health > 0) {
       blob0.attack(attackedEnemy);
       $("#Imageblobs0").attr("src", "images/blobs/"+blob0.name+"Attack.png")
     }
+
   }, blob0.basicAtkSpd);
 
   blob1Att = setInterval(function () {
     var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    while(!(attackedEnemy.health > 0) && (enemy0.health > 0 &&enemy1.health > 0 &&enemy2.health > 0 )){
+      attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    }
     if (blob1.health > 0 && attackedEnemy.health > 0) {
       blob1.attack(attackedEnemy);
       $("#Imageblobs1").attr("src", "images/blobs/"+blob1.name+"Attack.png")
@@ -514,6 +525,9 @@ function createEncounter(normal, boss) {
 
   blob2Att = setInterval(function () {
     var attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    while(!(attackedEnemy.health > 0)&& (enemy0.health > 0 &&enemy1.health > 0 &&enemy2.health > 0 )){
+      attackedEnemy = enemySet[Math.floor(Math.random() * 3)];
+    }
     if (blob2.health > 0 && attackedEnemy.health > 0) {
       blob2.attack(attackedEnemy);
       $("#Imageblobs2").attr("src", "images/blobs/"+blob2.name+"Attack.png")
@@ -523,18 +537,29 @@ function createEncounter(normal, boss) {
   //Enemy Attack
   enemy0Att = setInterval(function () {
     var attackedBlob = playerBlobTeam[Math.floor(Math.random() * 3)];
+    while(!(attackedBlob.health > 0)&& (blob0.health > 0 &&blob1.health > 0 &&blob2.health > 0 )){
+      attackedBlob = enemySet[Math.floor(Math.random() * 3)];
+    }
     if (enemy0.health > 0 && attackedBlob.health > 0) {
       enemy0.attack(attackedBlob);
     }
   }, enemy0.basicAtkSpd);
+
   enemy1Att = setInterval(function () {
     var attackedBlob = playerBlobTeam[Math.floor(Math.random() * 3)];
+    while(!(attackedBlob.health > 0)&& (blob0.health > 0 &&blob1.health > 0 &&blob2.health > 0 )){
+      attackedBlob = enemySet[Math.floor(Math.random() * 3)];
+    }
     if (enemy1.health > 0 && attackedBlob.health > 0) {
       enemy1.attack(attackedBlob);
     }
   }, enemy1.basicAtkSpd);
+
   enemy2Att = setInterval(function () {
     var attackedBlob = playerBlobTeam[Math.floor(Math.random() * 3)];
+    while(!(attackedBlob.health > 0)&& (blob0.health > 0 &&blob1.health > 0 &&blob2.health > 0 )){
+      attackedBlob = enemySet[Math.floor(Math.random() * 3)];
+    }
     if (enemy2.health > 0 && attackedBlob.health > 0) {
       enemy2.attack(attackedBlob);
     }

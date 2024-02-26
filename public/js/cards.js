@@ -48,7 +48,7 @@ function drawHand() {
       ' id="card' +
       i +
       "img" +
-      '" height = "150vh" class="cardImg" onclick=' +
+      '" height = "150vh" width = "auto" class="cardImg" onclick=' +
       curCard.varName +
       ".useCard()>" +
       "</span>";
