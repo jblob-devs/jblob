@@ -12,12 +12,16 @@
             height: 100%;
             width: 50%;
             background-color: #a4be5c;
-        }.progressbartext{
+        }.progressbartext,.blobprogressbartext{
             position: absolute;
             top: 50%;
             right: 5px;
             transform: translateY(-50%);
             font: bold;
+        }.blobprogressbarfill{
+            height: 100%;
+            width: 50%;
+            background-color: #a4be5c;
         }
     </style>
     
@@ -39,9 +43,10 @@
         var coolDownOver = true;
         
         function updateProgressBar(progressBar,progressBarText, value, totVal, customTextYN, customText){
-            value = Math.round((value/totVal) * 100)
-            document.getElementById(progressBar).style.width = `${value}%`;
-            document.getElementById(progressBarText).textContent = `${value}%`;
+            
+            evalue = Math.round((value/totVal) * 100)
+            document.getElementById(progressBar).style.width = `${evalue}%`;
+            document.getElementById(progressBarText).textContent = `${evalue}%`;
             if(customTextYN){
                 document.getElementById(progressBarText).textContent = customText;
             }

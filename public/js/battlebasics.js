@@ -231,15 +231,13 @@ function drawPlayerTeam() {
       '.png" ' +
       ` id="Imageblobs${i}" class="ImageBlobs"` +
       i +
-      '"height = "auto" width = "150vw"/><p id="blob' +
-      i +
-      'health" class="blobHealth">Health: ' +
-      playerBlobTeam[i].health +
-      "</p>";
+      '"height = "auto" width = "150vw"/>' +
+      '<div class="progressbar"><div class="blobprogressbarfill" id="blob' + i + 'health"></div> <span class="blobprogressbartext" id = "blob' + i + 'barText">0</span></div>';
 
     $(`#blob` + i).html(blob);
     createBlob(i);
   }
+  console.log("drew team")
 }
 
 //Delete enemy when health is 0
@@ -445,11 +443,35 @@ function createEncounter(normal, boss) {
     $("#enemy1health").html("Health: " + enemySet[1].health);
     $("#enemy2health").html("Health: " + enemySet[2].health);
   }, 100);
+
   setInterval(function () {
-    $("#blob0health").html("Health: " + blob0.health);
-    $("#blob1health").html("Health: " + blob1.health);
-    $("#blob2health").html("Health: " + blob2.health);
+    if(blob0.health > 0){
+      updateProgressBar("blob0health","blob0barText", blob0.health, blob0.statHealth, false, "");
+    }else{
+      updateProgressBar("blob0health","blob0barText", blob0.health, blob0.statHealth, true, "dead :(");
+    }
+
+    if(blob1.health > 0){
+      updateProgressBar("blob1health","blob1barText", blob1.health, blob1.statHealth, false, "");
+    }else{
+      updateProgressBar("blob1health","blob1barText", blob1.health, blob1.statHealth, true, "dead :(");
+    }
+
+    if(blob2.health > 0){
+      updateProgressBar("blob2health","blob2barText", blob2.health, blob2.statHealth, false, "");
+    }else{
+      updateProgressBar("blob2health","blob2barText", blob2.health, blob2.statHealth, true, "dead :(");
+    }
+    
+    
+    
+    
+    
+    //$("#blob0health").html("Health: " + blob0.health);
+    //$("#blob1health").html("Health: " + blob1.health);
+    //$("#blob2health").html("Health: " + blob2.health);
   }, 100);
+
 
   setInterval(function () {
     deleteBlob();
