@@ -49,6 +49,17 @@ $.post("/checkdaily", function(data){
     }
 });
 
+function checkdaily(){
+    $.post("/checkdaily", function(data){
+        if(data == "T"){
+            $("#dailyAvailible").html("Daily Pack Available")
+            $("#dailyButton").show()
+        } else if (data == "F"){
+            $("#dailyAvailible").html("Daily Pack unavailable. Check back tomorrow!")
+        }
+    });
+}
+
 function play(){
     $("#Credits").hide();
     $("#StartScreen").hide();
@@ -90,6 +101,7 @@ function devhacks(){
 
 function toShop(){
     $("#PlayScreen").hide();
+    checkdaily();
     $("#shop").show();
 }
 

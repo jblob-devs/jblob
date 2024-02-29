@@ -179,6 +179,12 @@ app.get("/cardpack", (req, res) => {
   }
 });
 
+app.get("/checkdaily", (req, res) => {
+  //return err 404
+  return res.status(404).send("Not found");
+}
+);
+
 app.post("/checkdaily", (req, res) => {
   if (req.cookies.username) {
     db.all("SELECT cardAvailibility FROM users WHERE username = ?", [req.cookies.username], (err, rows) => {
@@ -196,6 +202,8 @@ app.post("/checkdaily", (req, res) => {
     res.render("landing.ejs");
   }
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

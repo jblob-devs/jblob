@@ -54,8 +54,8 @@ let manaIncreaseTime = 1000;
 var overAllDifficulty = 1;
 
 //Player starts with 3 cards
-var playerHand = [EmberCard, EmberCard, EmberCard];
-var playerHandTemp = [EmberCard, EmberCard, EmberCard];
+var playerHand = [EmberCard, HealCard, EmberCard];
+var playerHandTemp = [EmberCard, HealCard, EmberCard];
 
 //blobs
 var blob0;
@@ -104,15 +104,18 @@ function clearEnemySet() {
   enemySet = [];
 }
 
-function selectEnemy() {
-  return new Promise((resolve) => {
-    hideButtons();
+async function selectEnemy() {
+  return new Promise(async (resolve) => {
+    $("#optionE1").show();
+    $("#optionE2").show();
+    $("#optionE3").show();
+    await hideButtons();
     Toast.fire({
       title: "Choose a target",
       html: `
-        <button id="option1" class="swal2-confirm swal2-styled">Enemy 1</button>
-        <button id="option2" class="swal2-confirm swal2-styled">Enemy 2</button>
-        <button id="option3" class="swal2-confirm swal2-styled">Enemy 3</button>
+        <button id="optionE1" class="swal2-confirm swal2-styled">Enemy 1</button>
+        <button id="optionE2" class="swal2-confirm swal2-styled">Enemy 2</button>
+        <button id="optionE3" class="swal2-confirm swal2-styled">Enemy 3</button>
       `,
       timer: 25000,
       timerProgressBar: true,
@@ -120,15 +123,15 @@ function selectEnemy() {
       showCancelButton: false,
       position: "bottom-right",
     });
-    $("#option1").click(function () {
+    $("#optionE1").click(function () {
       Toast.close();
       resolve("enemy0");
     });
-    $("#option2").click(function () {
+    $("#optionE2").click(function () {
       Toast.close();
       resolve("enemy1");
     });
-    $("#option3").click(function () {
+    $("#optionE3").click(function () {
       Toast.close();
       resolve("enemy2");
     });
@@ -136,14 +139,17 @@ function selectEnemy() {
 }
 
 function selectFriend() {
-  return new Promise((resolve) => {
-    hideButtons();
+  return new Promise(async (resolve) => {
+    $("#optionF1").show();
+    $("#optionF2").show();
+    $("#optionF3").show();
+    await hideFriendButtons();
     Toast.fire({
       title: "Choose a target",
       html: `
-        <button id="option1" class="swal2-confirm swal2-styled">Blob 1</button>
-        <button id="option2" class="swal2-confirm swal2-styled">Blob 2</button>
-        <button id="option3" class="swal2-confirm swal2-styled">Blob 3</button>
+        <button id="optionF1" class="swal2-confirm swal2-styled">Blob 1</button>
+        <button id="optionF2" class="swal2-confirm swal2-styled">Blob 2</button>
+        <button id="optionF3" class="swal2-confirm swal2-styled">Blob 3</button>
       `,
       timer: 25000,
       timerProgressBar: true,
@@ -151,45 +157,52 @@ function selectFriend() {
       showCancelButton: false,
       position: "bottom-right",
     });
-    $("#option1").click(function () {
+    $("#optionF1").click(function () {
       Toast.close();
       resolve("blob0");
     });
-    $("#option2").click(function () {
+    $("#optionF2").click(function () {
       Toast.close();
       resolve("blob1");
     });
-    $("#option3").click(function () {
+    $("#optionF3").click(function () {
       Toast.close();
       resolve("blob2");
     });
   });
 }
 
-setInterval(function () {
-  if (enemy0 != null && enemy1 != null && enemy2 != null) {
-    if (enemy0.health <= 0) {
-      $("#option1").hide();
-    }
-    if (enemy1.health <= 0) {
-      $("#option2").hide();
-    }
-    if (enemy2.health <= 0) {
-      $("option3").hide();
-    }
+setInterval(async function () {
+  if (!curwave == 0) {
+    await hideButtons()
+    await hideFriendButtons()
   }
+
+    
 }, 100);
 
 //hide the buttons if the enemy is dead
-function hideButtons() {
+async function hideButtons() {
   if (enemy0.health <= 0) {
-    $("#option1").hide();
+    $("#optionE1").hide();
   }
   if (enemy1.health <= 0) {
-    $("#option2").hide();
+    $("#optionE2").hide();
   }
   if (enemy2.health <= 0) {
-    $("option3").hide();
+    $("optionE3").hide();
+  }
+}
+
+async function hideFriendButtons() {
+  if (blob0.health <= 0) {
+    $("#optionF1").hide();
+  }
+  if (blob1.health <= 0) {
+    $("#optionF2").hide();
+  }
+  if (blob2.health <= 0) {
+    $("optionF3").hide();
   }
 }
 
@@ -244,12 +257,15 @@ function drawPlayerTeam() {
 function deleteEnemy() {
   if (enemy0.health <= 0) {
     enemy0 = new enemy("null", 0, 0, 0, 0, 0);
+    enemy0health = "Dead";
   }
   if (enemy1.health <= 0) {
     enemy1 = new enemy("null", 0, 0, 0, 0, 0);
+    enemy1health = "Dead";
   }
   if (enemy2.health <= 0) {
     enemy2 = new enemy("null", 0, 0, 0, 0, 0);
+    enemy2health = "Dead";
   }
 }
 
@@ -397,17 +413,23 @@ function createBoss() {
 //Reset battle
 function resetBattle() {
   $("#battle").hide();
-  $("#PlayScreen").show();
+  
   won = false;
   curwave = 0;
   playerBlobTeam = playerBlobTeamTemp;
   playerHand = playerHandTemp;
-  blob0 = playerBlobTeam[0];
-  blob1 = playerBlobTeam[1];
-  blob2 = playerBlobTeam[2];
   clearInterval(blob0Att);
   clearInterval(blob1Att);
   clearInterval(blob2Att);
+  for (i = 0; i < playerBlobTeam.length; i++) {
+    if (i == 0) {
+      blob0 = playerBlobTeam[i];
+    } else if (i == 1) {
+      blob1 = playerBlobTeam[i];
+    } else {
+      blob2 = playerBlobTeam[i];
+    }
+  }
   $("#waveNum").html("Wave: " + curwave);
   clearInterval(enemy0Att);
   clearInterval(enemy1Att);
@@ -416,9 +438,11 @@ function resetBattle() {
   curMana = 0;
   playerMaxHandSize = 3;
   clearInterval(drawInt);
+  //reload
+  window.location.reload();
 }
 
-function drawEveryone(isnormalwave,isbosswave){
+async function drawEveryone(isnormalwave,isbosswave){
   drawPlayerTeam();
   drawHand();
   if (isnormalwave) {
@@ -430,10 +454,12 @@ function drawEveryone(isnormalwave,isbosswave){
 }
 
 //Creates an encounter
-function createEncounter(normal, boss) {
+async function createEncounter(normal, boss) {
+
+
 
   console.log("Encounter created");
-  drawEveryone(normal,boss)
+  await drawEveryone(normal,boss)
 
   
 
@@ -481,7 +507,7 @@ function createEncounter(normal, boss) {
     }
     if (checkLoss() == true && won == false) {
       won = true;
-      resetBattle();
+      
       Swal.fire({
         title: "You lost!",
         text: "You lost the battle!",
@@ -492,6 +518,7 @@ function createEncounter(normal, boss) {
       }).then((result) => {
         if (result.value) {
           won = true;
+          resetBattle();
           console.log("You lost the battle!");
         }
       });
@@ -501,7 +528,6 @@ function createEncounter(normal, boss) {
       let gottemgold = playerLevel * overAllDifficulty * 2;
       let gottemexp = Math.ceil(playerLevel / 10) * overAllDifficulty;
       won = true;
-      resetBattle();
       Swal.fire({
         title: "You won!",
         text: `You won the battle! You recieved ${gottemgold} and ${gottemexp} exp.`,
@@ -515,6 +541,7 @@ function createEncounter(normal, boss) {
           gold += gottemgold;
           playerExp += gottemexp;
           curBattlesWon++
+          resetBattle();
         }
       });
     }
@@ -612,7 +639,7 @@ function startPatrolBattle(){
     showCancelButton: true,
     focusConfirm: false,
     confirmButtonText: "Rolling Forests",
-    denyButtonText: `The chasm`,
+    denyButtonText: `The Chasm`,
     cancelButtonText: "Abort",
   }).then((result) => {
     if (result.isConfirmed) {

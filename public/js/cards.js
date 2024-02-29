@@ -4,7 +4,7 @@ playerDrawDelay = 4000;
 //Max of 3 cards in hand
 playerMaxHandSize = 3;
 
-playerDeck = ["ember"];
+playerDeck = ["ember", "heal"];
 //represents the players deck, (they start with only card, ember)
 
 //There is a doc with the card's effect and list
