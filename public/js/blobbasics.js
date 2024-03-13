@@ -107,6 +107,7 @@ class deadBlob {
 class enemy {
   constructor(name, health, basicAtkDmg, basicAtkSpd, specialAtkDmg, specialAtkSpd) {
     this.health = health;
+    this.statHealth = this.health
     this.basicAtkDmg = basicAtkDmg;
     this.basicAtkSpd = basicAtkSpd;
     this.specialAtkDmg = specialAtkDmg;

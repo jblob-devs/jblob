@@ -10,6 +10,7 @@
 var curwave = 0;
 var won = false;
 
+
 let EmberCard = new card(
   "ember",
   "EmberCard",
@@ -25,7 +26,7 @@ let EmberCard = new card(
 let HealCard = new card(
   "heal",
   "HealCard",
-  20,
+  40,
   2,
   "none",
   1,
@@ -33,7 +34,6 @@ let HealCard = new card(
   "friendone",
   "Heals the vitality of an ally. Heals 20 health."
 );
-
 
 var basic_Blob = new basicBlob()
 var squishy_Blob = new squishyBlob()
@@ -465,34 +465,52 @@ async function createEncounter(normal, boss) {
 
   //Health
   setInterval(function () {
-    $("#enemy0health").html("Health: " + enemySet[0].health);
+    /*
+    $("#enemy0health").html('<div class="progressbar"><div class="enemyprogressbarfill" id="enemy0health"></div> <span class="enemyprogressbartext" id = "enemy0barText">0</span></div>');
     $("#enemy1health").html("Health: " + enemySet[1].health);
     $("#enemy2health").html("Health: " + enemySet[2].health);
+    */
   }, 100);
 
   setInterval(function () {
     if(blob0.health > 0){
-      updateProgressBar("blob0health","blob0barText", blob0.health, blob0.statHealth, false, "");
+      updateProgressBar("fraction","blob0health","blob0barText", blob0.health, blob0.statHealth, false, "");
     }else{
-      updateProgressBar("blob0health","blob0barText", blob0.health, blob0.statHealth, true, "dead :(");
+      updateProgressBar("fraction","blob0health","blob0barText", blob0.health, blob0.statHealth, true, "dead :(");
     }
 
     if(blob1.health > 0){
-      updateProgressBar("blob1health","blob1barText", blob1.health, blob1.statHealth, false, "");
+      updateProgressBar("fraction","blob1health","blob1barText", blob1.health, blob1.statHealth, false, "");
     }else{
-      updateProgressBar("blob1health","blob1barText", blob1.health, blob1.statHealth, true, "dead :(");
+      updateProgressBar("fraction","blob1health","blob1barText", blob1.health, blob1.statHealth, true, "dead :(");
     }
 
     if(blob2.health > 0){
-      updateProgressBar("blob2health","blob2barText", blob2.health, blob2.statHealth, false, "");
+      updateProgressBar("fraction","blob2health","blob2barText", blob2.health, blob2.statHealth, false, "");
     }else{
-      updateProgressBar("blob2health","blob2barText", blob2.health, blob2.statHealth, true, "dead :(");
+      updateProgressBar("fraction","blob2health","blob2barText", blob2.health, blob2.statHealth, true, "dead :(");
+    }
+
+    if(enemy0.health > 0){
+      updateProgressBar("fraction","enemy0health","enemy0barText", enemySet[0].health, enemySet[0].statHealth, false, "");
+    }else{
+      updateProgressBar("fraction","enemy0health","enemy0barText", enemySet[0].health, enemySet[0].statHealth, true, "dead :(");
+    }
+
+    if(enemy1.health > 0){
+      updateProgressBar("fraction","enemy1health","enemy1barText", enemySet[1].health, enemySet[1].statHealth, false, "");
+    }else{
+      updateProgressBar("fraction","enemy1health","enemy1barText", enemySet[1].health, enemySet[1].statHealth, true, "dead :(");
+    }
+
+    if(enemy2.health > 0){
+      updateProgressBar("fraction","enemy2health","enemy2barText", enemySet[2].health, enemySet[2].statHealth, false, "");
+    }else{
+      updateProgressBar("fraction","enemy2health","enemy2barText", enemySet[2].health, enemySet[2].statHealth, true, "dead :(");
     }
     
     
-    
-    
-    
+  
     //$("#blob0health").html("Health: " + blob0.health);
     //$("#blob1health").html("Health: " + blob1.health);
     //$("#blob2health").html("Health: " + blob2.health);
