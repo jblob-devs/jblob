@@ -26,7 +26,7 @@ let EmberCard = new card(
 let HealCard = new card(
   "heal",
   "HealCard",
-  40,
+  80,
   2,
   "none",
   1,

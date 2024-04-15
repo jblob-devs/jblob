@@ -111,4 +111,16 @@ button:hover {
     position:absolute;
     top:400px;
     left:130px;
+}#shopItem2{
+    position: absolute;
+    top:30vh;
+    left:20vw;
+}#shopItem3{
+    position: absolute;
+    top:30vh;
+    left:48vw;
+}#shopItem4{
+    position: absolute;
+    top:30vh;
+    left:80vw;
 }
