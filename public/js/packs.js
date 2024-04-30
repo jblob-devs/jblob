@@ -6,6 +6,7 @@ slot 2: 20-30 gold
 slot 3: low chance for common card, else 2-5 resonance
 
 */
+let packsOwned = [];
 function buyDailyPack(){
 
         openDailyPack()
