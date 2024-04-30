@@ -123,4 +123,9 @@ button:hover {
     position: absolute;
     top:30vh;
     left:80vw;
+}#shopItem2Pic, #shopItem3Pic, #shopItem4Pic{
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}#shopItem2Pic:hover, #shopItem3Pic:hover, #shopItem4Pic:hover{
+    transform: scale(1.1)
 }

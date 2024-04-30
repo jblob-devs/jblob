@@ -1,4 +1,4 @@
 //update shop
 setInterval(function () {
-    
-}, 100);
+    $("#shopItem2Pic").attr("src", 'images/cards/baseSetPack.png')
+}, 1000);

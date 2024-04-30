@@ -69,20 +69,20 @@ var enemy2;
 var enemySet = [];
 
 //Creates enemies, of a certain type and number
-
+//name health basicatkdmg basicatkspd specialatk dmg special atk spd
 function updateEnemySet(type, num) {
   for (let i = 0; i < num; i++) {
     //the culled
     if (type == "enslaved") {
-      let enslaved = new enemy("enslaved", 100, 20, 1500, 0, 0);
+      let enslaved = new enemy("enslaved", 100, 10, 1500, 0, 0);
       enemySet.push(enslaved);
     }
     if (type == "warped") {
-      let warped = new enemy("warped", 150, 20, 1500, 0, 0);
+      let warped = new enemy("warped", 150, 13, 1500, 0, 0);
       enemySet.push(warped);
     }
     if (type == "corrupted") {
-      let corrupted = new enemy("corrupted", 150, 50, 2500, 0, 0);
+      let corrupted = new enemy("corrupted", 150, 50, 3000, 0, 0);
       enemySet.push(corrupted);
     }
     if (type == "possessed") {
@@ -123,17 +123,32 @@ async function selectEnemy() {
       showCancelButton: false,
       position: "bottom-right",
     });
+    document.addEventListener('keydown', clickKey)
+    function clickKey(event){
+      if(event.key >= '0' && event.key <= '3'){
+        document.removeEventListener('keydown', clickKey)
+        Toast.close()
+        resolve(`enemy${event.key-1}`);
+        console.log(`enemy${event.key}`)
+      }
+      
+    }
     $("#optionE1").click(function () {
       Toast.close();
       resolve("enemy0");
+      document.removeEventListener('keydown', clickKey)
     });
+
     $("#optionE2").click(function () {
       Toast.close();
       resolve("enemy1");
+      document.removeEventListener('keydown', clickKey)
     });
+
     $("#optionE3").click(function () {
       Toast.close();
       resolve("enemy2");
+      document.removeEventListener('keydown', clickKey)
     });
   });
 }
@@ -157,6 +172,14 @@ function selectFriend() {
       showCancelButton: false,
       position: "bottom-right",
     });
+    document.addEventListener('keydown', clickKey)
+    function clickKey(event){
+      if(event.key >= '0' && event.key <= '3'){
+        document.removeEventListener('keydown', clickKey)
+        Toast.close()
+        resolve(`blob${event.key-1}`);
+      }
+    }
     $("#optionF1").click(function () {
       Toast.close();
       resolve("blob0");
@@ -540,6 +563,12 @@ async function createEncounter(normal, boss) {
           console.log("You lost the battle!");
         }
       });
+    }
+
+    for(let i =0; i < playerBlobTeam.length; i++){
+      if(playerBlobTeam[i].health > playerBlobTeam[i].statHealth){
+        playerBlobTeam[i].health = playerBlobTeam[i].statHealth;
+      }
     }
 
     if (curwave == 4 && won == false) {

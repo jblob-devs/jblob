@@ -104,6 +104,7 @@ class deadBlob {
   }
 }
 
+
 class enemy {
   constructor(name, health, basicAtkDmg, basicAtkSpd, specialAtkDmg, specialAtkSpd) {
     this.health = health;

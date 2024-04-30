@@ -221,7 +221,7 @@ setInterval(function(){
     $("#blobTeam1").attr("src","images/blobs/"+playersTeam[0]+".png")
     $("#blobTeam2").attr("src","images/blobs/"+playersTeam[1]+".png")
     $("#blobTeam3").attr("src","images/blobs/"+playersTeam[2]+".png")
-}, 1000);
+}, 100);
 
 setInterval(function(){
     saveGameState();
